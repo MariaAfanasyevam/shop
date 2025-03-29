@@ -13,5 +13,9 @@
 	},
 	"dependencies": {
 		"sass-embedded": "^1.85.1"
-	}
+	},
+	"engines" : { 
+		"node" : ">=23-alpine3.21<17.0.0"
+	  }
+	
 }
