@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "Allerta_Stencil";
+  src: url("fonts/AllertaStencil-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "DMSans";
+  src: url("fonts/DMSans-VariableFont_opsz,wght.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("fonts/Poppins-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+$regular: 400;
+$medium:  500;
+$bold:    700;
+
+$large:   16px;
+$medium:  14px;
+$small:   12px;
+
+$heading1: 33px;
+$heading2: 26px;
+$heading3: 20px;
+$heading5: 16px;
