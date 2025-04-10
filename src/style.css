@@ -196,8 +196,8 @@ table {
 
 .item-discount {
   position: absolute;
-  top: -5%;
-  left: -5%;
+  top: 20%;
+  left: 10%;
   background-color: #A18A68;
   height: 24px;
   width: 46px;
@@ -206,6 +206,12 @@ table {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  transform: translate(-10%, -10%);
+}
+@media (max-width: 647px) {
+  .item-discount {
+    display: none;
+  }
 }
 
 .shop-item__image:first-child {
@@ -230,20 +236,12 @@ table {
 
 .discount-text {
   position: absolute;
-  top: -98%;
-  left: 1%;
-  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: row;
   z-index: 1;
   column-gap: 24px;
   background-color: #A18A68;
   font-size: 14px;
-}
-@media (max-width: 647px) {
-  .discount-text {
-    display: none;
-  }
 }
 
 .shop-aside {
@@ -732,7 +730,7 @@ a:link {
   max-height: 100%;
   object-fit: contain;
 }
-.shop-item .shop-img.selected {
+.shop-item .shop-img.selected-img {
   opacity: 60%;
   position: relative;
 }
