@@ -78,13 +78,13 @@ a:link{
   font-family: 'DMSans', sans-serif;
   font-weight: $regular;
   color: $black;
-  align-items: center;
+  align-items: flex-start;
 
   .nav {
     display: flex;
-    align-items: flex-end;
+    align-items: flex-start;
     margin-top: auto;
-
+justify-content: center;
     &__ul {
       display: flex;
       margin-top: auto;
@@ -119,11 +119,11 @@ a:link{
         border-bottom: 1px solid $accent;
       }
 
-      & > svg {
+
         @media (max-width: 647px) {
           display: none;
         }
-      }
+
     }
 
     &__link {
@@ -526,4 +526,19 @@ a:link{
     font-weight: $regular;
     font-size: $small;
   }
+}
+.burger-menu {
+  display: none;
+  @media (max-width: 647px) {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    padding-bottom: 18px;
+    column-gap: 20px;
+    margin-left: 100px;
+    order:-1;
+  }
+}
+.burger-menu__button {
+  display: none;
 }
