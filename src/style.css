@@ -592,7 +592,7 @@ a:link {
 }
 
 .main-content {
-  background-image: url("/shoppe/src/img/Img01.png");
+  background-image: url("./img/Img01.png");
   background-repeat: no-repeat;
   background-size: cover;
   height: 646px;
