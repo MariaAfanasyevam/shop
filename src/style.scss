@@ -17,7 +17,18 @@ body{
   }
 
 }
-
+a:visited
+{
+  color: $gray-dark;
+  text-decoration: none;
+}
+a{
+  color: $gray-dark;
+  text-decoration: none;
+}
+a:link{
+  text-decoration: none;
+}
 .container{
   max-width: 100vw;
   margin: 0 96px;
@@ -60,210 +71,278 @@ body{
     margin-top: 16px;
   }
 }
-.menu
-{ display:flex;
+.menu {
+  display: flex;
   flex-direction: row;
   font-size: $large;
   font-family: 'DMSans', sans-serif;
   font-weight: $regular;
   color: $black;
-align-items: center;
-  .nav{
+  align-items: center;
+
+  .nav {
     display: flex;
     align-items: flex-end;
-    margin-top:auto;
+    margin-top: auto;
+
     &__ul {
       display: flex;
       margin-top: auto;
 
       &.text {
         gap: 64px;
-        margin-top:auto;
-        @media (max-width: 647px){
+        margin-top: auto;
+        @media (max-width: 647px) {
           display: none;
-        }}
+        }
+      }
+
       &.icon {
         gap: 30px;
 
-  }
+      }
 
     }
-    &__img{
+
+    &__img {
       margin: {
-        left:-16px;
-        right:48px;
-  }
-}
-      &__li {
-        list-style: none;
-        padding-bottom: 18px;
-       &.selected{
-         border-bottom:1px solid $accent;
-       }
-        &>svg{
-          @media (max-width: 647px){
-            display: none;
-          }}
+        left: -16px;
+        right: 48px;
       }
-      &__link {
-        text-decoration: none;
-        color: $black;
+    }
+
+    &__li {
+      list-style: none;
+      padding-bottom: 18px;
+
+      &.selected {
+        border-bottom: 1px solid $accent;
       }
-    svg{
-      &:hover path{
+
+      & > svg {
+        @media (max-width: 647px) {
+          display: none;
+        }
+      }
+    }
+
+    &__link {
+      text-decoration: none;
+      color: $black;
+    }
+
+    svg {
+      &:hover path {
         fill: $gray-dark;
       }
 
     }
+  }
 }
-
-.main-content{
-  background-image: url('/shoppe/src/img/Img01.png');
-  background-repeat: no-repeat;
-  background-size: cover;
- height: 646px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding-left:39px;
-  @media(max-width: 768px){
-    background-image: url('/shoppe/src/img/shoppe.png');
+  .main-content {
+    background-image: url('/shoppe/src/img/Img01.png');
     background-repeat: no-repeat;
     background-size: cover;
-    padding-left:8px;
-    justify-content: flex-end;
-    padding-bottom: 26px;
-    height: 354px;
+    height: 646px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 39px;
+    @media(max-width: 768px) {
+      background-image: url('/shoppe/src/img/shoppe.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-left: 8px;
+      justify-content: flex-end;
+      padding-bottom: 26px;
+      height: 354px;
+    }
   }
-}
-.main-container{
-  color: $white;
-  overflow-x:hidden;
-}
-.title{
-font-family: "DMSans", sans-serif;
-  font-weight: $medium;
-  font-size: $heading1;
-  @media (max-width:560px){
+
+  .main-container {
+    color: $white;
+    overflow-x: hidden;
+  }
+
+  .title {
+    font-family: "DMSans", sans-serif;
+    font-weight: $medium;
+    font-size: $heading1;
+    @media (max-width: 768px) {
+      font-size: $heading3;
+    }
+    @media (max-width: 537px) {
+      font-size: $heading5;
+    }
+  }
+
+  .subtitle {
+    font-family: "DMSans", sans-serif;
+    font-weight: $regular;
+    font-size: $heading2;
+    align-items: center;
+    justify-content: flex-start;
+    margin: {
+      top: 16px;
+      bottom: 48px;
+    }
+    @media (max-width: 560px) {
+      font-size: $medium;
+    }
+  }
+
+  .button {
+    font-family: "DMSans", sans-serif;
+    font-weight: $bold;
     font-size: $heading3;
+    color: $white;
+    cursor: pointer;
+    border: 1px $white solid;
+    background-color: transparent;
+    padding: 13px 31px;
+    border-radius: 2px;
+    @media (max-width: 560px) {
+      font-size: $small;
+    }
   }
-}
 
-.subtitle{
-  font-family: "DMSans", sans-serif;
-  font-weight: $regular;
-  font-size: $heading2;
-  align-items: center;
-  justify-content: flex-start;
-  margin:{
-    top: 16px;
-    bottom:48px;
+  .shop-container {
+    // margin-bottom: 211px;
+    justify-content: center;
   }
-  @media (max-width:560px){
-    font-size: $medium;
-  }
-}
 
-.button{
-  font-family: "DMSans", sans-serif;
-  font-weight: $bold;
-  font-size: $heading3;
-  color:$white;
-  cursor: pointer;
-  border: 1px $white solid;
-  background-color: transparent;
-  padding: 13px 31px;
-  border-radius: 2px;
-  @media (max-width:560px){
-    font-size: $small;
-  }
-}
-.shop-container{
- // margin-bottom: 211px;
-  justify-content: center;
-}
-.shop-items {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 39px auto;
-  column-gap: 53px;
-  row-gap: 86px;
-  justify-content: center;
-  align-items: center;
-  grid-template-rows: auto auto;
-  @media (max-width:1390px){
-    grid-template-columns: repeat(2, 1fr);
-    margin: 20px auto;
-  }
-  @media (max-width:860px){
-    grid-template-columns: repeat(2, 1fr);
-    margin: 20px auto;
-    row-gap: 20px;
-  }
-}
-.shop-item {
-  font-family: "DMSans", sans-serif;
-  font-size: $heading3;
-   &__img{
-     overflow: hidden;
+  .shop-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 39px auto;
+    column-gap: 53px;
+    row-gap: 86px;
 
-   }
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+    grid-template-rows: auto auto;
+
+    @media (max-width: 368px) {
+      grid-template-columns: repeat(2, 1fr);
+      margin: 20px auto;
+      row-gap: 20px;
+    }
+  }
+
+  .shop-item {
+    font-family: "DMSans", sans-serif;
+    font-size: $heading3;
+    left:auto;
+    right:auto;
+    &__img {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      width: 380px;
+      height: 380px;
+      @media (max-width: 860px) {
+        width: 280px;
+        height: 280px;}
+      @media (max-width: 559px) {
+        width: 180px;
+        height: 180px;}
+      @media (max-width: 368px) {
+        width: 280px;
+        height: 280px;}
+    }
+
     .shop-img {
 
       max-width: 100%;
-      width: auto;
-
-      &.selected{
+      max-height: 100%;
+      object-fit: contain;
+      &.selected {
         opacity: 60%;
         position: relative;
       }
-    @media (max-width:860px){
-    width: 180px;
-    height: 180px;
-  }
-      @media (max-width:559px){
+
+      @media (max-width: 860px) {
+        width: 180px;
+        height: 180px;
+        font-size: $large;
+      }
+      @media (max-width: 559px) {
         width: 120px;
         height: 120px;
+        font-size: $medium;
       }
+    }
+
+    &__title {
+      font-weight: $regular;
+      color: $black;
+      margin: 24px auto 16px;
+      @media (max-width: 860px) {
+        font-size: $large;
+      }
+      @media (max-width: 559px) {
+
+        font-size: $medium;
+      }
+    }
+
+    &__price {
+      font-weight: $medium;
+      color: $accent;
+      @media (max-width: 860px) {
+
+        font-size: $large;
+      }
+      @media (max-width: 559px) {
+
+        font-size: $medium;
+      }
+    }
+
+    @media (max-width: 1390px) {
+      width: 20vw;
+    }
   }
 
-  &__title {
-    font-weight: $regular;
-    color: $black;
-    margin: 24px auto 16px;
-  }
-
-  &__price {
-    font-weight: $medium;
-    color: $accent;
-  }
-
-  @media (max-width: 1390px) {
-    width: 20vw;
-  }
-}
-  .shop-title {
+.shop-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-weight: $medium;
     font-family: "DMSans", sans-serif;
     margin-top: 64px;
-
-    h1 {
+    &__text {
       font-size: $heading1;
       color: $black;
+      @media (max-width:730px){
+        font-size: $heading2;
+
+      }
+      @media (max-width:560px){
+        font-size: $heading3;
+
+      }
     }
 
-    .view-all {
+    &__view {
       font-size: $heading3;
       color: $accent;
-
+      @media (max-width:560px){
+        font-size: $heading5;
+      }
+      @media (max-width:370px){
+        font-size:  0.5rem;
+      }
       a:hover {
         color: $gray-light;
         cursor: pointer;
+        text-decoration: none;
       }
     }
   }

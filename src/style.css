@@ -228,6 +228,11 @@ table {
   z-index: 1;
   column-gap: 24px;
 }
+@media (max-width: 647px) {
+  .icons {
+    display: none;
+  }
+}
 
 .discount-text {
   color: #FFFFFF;
@@ -431,6 +436,20 @@ body main {
   color: white;
 }
 
+a:visited {
+  color: #707070;
+  text-decoration: none;
+}
+
+a {
+  color: #707070;
+  text-decoration: none;
+}
+
+a:link {
+  text-decoration: none;
+}
+
 .container {
   max-width: 100vw;
   margin: 0 96px;
@@ -482,6 +501,7 @@ body main {
   font-family: "DMSans", sans-serif;
   font-weight: 400;
   color: #000000;
+  align-items: center;
 }
 .menu .nav {
   display: flex;
@@ -504,22 +524,27 @@ body main {
 .menu .nav__ul.icon {
   gap: 30px;
 }
-.menu__img {
+.menu .nav__img {
   margin-left: -16px;
   margin-right: 48px;
 }
-.menu__li {
+.menu .nav__li {
   list-style: none;
   padding-bottom: 18px;
 }
-.menu__li.selected {
+.menu .nav__li.selected {
   border-bottom: 1px solid #A18A68;
 }
-.menu__link {
+@media (max-width: 647px) {
+  .menu .nav__li > svg {
+    display: none;
+  }
+}
+.menu .nav__link {
   text-decoration: none;
   color: #000000;
 }
-.menu svg:hover path {
+.menu .nav svg:hover path {
   fill: #707070;
 }
 
@@ -557,9 +582,14 @@ body main {
   font-weight: 14px;
   font-size: 33px;
 }
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .title {
     font-size: 20px;
+  }
+}
+@media (max-width: 537px) {
+  .title {
+    font-size: 16px;
   }
 }
 
@@ -607,15 +637,11 @@ body main {
   row-gap: 86px;
   justify-content: center;
   align-items: center;
+  align-content: center;
+  align-self: center;
   grid-template-rows: auto auto;
 }
-@media (max-width: 1390px) {
-  .shop-items {
-    grid-template-columns: repeat(2, 1fr);
-    margin: 20px auto;
-  }
-}
-@media (max-width: 860px) {
+@media (max-width: 368px) {
   .shop-items {
     grid-template-columns: repeat(2, 1fr);
     margin: 20px auto;
@@ -626,13 +652,40 @@ body main {
 .shop-item {
   font-family: "DMSans", sans-serif;
   font-size: 20px;
+  left: auto;
+  right: auto;
 }
 .shop-item__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   overflow: hidden;
+  aspect-ratio: 1/1;
+  width: 380px;
+  height: 380px;
+}
+@media (max-width: 860px) {
+  .shop-item__img {
+    width: 280px;
+    height: 280px;
+  }
+}
+@media (max-width: 559px) {
+  .shop-item__img {
+    width: 180px;
+    height: 180px;
+  }
+}
+@media (max-width: 368px) {
+  .shop-item__img {
+    width: 280px;
+    height: 280px;
+  }
 }
 .shop-item .shop-img {
   max-width: 100%;
-  width: auto;
+  max-height: 100%;
+  object-fit: contain;
 }
 .shop-item .shop-img.selected {
   opacity: 60%;
@@ -642,12 +695,14 @@ body main {
   .shop-item .shop-img {
     width: 180px;
     height: 180px;
+    font-size: 16px;
   }
 }
 @media (max-width: 559px) {
   .shop-item .shop-img {
     width: 120px;
     height: 120px;
+    font-size: 14px;
   }
 }
 .shop-item__title {
@@ -655,9 +710,29 @@ body main {
   color: #000000;
   margin: 24px auto 16px;
 }
+@media (max-width: 860px) {
+  .shop-item__title {
+    font-size: 16px;
+  }
+}
+@media (max-width: 559px) {
+  .shop-item__title {
+    font-size: 14px;
+  }
+}
 .shop-item__price {
   font-weight: 14px;
   color: #A18A68;
+}
+@media (max-width: 860px) {
+  .shop-item__price {
+    font-size: 16px;
+  }
+}
+@media (max-width: 559px) {
+  .shop-item__price {
+    font-size: 14px;
+  }
 }
 @media (max-width: 1390px) {
   .shop-item {
@@ -673,17 +748,38 @@ body main {
   font-family: "DMSans", sans-serif;
   margin-top: 64px;
 }
-.shop-title h1 {
+.shop-title__text {
   font-size: 33px;
   color: #000000;
 }
-.shop-title .view-all {
+@media (max-width: 730px) {
+  .shop-title__text {
+    font-size: 26px;
+  }
+}
+@media (max-width: 560px) {
+  .shop-title__text {
+    font-size: 20px;
+  }
+}
+.shop-title__view {
   font-size: 20px;
   color: #A18A68;
 }
-.shop-title .view-all a:hover {
+@media (max-width: 560px) {
+  .shop-title__view {
+    font-size: 16px;
+  }
+}
+@media (max-width: 370px) {
+  .shop-title__view {
+    font-size: 0.5rem;
+  }
+}
+.shop-title__view a:hover {
   color: #EFEFEF;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .footer {
