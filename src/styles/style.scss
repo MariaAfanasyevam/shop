@@ -1,6 +1,8 @@
-@use "reset";
-@import 'fonts', 'color';
-@import "shop.scss";
+@use "reset.scss";
+@use "fonts.scss";
+@use "variables.scss";
+@use "shop.scss";
+
 #app {
   width: 100vw;
   height: 100vh;
@@ -9,7 +11,15 @@
 }
 html,body {
   overflow-x:hidden;
+  box-sizing:border-box;
 }
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
 body{
  // margin: auto 96px;
   main{
@@ -17,20 +27,29 @@ body{
   }
 
 }
+
 a:visited
 {
-  color: $gray-dark;
+  color: inherit;
   text-decoration: none;
 }
+
 a{
-  color: $gray-dark;
+  color: inherit;
   text-decoration: none;
 }
+
 a:link{
   text-decoration: none;
 }
+
+button{
+  padding:0;
+  border:none;
+}
+
 .container{
-  max-width: 100vw;
+  max-width: 1400px;
   margin: 0 96px;
   height: max-content;
   @media (max-width:1024px){
@@ -52,14 +71,14 @@ a:link{
 
     .title{
       font-family: "Allerta_Stencil", sans-serif;
-      color: $black;
-      font-weight: $regular;
+      color: variables.$black;
+      font-weight: var(regular);
       font-size: 35px;
       line-height: 41px;
       text-transform: uppercase;
       padding-bottom: 17px;
       &::first-letter {
-        color: $accent;
+        color: variables.$accent;
       }
 
     }
@@ -71,20 +90,21 @@ a:link{
     margin-top: 16px;
   }
 }
+
 .menu {
   display: flex;
   flex-direction: row;
-  font-size: $large;
+  font-size: var(large);
   font-family: 'DMSans', sans-serif;
-  font-weight: $regular;
-  color: $black;
+  font-weight: var(regular);
+  color: variables.$black;
   align-items: flex-start;
 
   .nav {
     display: flex;
     align-items: flex-start;
     margin-top: auto;
-justify-content: center;
+    justify-content: center;
     &__ul {
       display: flex;
       margin-top: auto;
@@ -115,11 +135,9 @@ justify-content: center;
       list-style: none;
       padding-bottom: 18px;
 
-      &.selected {
-        border-bottom: 1px solid $accent;
+      &:hover{
+        border-bottom: 1px solid variables.$gray-dark;
       }
-
-
         @media (max-width: 647px) {
           display: none;
         }
@@ -128,19 +146,21 @@ justify-content: center;
 
     &__link {
       text-decoration: none;
-      color: $black;
+      color: variables.$black;
+
     }
 
     svg {
       &:hover path {
-        fill: $gray-dark;
+        fill: variables.$gray-dark;
       }
 
     }
   }
 }
-  .main-content {
-    background-image: url("./img/Img01.png");
+
+.main-content {
+    background-image: url("../img/Img01.png");
     background-repeat: no-repeat;
     background-size: cover;
     height: 646px;
@@ -161,27 +181,27 @@ justify-content: center;
     }
   }
 
-  .main-container {
-    color: $white;
+.main-container {
+    color: variables.$white;
     overflow-x: hidden;
   }
 
-  .title {
+.title {
     font-family: "DMSans", sans-serif;
-    font-weight: $medium;
-    font-size: $heading1;
+    font-weight: var(medium);
+    font-size: var(heading1);
     @media (max-width: 768px) {
-      font-size: $heading3;
+      font-size: var(heading3);
     }
     @media (max-width: 537px) {
-      font-size: $heading5;
+      font-size: var(heading5);
     }
   }
 
-  .subtitle {
+.subtitle {
     font-family: "DMSans", sans-serif;
-    font-weight: $regular;
-    font-size: $heading2;
+    font-weight: var(regular);
+    font-size: var(heading2);
     align-items: center;
     justify-content: flex-start;
     margin: {
@@ -189,31 +209,31 @@ justify-content: center;
       bottom: 48px;
     }
     @media (max-width: 560px) {
-      font-size: $medium;
+      font-size: var(fonts.$medium);
     }
   }
 
-  .button {
+.button {
     font-family: "DMSans", sans-serif;
-    font-weight: $bold;
-    font-size: $heading3;
-    color: $white;
+    font-weight: var(fonts.$bold);
+    font-size: var(fonts.$heading3);
+    color: variables.$white;
     cursor: pointer;
-    border: 1px $white solid;
+    border: 1px variables.$white solid;
     background-color: transparent;
     padding: 13px 31px;
     border-radius: 2px;
     @media (max-width: 560px) {
-      font-size: $small;
+      font-size: var(fonts.$small);
     }
   }
 
-  .shop-container {
+.shop-container {
     // margin-bottom: 211px;
     justify-content: center;
   }
 
-  .shop-items {
+.shop-items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin: 39px auto;
@@ -233,75 +253,79 @@ justify-content: center;
     }
   }
 
-  .shop-item {
-    font-family: "DMSans", sans-serif;
-    font-size: $heading3;
-    left:auto;
-    right:auto;
-    &__img {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      aspect-ratio: 1 / 1;
-      width: 380px;
-      height: 380px;
-      @media (max-width: 860px) {
-        width: 280px;
-        height: 280px;}
-      @media (max-width: 559px) {
-        width: 180px;
-        height: 180px;}
-      @media (max-width: 368px) {
-        width: 280px;
-        height: 280px;}
+.shop-item {
+  font-family: "DMSans", sans-serif;
+  font-size: var(fonts.$heading3);
+  left: auto;
+  right: auto;
+
+  &__img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    width: 380px;
+    height: 380px;
+    @media (max-width: 860px) {
+      width: 280px;
+      height: 280px;
     }
-
-    .shop-img {
-
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      &.selected-img {
-        opacity: 60%;
-        position: relative;
-      }
-
-      @media (max-width: 860px) {
-        width: 180px;
-        height: 180px;
-        font-size: $large;
-      }
-      @media (max-width: 559px) {
-        width: 120px;
-        height: 120px;
-        font-size: $medium;
-      }
+    @media (max-width: 559px) {
+      width: 180px;
+      height: 180px;
     }
+    @media (max-width: 368px) {
+      width: 280px;
+      height: 280px;
+    }
+  }
+}
+.shop-img {
+
+  width:380px;
+  height:380px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  z-index: 100;
+
+
+  @media (max-width: 860px) {
+    width: 180px;
+    height: 180px;
+    font-size: var(large);
+  }
+
+  @media (max-width: 559px) {
+    width: 120px;
+    height: 120px;
+    font-size: var(medium);
+  }
 
     &__title {
-      font-weight: $regular;
-      color: $black;
+      font-weight: var(fonts.$regular);
+      color: variables.$black;
       margin: 24px auto 16px;
       @media (max-width: 860px) {
-        font-size: $large;
+        font-size: var(fonts.$large);
       }
       @media (max-width: 559px) {
 
-        font-size: $medium;
+        font-size: var(fonts.$medium);
       }
     }
 
     &__price {
-      font-weight: $medium;
-      color: $accent;
+      font-weight: var(fonts.$medium);
+      color: variables.$accent;
       @media (max-width: 860px) {
 
-        font-size: $large;
+        font-size: var(fonts.$large);
       }
       @media (max-width: 559px) {
 
-        font-size: $medium;
+        font-size: var(fonts.$medium);
       }
     }
 
@@ -309,51 +333,54 @@ justify-content: center;
       width: 20vw;
     }
   }
+.shop-item{
+  position: relative;
+}
 
 .shop-title {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-weight: $medium;
+    font-weight: var(fonts.$medium);
     font-family: "DMSans", sans-serif;
     margin-top: 64px;
     &__text {
-      font-size: $heading1;
-      color: $black;
+      font-size: var(fonts.$heading1);
+      color: variables.$black;
       @media (max-width:730px){
-        font-size: $heading2;
+        font-size: var(fonts.$heading2);
 
       }
       @media (max-width:560px){
-        font-size: $heading3;
+        font-size: var(fonts.$heading3);
 
       }
     }
 
     &__view {
-      font-size: $heading3;
-      color: $accent;
+      font-size: var(fonts.$heading3);
+      color: variables.$accent;
       @media (max-width:560px){
-        font-size: $heading5;
+        font-size: var(fonts.$heading5);
       }
       @media (max-width:370px){
         font-size:  0.5rem;
       }
       a:hover {
-        color: $gray-light;
+        color: variables.$gray-light;
         cursor: pointer;
         text-decoration: none;
       }
     }
   }
 
-  .footer {
+.footer {
     display: flex;
     flex-direction: row;
-    color: $gray-dark;
+    color: variables.$gray-dark;
     font-family: DMSans, sans-serif;
-    font-size: $large;
-    font-weight: $regular;
+    font-size: var(fonts.$large);
+    font-weight: var(fonts.$regular);
     text-transform: uppercase;
 
     &__ul {
@@ -374,23 +401,25 @@ justify-content: center;
 
     &__li {
       list-style: none;
-
+      &:hover{
+        border-bottom: 1px solid variables.$gray-dark;
+      }
     }
 
     a {
       text-decoration: none;
-      color: $gray-dark;
+      color: variables.$gray-dark;
     }
     @media (max-width: 730px) {
-      font-size:$small;
+      font-size:var(fonts.$small);
     }
   }
 
-  .footer-container {
+.footer-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-top: 1px solid $gray;
+    border-top: 1px solid variables.$gray;
     padding-top: 40px;
 
     @media (max-width: 730px) {
@@ -403,10 +432,10 @@ justify-content: center;
     }
   }
 
-  .subscribe {
+.subscribe {
     display: flex;
     flex-direction: row;
-    border-bottom: 1px solid $black;
+    border-bottom: 1px solid variables.$black;
     column-gap: 128px;
     padding-bottom: 13px;
     @media (max-width: 730px){
@@ -418,12 +447,12 @@ justify-content: center;
       justify-content: space-between;
     }
     &__text {
-      color: $gray-dark;
-      font-size: $large;
-      font-weight: $regular;
+      color: variables.$gray-dark;
+      font-size: var(fonts.$large);
+      font-weight: var(fonts.$regular);
       line-height: 27px;
       @media (max-width: 730px){
-        font-size: $small;
+        font-size: var(fonts.$small);
       }
     }
 
@@ -435,7 +464,7 @@ justify-content: center;
     }
     .subscribe__arrow{
     &:after{
-      content: url("./img/arrow.svg");
+      content: url("../img/arrow.svg");
       display: inline-block;
       width: 20px;
       height: 20px;
@@ -457,7 +486,7 @@ justify-content: center;
     }}
   }
 
-  .footer-social {
+.footer-social {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -465,16 +494,16 @@ justify-content: center;
     padding-bottom: 90px;
 
     &__terms {
-      color: $gray-dark;
-      font-size: $large;
-      font-weight: $regular;
+      color: variables.$gray-dark;
+      font-size: var(fonts.$large);
+      font-weight: var(fonts.$regular);
       line-height: 27px;
       .bold{
-        font-weight: $bold;
+        font-weight: var(fonts.$bold);
       }
       @media (max-width: 537px){
         order:1;
-        font-size:$small;
+        font-size:var(fonts.$small);
         margin-top:36px;
       }
     }
@@ -491,10 +520,10 @@ justify-content: center;
     &__follow{
     display: none;
       @media (max-width: 537px) {
-         color: $black;
+         color: variables.$black;
         font-family: DMSans, sans-serif;
-        font-weight: $regular;
-        font-size: $small;
+        font-weight: var(fonts.$regular);
+        font-size: var(fonts.$small);
         display: flex;
         align-items: center;
         text-align: center;
@@ -502,12 +531,12 @@ justify-content: center;
       &:after{
         content: "";
         width: 47px;
-        border-bottom: 1px solid black;
+        border-bottom: 1px solid variables.$black;
         margin: 0 20px;
       }
     }
     svg:hover path {
-      fill: $black;
+      fill: variables.$black;
     }
     @media (max-width: 537px){
       display: flex;
@@ -521,12 +550,13 @@ justify-content: center;
   display: none;
   @media (max-width: 537px) {
     display: block;
-    color: $black;
+    color: variables.$black;
     font-family: DMSans, sans-serif;
-    font-weight: $regular;
-    font-size: $small;
+    font-weight: var(fonts.$regular);
+    font-size: var(fonts.$small);
   }
 }
+
 .burger-menu {
   display: none;
   @media (max-width: 647px) {
@@ -539,6 +569,7 @@ justify-content: center;
     order:-1;
   }
 }
+
 .burger-menu__button {
   display: none;
 }
