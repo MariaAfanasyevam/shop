@@ -18,11 +18,12 @@
 			<div class="menu">
 				<nav class="nav">
 					<ul class="nav__ul text">
-						<li class="nav__li"><a href="#" class="nav__link">Shop</a></li>
+						<li class="nav__li underline"><a href="#" class="nav__link">Shop</a></li>
 						<li class="nav__li"><a href="#" class="nav__link">Blog</a></li>
 						<li class="nav__li"><a href="#" class="nav__link">Our Story</a></li>
 						<li class="nav__li"><img src="src/img/Line2.png" class="nav__img" alt="line"/></li>
 					</ul>
+
 					<ul class="nav__ul icon">
 						<li class="nav__li"><a href="#" class="nav__link"><svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M15.6431 14.1474L19.8645 18.3747C20.053 18.5844 20.0437 18.9055 19.8434 19.1039L19.1047 19.8437C19.0056 19.9437 18.8707 20 18.73 20C18.5893 20 18.4544 19.9437 18.3553 19.8437L14.1339 15.6164C14.0172 15.4994 13.9112 15.372 13.8173 15.2359L13.0258 14.1791C11.7162 15.2263 10.0898 15.7965 8.41388 15.796C4.96034 15.808 1.95934 13.4224 1.18757 10.0515C0.415791 6.68058 2.07921 3.22404 5.19304 1.72824C8.30686 0.232444 12.0401 1.0966 14.1825 3.8091C16.3249 6.5216 16.3047 10.3585 14.1339 13.0483L15.1893 13.7775C15.3541 13.8831 15.5063 14.0072 15.6431 14.1474ZM3.13727 8.39798C3.13727 11.3163 5.49977 13.6821 8.41405 13.6821C9.81355 13.6821 11.1557 13.1254 12.1453 12.1344C13.1349 11.1435 13.6908 9.79942 13.6908 8.39798C13.6908 5.47963 11.3283 3.11384 8.41405 3.11384C5.49977 3.11384 3.13727 5.47963 3.13727 8.39798Z" fill="black"/>
@@ -61,32 +62,40 @@
 			</div>
 		</div>
 		<div class="shop-aside container">
+			<div class="filter"> <img src="./src/img/Filter.svg"  alt="filter"/>Filters
+			</div>
 			<div class="shop-aside__form">
 				<div class="shop-search">
 					<div class="form__search">
-					<input type="text" class="form__input" placeholder="Search..." name="serch" id="search">
+					<div>
+						<input type="text" class="form__input" placeholder="Search..." name="search" id="search">
+					</div>
+					</div>
 				</div>
-			</div>
-			<div class="search-list">
+				<div class="search-list">
 				<select id="sort" name="sort">
-					<option value="">Sort by:</option>
+					<option selected disabled>Sort by:</option>
 					<option value="price">Price</option>
 					<option value="name">Name</option>
 					<option value="date">Date</option>
 				</select>
-			</div>
+				</div>
 				<div class="shop-search__radio">
 					<div class=shop-search__text">On sale
+					</div>
+					<label class="switch">
+						<input type="checkbox">
+						<span class="switch-btn"></span>
+					</label>
 				</div>
-					<div class="switch-btn"></div>
-				</div>
-			<div class="shop-search__radio">
+				<div class="shop-search__radio">
 				<div class="shop-search__text">
 					In stock
-			</div>
-			<div class="switch-btn">
-
-			</div>
+				</div>
+					<label class="switch">
+						<input type="checkbox">
+						<span class="switch-btn"></span>
+					</label>
 				</div>
 			</div>
 			<div class="section">
@@ -327,7 +336,7 @@
 			<div class="footer">
 				<ul class="footer__ul">
 					<li class="footer__li"><a href="/">contact</a></li>
-					<li class="footer__li"><a href="/">terms and services</a></li>
+					<li class="footer__li"><a href="/">terms of services</a></li>
 					<li class="footer__li"><a href="/">shipping and returns</a></li>
 				</ul>
 			</div>

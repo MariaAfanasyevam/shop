@@ -43,14 +43,15 @@ a:link{
   text-decoration: none;
 }
 
-button{
-  padding:0;
-  border:none;
-}
+//button{
+//  padding:0;
+//  border:none;
+//}
 
 .container{
   max-width: 1400px;
-  margin: 0 96px;
+  padding-top: 48px;
+  margin: auto 96px;
   height: max-content;
   @media (max-width:1024px){
     margin: 0 48px;
@@ -58,10 +59,13 @@ button{
   @media (max-width: 768px){
     margin: 0 16px;
   }
+  @media (max-width: 600px){
+   padding-top: 15px;
+  }
 }
 
 .header{
-  margin-top: 64px;
+  margin-top: 16px;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
@@ -72,7 +76,7 @@ button{
     .title{
       font-family: "Allerta_Stencil", sans-serif;
       color: variables.$black;
-      font-weight: var(regular);
+      font-weight: variables.$regular;
       font-size: 35px;
       line-height: 41px;
       text-transform: uppercase;
@@ -94,9 +98,9 @@ button{
 .menu {
   display: flex;
   flex-direction: row;
-  font-size: var(large);
+  font-size: variables.$large;
   font-family: 'DMSans', sans-serif;
-  font-weight: var(regular);
+  font-weight: variables.$regular;
   color: variables.$black;
   align-items: flex-start;
 
@@ -135,13 +139,16 @@ button{
       list-style: none;
       padding-bottom: 18px;
 
-      &:hover{
+      &:not(:nth-child(4)):hover {
         border-bottom: 1px solid variables.$gray-dark;
       }
         @media (max-width: 647px) {
           display: none;
         }
-
+      .underline
+      {
+        border-bottom: 1px solid variables.$gray-dark;
+      }
     }
 
     &__link {
@@ -171,7 +178,7 @@ button{
     align-items: flex-start;
     padding-left: 39px;
     @media(max-width: 768px) {
-      background-image: url('/shoppe/src/img/shoppe.png');
+      background-image: url('../img/shoppe.png');
       background-repeat: no-repeat;
       background-size: cover;
       padding-left: 8px;
@@ -179,29 +186,22 @@ button{
       padding-bottom: 26px;
       height: 354px;
     }
-  }
-
-.main-container {
-    color: variables.$white;
-    overflow-x: hidden;
-  }
-
-.title {
+ &__title {
     font-family: "DMSans", sans-serif;
-    font-weight: var(medium);
-    font-size: var(heading1);
+    font-weight: variables.$medium;
+    font-size: variables.$heading1;
     @media (max-width: 768px) {
-      font-size: var(heading3);
+      font-size: variables.$heading3;
     }
     @media (max-width: 537px) {
-      font-size: var(heading5);
+      font-size: variables.$heading5;
     }
   }
 
-.subtitle {
+  &__subtitle {
     font-family: "DMSans", sans-serif;
-    font-weight: var(regular);
-    font-size: var(heading2);
+    font-weight: variables.$regular;
+    font-size: variables.$heading2;
     align-items: center;
     justify-content: flex-start;
     margin: {
@@ -209,23 +209,35 @@ button{
       bottom: 48px;
     }
     @media (max-width: 560px) {
-      font-size: var(fonts.$medium);
+      font-size: variables.$medium;
     }
   }
+  }
 
-.button {
+.main-container {
+    color: variables.$white;
+    overflow-x: hidden;
+  }
+
+
+
+.title-button {
     font-family: "DMSans", sans-serif;
-    font-weight: var(fonts.$bold);
-    font-size: var(fonts.$heading3);
+    font-weight: variables.$bold;
+    font-size: variables.$heading3;
     color: variables.$white;
     cursor: pointer;
-    border: 1px variables.$white solid;
+    border: 2px variables.$white solid;
     background-color: transparent;
     padding: 13px 31px;
-    border-radius: 2px;
+    border-radius: 6px;
     @media (max-width: 560px) {
-      font-size: var(fonts.$small);
+      font-size: variables.$small;
     }
+  &:hover{
+    background-color: black;
+    color: white;
+  }
   }
 
 .shop-container {
@@ -236,8 +248,9 @@ button{
 .shop-items {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+  max-width: 1000px;
     margin: 39px auto;
-    column-gap: 53px;
+    column-gap: 57px;
     row-gap: 86px;
 
     justify-content: center;
@@ -246,7 +259,7 @@ button{
     align-self: center;
     grid-template-rows: auto auto;
 
-    @media (max-width: 368px) {
+    @media (max-width: 568px) {
       grid-template-columns: repeat(2, 1fr);
       margin: 20px auto;
       row-gap: 20px;
@@ -255,31 +268,15 @@ button{
 
 .shop-item {
   font-family: "DMSans", sans-serif;
-  font-size: var(fonts.$heading3);
+  font-size: variables.$heading3;
   left: auto;
   right: auto;
-
-  &__img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    aspect-ratio: 1 / 1;
-    width: 380px;
-    height: 380px;
-    @media (max-width: 860px) {
-      width: 280px;
-      height: 280px;
-    }
-    @media (max-width: 559px) {
-      width: 180px;
-      height: 180px;
-    }
-    @media (max-width: 368px) {
-      width: 280px;
-      height: 280px;
-    }
-  }
+  aspect-ratio: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-height: auto;
 }
 .shop-img {
 
@@ -294,38 +291,39 @@ button{
   @media (max-width: 860px) {
     width: 180px;
     height: 180px;
-    font-size: var(large);
+    font-size: variables.$large;
   }
 
   @media (max-width: 559px) {
     width: 120px;
     height: 120px;
-    font-size: var(medium);
-  }
+    font-size: variables.$medium;
+  }}
 
+  .shop-item{
     &__title {
-      font-weight: var(fonts.$regular);
+      font-weight: variables.$regular;
       color: variables.$black;
       margin: 24px auto 16px;
       @media (max-width: 860px) {
-        font-size: var(fonts.$large);
+        font-size: variables.$large;
       }
       @media (max-width: 559px) {
 
-        font-size: var(fonts.$medium);
+        font-size: variables.$medium;
       }
     }
 
     &__price {
-      font-weight: var(fonts.$medium);
+      font-weight: variables.$medium;
       color: variables.$accent;
       @media (max-width: 860px) {
 
-        font-size: var(fonts.$large);
+        font-size: variables.$large;
       }
       @media (max-width: 559px) {
 
-        font-size: var(fonts.$medium);
+        font-size: variables.$medium;
       }
     }
 
@@ -341,33 +339,33 @@ button{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    font-weight: var(fonts.$medium);
+    font-weight: variables.$medium;
     font-family: "DMSans", sans-serif;
     margin-top: 64px;
     &__text {
-      font-size: var(fonts.$heading1);
+      font-size: variables.$heading1;
       color: variables.$black;
       @media (max-width:730px){
-        font-size: var(fonts.$heading2);
+        font-size: variables.$heading5;
 
       }
       @media (max-width:560px){
-        font-size: var(fonts.$heading3);
+        font-size: variables.$heading3;
 
       }
     }
 
     &__view {
-      font-size: var(fonts.$heading3);
+      font-size: variables.$heading3;
       color: variables.$accent;
       @media (max-width:560px){
-        font-size: var(fonts.$heading5);
+        font-size: variables.$heading5;
       }
       @media (max-width:370px){
         font-size:  0.5rem;
       }
       a:hover {
-        color: variables.$gray-light;
+        color: variables.$black;
         cursor: pointer;
         text-decoration: none;
       }
@@ -379,8 +377,8 @@ button{
     flex-direction: row;
     color: variables.$gray-dark;
     font-family: DMSans, sans-serif;
-    font-size: var(fonts.$large);
-    font-weight: var(fonts.$regular);
+    font-size: variables.$large;
+    font-weight: variables.$regular;
     text-transform: uppercase;
 
     &__ul {
@@ -403,6 +401,7 @@ button{
       list-style: none;
       &:hover{
         border-bottom: 1px solid variables.$gray-dark;
+        color: black;
       }
     }
 
@@ -410,8 +409,11 @@ button{
       text-decoration: none;
       color: variables.$gray-dark;
     }
-    @media (max-width: 730px) {
-      font-size:var(fonts.$small);
+  a:hover {
+    color: black
+  }
+    @media (max-width: 1024px) {
+      font-size: variables.$small;
     }
   }
 
@@ -447,20 +449,21 @@ button{
       justify-content: space-between;
     }
     &__text {
-      color: variables.$gray-dark;
-      font-size: var(fonts.$large);
-      font-weight: var(fonts.$regular);
-      line-height: 27px;
-      @media (max-width: 730px){
-        font-size: var(fonts.$small);
-      }
+
     }
 
     &__input {
       outline: none;
-      width: 200px;
+      width: 300px;
       border: none;
-
+      font-family: DMSans, sans-serif;
+      color: variables.$gray-dark;
+      font-size: variables.$large;
+      font-weight: variables.$regular;
+      line-height: 27px;
+      @media (max-width: 1024px){
+        font-size: variables.$small;
+      }
     }
     .subscribe__arrow{
     &:after{
@@ -483,6 +486,7 @@ button{
     }
     &:hover{
       transform:scale(1.5);
+      cursor: pointer;
     }}
   }
 
@@ -494,16 +498,17 @@ button{
     padding-bottom: 90px;
 
     &__terms {
+      font-family: "DMSans", sans-serif;
       color: variables.$gray-dark;
-      font-size: var(fonts.$large);
-      font-weight: var(fonts.$regular);
+      font-size: variables.$large;
+      font-weight: variables.$regular;
       line-height: 27px;
       .bold{
-        font-weight: var(fonts.$bold);
+        font-weight: variables.$bold;
       }
       @media (max-width: 537px){
         order:1;
-        font-size:var(fonts.$small);
+        font-size:variables.$small;
         margin-top:36px;
       }
     }
@@ -522,8 +527,8 @@ button{
       @media (max-width: 537px) {
          color: variables.$black;
         font-family: DMSans, sans-serif;
-        font-weight: var(fonts.$regular);
-        font-size: var(fonts.$small);
+        font-weight: variables.$regular;
+        font-size: variables.$small;
         display: flex;
         align-items: center;
         text-align: center;
@@ -552,8 +557,8 @@ button{
     display: block;
     color: variables.$black;
     font-family: DMSans, sans-serif;
-    font-weight: var(fonts.$regular);
-    font-size: var(fonts.$small);
+    font-weight: variables.$regular;
+    font-size: variables.$small;
   }
 }
 
@@ -565,7 +570,7 @@ button{
     flex-direction: row;
     padding-bottom: 18px;
     column-gap: 20px;
-    margin-left: 100px;
+
     order:-1;
   }
 }
