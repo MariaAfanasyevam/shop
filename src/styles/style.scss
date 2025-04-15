@@ -279,9 +279,6 @@ a:link{
   min-height: auto;
 }
 .shop-img {
-
-  width:380px;
-  height:380px;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
@@ -508,7 +505,7 @@ a:link{
       }
       @media (max-width: 537px){
         order:1;
-        font-size:variables.$small;
+        font-size: variables.$small;
         margin-top:36px;
       }
     }

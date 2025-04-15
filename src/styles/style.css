@@ -802,8 +802,6 @@ a:link {
 }
 
 .shop-img {
-  width: 380px;
-  height: 380px;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
