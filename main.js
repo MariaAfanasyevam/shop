@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import './src/styles/style.scss';
 
 async function loadSliderData() {
-    const res = await fetch('/slider.json'); // Убедись, что JSON лежит в корне проекта или в public/
+    const res = await fetch('/slider.json'); 
     const json = await res.json();
     const slides = json.data;
 
