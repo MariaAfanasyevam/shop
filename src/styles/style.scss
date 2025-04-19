@@ -2,6 +2,7 @@
 @use "fonts.scss";
 @use "variables.scss";
 @use "shop.scss";
+@use "swiper.scss";
 
 #app {
   width: 100vw;
@@ -49,7 +50,7 @@ a:link{
 //}
 
 .container{
-  max-width: 1400px;
+  max-width: 1248px;
   padding-top: 48px;
   margin: auto 96px;
   height: max-content;
@@ -339,27 +340,30 @@ a:link{
     font-weight: variables.$medium;
     font-family: "DMSans", sans-serif;
     margin-top: 64px;
+  @media (max-width:320px){
+    margin-top: 21px;
+  }
     &__text {
       font-size: variables.$heading1;
       color: variables.$black;
       @media (max-width:730px){
-        font-size: variables.$heading5;
+        font-size: variables.$heading2;
 
       }
       @media (max-width:560px){
         font-size: variables.$heading3;
-
       }
     }
 
     &__view {
       font-size: variables.$heading3;
       color: variables.$accent;
+      top:auto;
       @media (max-width:560px){
         font-size: variables.$heading5;
       }
       @media (max-width:370px){
-        font-size:  0.5rem;
+        font-size:  variables.$medium;
       }
       a:hover {
         color: variables.$black;

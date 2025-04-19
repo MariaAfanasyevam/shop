@@ -1,0 +1,118 @@
+// Only import what you need (recommended)
+@use "../../node_modules/swiper/swiper.scss" as *;
+@use "../../node_modules/swiper/modules/navigation.scss" as *;
+@use "../../node_modules/swiper/modules/pagination.scss" as *;
+@use "variables";
+
+.swiper {
+
+  height: 646px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media(max-width: 320px) {
+   // background-image: url('../img/shoppe.png');
+   // background-repeat: no-repeat;
+   // background-size: contain;
+
+    justify-content: flex-end;
+    padding-bottom: 26px;
+    height: 354px;
+  }
+}
+.swiper-container {
+  display: flex;
+  width:100%;
+  flex-direction: column;
+  align-items: flex-start;
+
+  background-image: url("../img/Img01.png");
+  height: 646px;
+  @media(max-width: 864px) {
+    background-position: right 0.1vw top;
+  }
+  @media(max-width: 320px) {
+    background-image: url('../img/shoppe.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    padding-left: 8px;
+    justify-content: flex-end;
+    padding-bottom: 26px;
+    height: auto;
+  }
+}
+.swiper-slide {
+  text-align: center;
+ // background: gray;
+  //padding: 20px;
+
+  img {
+    max-width: 100%;
+    //height: auto;
+    border-radius: 10px;
+    margin-top:60px;
+    height: 100%;
+  }
+
+  .title {
+      font-family: "DMSans", sans-serif;
+      font-weight: variables.$medium;
+      font-size: variables.$heading1;
+    margin-top:226px;
+    margin-left:32px;
+    @media (max-width: 482px) {
+      font-size: variables.$heading2;
+      text-align: left;
+
+    }
+      @media (max-width: 320px) {
+        font-size: variables.$heading3;
+        margin-left:8px;
+      }
+    }
+
+  .subtitle {
+    font-family: "DMSans", sans-serif;
+    font-weight: variables.$regular;
+    font-size: variables.$heading2;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 16px;
+    margin-bottom: 48px;
+    margin-left:32px;
+    @media (max-width: 320px) {
+      font-size: variables.$medium;
+      margin-left:8px;
+      margin-top: 3px;
+      margin-bottom: 10px;
+    }
+  }
+  .swiper-button {
+    font-family: "DMSans", sans-serif;
+    font-weight: variables.$bold;
+    font-size: variables.$heading3;
+    color: variables.$white;
+    cursor: pointer;
+    border: 2px variables.$white solid;
+    background-color: transparent;
+    padding: 13px 31px;
+    margin-left:32px;
+    border-radius: 6px;
+    @media (max-width: 320px) {
+      font-size: variables.$small;
+      padding: 6px 9px;
+      border: 1px variables.$white solid;
+      margin-left:8px;
+      font-weight: variables.$regular;
+    }
+    &:hover{
+      background-color: black;
+      color: white;
+    }
+  }
+
+}

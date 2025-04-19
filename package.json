@@ -8,14 +8,15 @@
 		"build": "vite build",
 		"preview": "vite preview"
 	},
-	"devDependencies": {
-		"vite": "^6.2.0"
-	},
 	"dependencies": {
-		"sass-embedded": "^1.85.1"
+		"sass": "^1.86.3",
+		"sass-embedded": "^1.85.1",
+		"swiper": "^11.2.6"
 	},
-	"engines" : { 
-		"node" : ">=23-alpine3.21"
-	  }
-	
+	"engines": {
+		"node": ">=23-alpine3.21"
+	},
+	"devDependencies": {
+		"vite": "^6.3.2"
+	}
 }
