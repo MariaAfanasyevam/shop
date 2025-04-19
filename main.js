@@ -2,10 +2,10 @@ import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import './src/styles/style.scss';
+import './src/src/styles/style.scss';
 
 async function loadSliderData() {
-    const res = await fetch('/slider.json'); 
+    const res = await fetch('/slider.json');
     const json = await res.json();
     const slides = json.data;
 
