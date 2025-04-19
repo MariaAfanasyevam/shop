@@ -1,8 +1,8 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import './src/src/styles/style.scss';
+import 'swiper/css/pagination';
 
 async function loadSliderData() {
     const res = await fetch('/slider.json');
@@ -30,10 +30,11 @@ async function loadSliderData() {
     });
    // <img src="${image}" alt="${title}">
     new Swiper('.swiper', {
-        modules: [Navigation, Pagination],
+        modules: [Navigation, Pagination, Autoplay],
         loop: true,
         autoplay: {
-            delay: 1000,
+                delay: 5000, // 5 секунд
+                disableOnInteraction: false // автопрокрутка НЕ останавливается после взаимодействия
         },
         pagination: {
             el: '.swiper-pagination',
