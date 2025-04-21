@@ -22,7 +22,7 @@ html,body {
 }
 
 body{
- // margin: auto 96px;
+
   main{
     color: white;
   }
@@ -44,21 +44,18 @@ a:link{
   text-decoration: none;
 }
 
-//button{
-//  padding:0;
-//  border:none;
-//}
-
 .container{
   max-width: 1248px;
   padding-top: 48px;
-  margin: auto 96px;
+  margin: 0 auto;
+  padding-left:96px;
+  padding-right:96px;
   height: max-content;
   @media (max-width:1024px){
-    margin: 0 48px;
+    padding: 0 48px;
   }
   @media (max-width: 768px){
-    margin: 0 16px;
+     padding: 0 16px;
   }
   @media (max-width: 600px){
    padding-top: 15px;
@@ -242,7 +239,6 @@ a:link{
   }
 
 .shop-container {
-    // margin-bottom: 211px;
     justify-content: center;
   }
 

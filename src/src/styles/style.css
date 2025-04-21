@@ -977,6 +977,22 @@ button.swiper-pagination-bullet {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
+}
+.swiper .swiper-pagination-bullet {
+  border: 1px solid white;
+  border-radius: 50%;
+  background: white;
+  opacity: 1;
+  width: 9px;
+  height: 9px;
+}
+.swiper .swiper-pagination-bullet-active {
+  background: #D8D8D8;
+  border-color: white;
+  width: 16px;
+  height: 16px;
+  transition: all 0.3s ease;
 }
 @media (max-width: 320px) {
   .swiper {
@@ -996,7 +1012,7 @@ button.swiper-pagination-bullet {
 }
 @media (max-width: 864px) {
   .swiper-container {
-    background-position: right 0.1vw top;
+    background-position: right 20% top 0;
   }
 }
 @media (max-width: 320px) {
@@ -1081,6 +1097,16 @@ button.swiper-pagination-bullet {
 .swiper-slide .swiper-button:hover {
   background-color: black;
   color: white;
+  transition: background-color 0.5s ease;
+}
+
+.swiper .swiper-pagination-bullet {
+  transition: all 0.3s ease;
+}
+
+.swiper .swiper-pagination-bullet:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
 }
 
 #app {
@@ -1122,17 +1148,19 @@ a:link {
 .container {
   max-width: 1248px;
   padding-top: 48px;
-  margin: auto 96px;
+  margin: 0 auto;
+  padding-left: 96px;
+  padding-right: 96px;
   height: max-content;
 }
 @media (max-width: 1024px) {
   .container {
-    margin: 0 48px;
+    padding: 0 48px;
   }
 }
 @media (max-width: 768px) {
   .container {
-    margin: 0 16px;
+    padding: 0 16px;
   }
 }
 @media (max-width: 600px) {

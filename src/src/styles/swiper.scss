@@ -1,4 +1,3 @@
-// Only import what you need (recommended)
 @use "../../../node_modules/swiper/swiper.scss" as *;
 @use "../../../node_modules/swiper/modules/pagination.scss" as *;
 @use "../../../node_modules/swiper/modules/pagination.scss" as *;
@@ -12,7 +11,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
+  .swiper-pagination-bullet {
+    border: 1px solid white;
+    border-radius: 50%;
+    background: white;
+    opacity: 1;
+    width: 9px;
+    height: 9px;
 
+  }
+
+  .swiper-pagination-bullet-active {
+    background: variables.$gray;
+    border-color: white;
+    width: 16px;
+    height: 16px;
+    transition: all 0.3s ease;
+  }
   @media(max-width: 320px) {
     justify-content: flex-end;
     padding-bottom: 26px;
@@ -28,9 +44,10 @@
   background-image: url("../../src/img/Img01.png");
   height: 646px;
   @media(max-width: 864px) {
-    background-position: right 0.1vw top;
+    background-position: right 20% top 0;
   }
-  @media(max-width: 320px) {
+
+    @media(max-width: 320px) {
     background-image: url('../../src/img/shoppe.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -45,16 +62,15 @@
   text-align: center;
   img {
     max-width: 100%;
-    //height: auto;
     border-radius: 10px;
     margin-top:60px;
     height: 100%;
   }
 
   .title {
-      font-family: "DMSans", sans-serif;
-      font-weight: variables.$medium;
-      font-size: variables.$heading1;
+    font-family: "DMSans", sans-serif;
+    font-weight: variables.$medium;
+    font-size: variables.$heading1;
     margin-top:226px;
     margin-left:32px;
     @media (max-width: 482px) {
@@ -105,7 +121,19 @@
     &:hover{
       background-color: black;
       color: white;
+      transition: background-color 0.5s ease;
     }
   }
 
+}
+
+
+.swiper .swiper-pagination-bullet {
+  transition: all 0.3s ease;
+}
+
+
+.swiper .swiper-pagination-bullet:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
 }
