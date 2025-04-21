@@ -5,7 +5,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 async function loadSliderData() {
-    const res = await fetch('/slider.json');
+    const res = await fetch('https://api.dev.cwe.su/api/promos/?populate=*');
     const json = await res.json();
     const slides = json.data;
 
@@ -19,16 +19,13 @@ async function loadSliderData() {
 
         slide.innerHTML = `
       <div class="swiper-container">
-      
       <div class ="title">${title}</div>
       <div class="subtitle">$${price}</div>
       <button class="swiper-button">View Product</button>
   </div>
     `;
-
         wrapper.appendChild(slide);
     });
-   // <img src="${image}" alt="${title}">
     new Swiper('.swiper', {
         modules: [Navigation, Pagination, Autoplay],
         loop: true,
