@@ -243,25 +243,26 @@ a:link{
   }
 
 .shop-items {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  max-width: 1000px;
-    margin: 39px auto;
-    column-gap: 57px;
-    row-gap: 86px;
-
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    align-self: center;
-    grid-template-rows: auto auto;
-
-    @media (max-width: 568px) {
-      grid-template-columns: repeat(2, 1fr);
-      margin: 20px auto;
-      row-gap: 20px;
-    }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 24px;
+  row-gap: 170px;
+  width:100%;
+  object-fit: cover;
+  justify-content: center;
+  align-items: center;
+  grid-template-rows: auto auto;
+  margin:
+  {
+    top: 39px;
+    bottom:39px;
   }
+  @media (max-width: 368px) {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 20px auto;
+    row-gap: 20px;
+  }
+}
 
 .shop-item {
   font-family: "DMSans", sans-serif;
@@ -318,6 +319,11 @@ a:link{
       @media (max-width: 559px) {
 
         font-size: variables.$medium;
+      }
+       .sale{
+        color: #D82700;
+        text-decoration: line-through;
+         margin-right: 10px;
       }
     }
 
@@ -415,10 +421,7 @@ a:link{
   }
 
 .footer-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-top: 1px solid variables.$gray;
+
     padding-top: 40px;
 
     @media (max-width: 730px) {
@@ -491,12 +494,13 @@ a:link{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 50px;
-    padding-bottom: 90px;
-
+    margin-top: 39px;
+  padding-top:58px;
+    top:auto;
+    border-top: 1px solid variables.$gray;
     &__terms {
       font-family: "DMSans", sans-serif;
-      color: variables.$gray-dark;
+      color: variables.$black;
       font-size: variables.$large;
       font-weight: variables.$regular;
       line-height: 27px;

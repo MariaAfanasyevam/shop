@@ -11,8 +11,9 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 24px;
-  row-gap: 70px;
+  row-gap: 170px;
   width:100%;
+  object-fit: cover;
   justify-content: center;
   align-items: center;
   grid-template-rows: auto auto;
@@ -33,13 +34,15 @@
   justify-content: center;
   display: flex;
   width:100%;
+  height: 100%;
 margin: 0 auto;
+  object-fit: cover;
 }
 
 .item-discount{
   position: absolute;
-  top:10px;
-  left:10px;
+  top: 10px;
+  left: 10px;
  color: variables.$accent-light;
  height: 24px;
   width: 46px;
@@ -56,6 +59,9 @@ display: flex;
 
 .shop-item__image{
   position: relative;
+  width: 100%;
+  height: 100%;
+
 }
 
 .icons{
@@ -202,7 +208,7 @@ display: flex;
     height:300px;
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     z-index: 100;
 
 
@@ -309,8 +315,8 @@ input:checked + .switch-btn:before {
   color: variables.$black;
   height: 60px;
   margin:{
-  bottom: 130px;
-  top: 59px;
+  bottom: 39px;
+  top: 120px;
 }
 
   @media (max-width: 600px)
@@ -322,6 +328,7 @@ input:checked + .switch-btn:before {
 .section{
   display: flex;
   flex-direction: column;
+  height: auto;
 }
 
 .button-section__item {
