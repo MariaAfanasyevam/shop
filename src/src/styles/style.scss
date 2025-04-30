@@ -3,6 +3,7 @@
 @use "variables.scss";
 @use "shop.scss";
 @use "swiper.scss";
+@use "sidebar.scss";
 
 #app {
   width: 100vw;
@@ -137,7 +138,7 @@ a:link{
       list-style: none;
       padding-bottom: 18px;
 
-      &:not(:nth-child(4)):hover {
+      &:not(:nth-child(2)):hover {
         border-bottom: 1px solid variables.$gray-dark;
       }
         @media (max-width: 647px) {
