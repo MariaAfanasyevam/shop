@@ -1353,7 +1353,7 @@ a:link {
   border-bottom: 1px solid #707070;
 }
 @media (max-width: 647px) {
-  .menu .nav__li {
+  .menu .nav__li:not(:nth-child(1)) {
     display: none;
   }
 }
@@ -1805,6 +1805,7 @@ a:link {
 
 .burger-menu {
   display: none;
+  margin-left: 12px;
 }
 @media (max-width: 647px) {
   .burger-menu {
@@ -1813,12 +1814,19 @@ a:link {
     flex-direction: row;
     padding-bottom: 18px;
     column-gap: 20px;
-    order: -1;
   }
 }
 
 .burger-menu__button {
   display: none;
+}
+
+.add-cart {
+  border: none;
+  background-color: transparent;
+}
+.add-cart:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

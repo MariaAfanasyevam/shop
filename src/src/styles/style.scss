@@ -141,9 +141,11 @@ a:link{
       &:not(:nth-child(2)):hover {
         border-bottom: 1px solid variables.$gray-dark;
       }
+      &:not(:nth-child(1)) {
         @media (max-width: 647px) {
+
           display: none;
-        }
+        } }
       .underline
       {
         border-bottom: 1px solid variables.$gray-dark;
@@ -566,6 +568,7 @@ a:link{
 
 .burger-menu {
   display: none;
+  margin-left:12px;
   @media (max-width: 647px) {
     display: flex;
     align-items: flex-start;
@@ -573,10 +576,18 @@ a:link{
     padding-bottom: 18px;
     column-gap: 20px;
 
-    order:-1;
+
   }
 }
 
 .burger-menu__button {
   display: none;
+}
+
+.add-cart{
+  border:none;
+  background-color: transparent;
+  &:hover{
+    cursor: pointer;
+  }
 }
