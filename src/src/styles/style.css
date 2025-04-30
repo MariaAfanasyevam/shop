@@ -1821,11 +1821,11 @@ a:link {
   display: none;
 }
 
-.add-cart {
+.add-cart, .view-product, .favourite-product {
   border: none;
   background-color: transparent;
 }
-.add-cart:hover {
+.add-cart:hover, .view-product:hover, .favourite-product:hover {
   cursor: pointer;
 }
 
