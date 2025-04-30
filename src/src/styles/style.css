@@ -1211,6 +1211,17 @@ button.swiper-pagination-bullet {
   transform: translateX(0);
 }
 
+.sidebar-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+}
+.sidebar-title img {
+  left: 0;
+  position: absolute;
+}
+
 #app {
   width: 100vw;
   height: 100vh;

@@ -91,3 +91,14 @@
   transition: 200ms;
   transform: translateX(0);
 }
+
+.sidebar-title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  img{
+    left:0;
+    position: absolute;
+  }
+}
