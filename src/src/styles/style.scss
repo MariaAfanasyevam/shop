@@ -249,9 +249,9 @@ a:link{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 24px;
-  row-gap: 170px;
+  row-gap: 86px;
   width:100%;
-  object-fit: cover;
+ height: 100%;
   justify-content: center;
   align-items: center;
   grid-template-rows: auto auto;
@@ -272,7 +272,6 @@ a:link{
   font-size: variables.$heading3;
   left: auto;
   right: auto;
-  aspect-ratio: 1 / 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -284,7 +283,7 @@ a:link{
   max-height: 100%;
   object-fit: contain;
   z-index: 100;
-
+  aspect-ratio: 1 / 1;
 
   @media (max-width: 860px) {
     width: 180px;

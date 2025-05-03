@@ -42,6 +42,7 @@
     right: 0;
     min-width: 360px;
     z-index: 120;
+  overflow-y: scroll;
 }
 .item-container{
   display: flex;

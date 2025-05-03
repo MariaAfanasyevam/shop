@@ -1,47 +1,63 @@
+export function addToCart(product) {
 
-const buttons = document.querySelectorAll('.add-cart');
-
-buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
-        const card = e.target.closest('.shop-item');
-        const product = {
-            id: card.dataset.id,
-            title: card.dataset.title,
-            price: Number(card.dataset.price),
-            quantity: 1
-        };
-
-        addToCart(product);
-    });
-});
-
-function addToCart(product) {
-    // Получаем текущую корзину
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    // Проверяем — есть ли уже такой товар
     const existing = cart.find(item => item.id === product.id);
-
     if (existing) {
         existing.quantity += 1;
     } else {
         cart.push(product);
+        updateCartSlider(product);
     }
-
-    // Обновляем localStorage
+    alert(`Товар "${product.title}" добавлен в корзину, Итого: ${product.quantity} `);
     localStorage.setItem('cart', JSON.stringify(cart));
-    alert(`Товар "${product.title}" добавлен в корзину, Итого: ${existing.quantity} `);
-    updateCartCount();
 
+    updateCartCount();
+    updateCartSlider();
 }
 
-function updateCartCount() {
+export function updateCartCount() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-
+    const count = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
     const cartCount = document.getElementById('cart-total');
     if (cartCount) {
         cartCount.textContent = `${count}`;
+        document.getElementsByClassName('items').textContent = `${count} items`;
     }
 }
-updateCartCount();
+export function updateCartSlider(){
+    const cartContainer = document.querySelector('.items-container');
+    const cartProducts = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalElem = document.querySelector('.total');
+    const totalItems = document.querySelector('.items');
+    cartContainer.innerHTML = '';
+    let total = 0;
+    let alltotal=0;
+    cartProducts.forEach(cartProduct =>{
+    const cartCard = document.createElement('div');
+    cartCard.className = 'item-container';
+    cartCard.innerHTML = `
+    <img src="${cartProduct.image}" alt="${cartProduct.title}" />
+						<div class="item-content">
+							<h1>${cartProduct.title}</h1>
+							<div class="item-color">${cartProduct.color} / Medium</div>
+							<div class="item-price">$ ${cartProduct.price}</div>
+							<div class="item-quantity">
+								<span>QTY:</span>
+								<span>-</span>
+								<span class="item-timer">${cartProduct.quantity}</span>
+								<span>+</span>
+							</div>
+						</div>
+      `;
+    cartContainer.appendChild(cartCard);
+    total += cartProduct.price * cartProduct.quantity;
+    alltotal+=cartProduct.quantity;
+});
+    if (totalElem) {
+        totalElem.textContent = total.toFixed(2);
+    }
+    if (totalItems) {
+        totalItems.textContent = `${alltotal} items`;
+        document.querySelector('.subtotal').textContent=`Subtotal (${alltotal} items)`;
+    }
+}
