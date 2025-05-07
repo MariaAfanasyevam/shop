@@ -55,13 +55,18 @@ display: flex;
   @media (max-width:647px){
     display:none;
   }
+
+}
+
+.hidden{
+  display:none;
 }
 
 .shop-item__image{
   position: relative;
   width: 100%;
   height: 100%;
-
+ top: 0;
 }
 
 .icons{
@@ -73,7 +78,7 @@ display: flex;
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 2;
   column-gap: 24px;
   @media (max-width:647px){
     display:none;
@@ -83,7 +88,7 @@ display: flex;
     opacity: 1;
   }
 }
-.shop-item:hover img{
+.shop-item:hover .shop-img{
   opacity: 0.5;
   transition: opacity .3s ease;
 }
@@ -265,11 +270,11 @@ display: flex;
 }
 
 input:checked + .switch-btn {
-  background-color: green;
+  background-color: variables.$accent;
 }
 
 input:focus + .switch-btn {
-  box-shadow: 0 0 1px green;
+  box-shadow: 0 0 1px variables.$accent;
 }
 
 input:checked + .switch-btn:before {

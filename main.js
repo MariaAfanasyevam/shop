@@ -1,48 +1,70 @@
-import Swiper from 'swiper';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
-async function loadSliderData() {
-    const res = await fetch('https://api.dev.cwe.su/api/promos/?populate=*');
-    const json = await res.json();
-    const slides = json.data;
-
-    const wrapper = document.querySelector('.swiper-wrapper');
-
-    slides.forEach(item => {
-        const { title, price, image } = item.product;
-
-        const slide = document.createElement('div');
-        slide.classList.add('swiper-slide');
-
-        slide.innerHTML = `
-      <div class="swiper-container">
-      <div class ="title">${title}</div>
-      <div class="subtitle">$${price}</div>
-      <button class="swiper-button">View Product</button>
-  </div>
-    `;
-        wrapper.appendChild(slide);
+import {addToCart, updateCartCount, updateCartSidebar} from './cart.js';
+export function cardClick() {
+    document.querySelectorAll('.add-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const card = e.target.closest('.shop-item');
+            const img = card.querySelector('.cart-img');
+            if (!card) {
+                console.error('Карточка не найдена');
+                return;
+            }
+            const product = {
+                id: card.dataset.id,
+                title: card.dataset.title,
+                price: Number(card.dataset.price),
+                image: card.dataset.image,
+                color: card.dataset.color,
+                percent: card.dataset.percent,
+                quantity: 1
+            };
+            img.src = 'src/src/img/shopping-cart-color.svg';
+            addToCart(product);
+        });
     });
-    new Swiper('.swiper', {
-        modules: [Navigation, Pagination, Autoplay],
-        loop: true,
-        autoplay: {
-                delay: 5000, // 5 секунд
-                disableOnInteraction: false // автопрокрутка НЕ останавливается после взаимодействия
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true
-        },
 
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        }
+    updateCartCount();
+    updateCartSidebar();
+}
+export function setupQuantityButtons() {
+    const cartItems=document.querySelectorAll('.item-container');
+    cartItems.forEach(item => {
+        const increaseBtn = item.querySelector('.add-item');
+        const decreaseBtn = item.querySelector('.remove-item');
+        const deleteBtn = item.querySelector('.delete-button');
+
+        const id = item.dataset.id;
+
+       increaseBtn.addEventListener('click', () => {
+           changeItemQuantity(id, 1);
+        });
+
+       decreaseBtn.addEventListener('click', () => {
+           changeItemQuantity(id, -1);
+        });
+
+        deleteBtn.addEventListener('click', () => {
+            changeItemQuantity(id, 0);
+        });
     });
 }
 
-loadSliderData();
+export function changeItemQuantity(productId, delta) {
+    let  cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
+    let existingCard = cartStorage.find(item => item.id === productId);
+
+    if (!existingCard) return;
+   if (existingCard.quantity==1 & delta== '-1') {
+    return;
+}
+   if (delta == 0){
+       cartStorage = cartStorage.filter(p => p.id !== productId);
+   }
+   else {
+       existingCard.quantity += delta;
+   }
+
+    console.log(existingCard.quantity);
+    localStorage.setItem('cart', JSON.stringify(cartStorage));
+    updateCartSidebar();
+    updateCartCount();
+}

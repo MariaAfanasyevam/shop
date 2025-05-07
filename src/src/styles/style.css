@@ -202,10 +202,15 @@ table {
   }
 }
 
+.hidden {
+  display: none;
+}
+
 .shop-item__image {
   position: relative;
   width: 100%;
   height: 100%;
+  top: 0;
 }
 
 .icons {
@@ -217,7 +222,7 @@ table {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 2;
   column-gap: 24px;
   opacity: 0;
 }
@@ -230,7 +235,7 @@ table {
   opacity: 1;
 }
 
-.shop-item:hover img {
+.shop-item:hover .shop-img {
   opacity: 0.5;
   transition: opacity 0.3s ease;
 }
@@ -408,11 +413,11 @@ table {
 }
 
 input:checked + .switch-btn {
-  background-color: green;
+  background-color: #A18A68;
 }
 
 input:focus + .switch-btn {
-  box-shadow: 0 0 1px green;
+  box-shadow: 0 0 1px #A18A68;
 }
 
 input:checked + .switch-btn:before {
@@ -1165,7 +1170,7 @@ button.swiper-pagination-bullet {
   flex-direction: row;
   margin-bottom: 20px;
 }
-.item-container img {
+.item-container .cart-img {
   width: 136px;
   height: 136px;
 }
@@ -1221,6 +1226,21 @@ button.swiper-pagination-bullet {
 .sidebar-title img {
   left: 0;
   position: absolute;
+}
+
+.delete-icon {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin-left: 10px;
+  right: 20px;
+}
+.delete-icon .delete-button {
+  border: none;
+  outline: none;
+}
+.delete-icon .delete-button:hover {
+  cursor: pointer;
 }
 
 #app {
@@ -1827,6 +1847,10 @@ a:link {
   background-color: transparent;
 }
 .add-cart:hover, .view-product:hover, .favourite-product:hover {
+  cursor: pointer;
+}
+
+.view-cart:hover, .add-item:hover, .remove-item:hover {
   cursor: pointer;
 }
 
