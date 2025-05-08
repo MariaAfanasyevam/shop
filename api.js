@@ -32,13 +32,15 @@ async function loadProducts() {
             card.innerHTML = `
        <div class="shop-item__image">
         <img class="shop-img" src="${product.image}" alt="${product.title}" />
-        <div class="icons">
+         <div class="add-cart__mobile">add to cart</div>
+         <div class="icons">
         <button class="add-cart">
         <img src="src/src/img/shopping-cart.svg" alt="shopping-cart" class="cart-img"/></button>
         <button class="view-product"><img src="src/src/img/eye.svg" alt="eye"/></button>
         <button class="favourite-product"><img src="src/src/img/heart.svg" alt="favourite"/></button>
         </div>
         </div>
+       
         <div class="item-discount">
         <div class="discount-text">
         <p>-${product.discountPercent}%</p>

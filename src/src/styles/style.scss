@@ -4,6 +4,7 @@
 @use "shop.scss";
 @use "swiper.scss";
 @use "sidebar.scss";
+@use "burger-menu.scss";
 
 #app {
   width: 100vw;
@@ -260,7 +261,7 @@ a:link{
     top: 39px;
     bottom:39px;
   }
-  @media (max-width: 368px) {
+  @media (max-width: 559px) {
     grid-template-columns: repeat(2, 1fr);
     margin: 20px auto;
     row-gap: 20px;
@@ -284,6 +285,7 @@ a:link{
   object-fit: contain;
   z-index: 100;
   aspect-ratio: 1 / 1;
+  overflow: hidden;
 
   @media (max-width: 860px) {
     width: 180px;
@@ -594,3 +596,6 @@ a:link{
   cursor: pointer;
 }
 
+.cart-img{
+
+}

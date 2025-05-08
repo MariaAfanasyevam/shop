@@ -68,3 +68,15 @@ export function changeItemQuantity(productId, delta) {
     updateCartSidebar();
     updateCartCount();
 }
+
+const burger = document.getElementById('burger');
+const menu = document.getElementById('mobile-menu');
+const closeBtn = document.getElementById('close-menu');
+
+burger.addEventListener('click', () => {
+    menu.classList.remove('hidden');
+});
+
+closeBtn.addEventListener('click', () => {
+    menu.classList.add('hidden');
+});
