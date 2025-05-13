@@ -3,19 +3,30 @@ import {setupQuantityButtons} from "./main.js";
 export function addToCart(product) {
     const  cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
     const existingCard = cartStorage.find(item => item.id === product.id);
+    const inStock = Number(product.inStock);
 
     if (existingCard) {
+        if (existingCard.quantity >= inStock) {
+            alert("Достигнут лимит доступного количества товара");
+            return;
+        }
         existingCard.quantity += 1;
-    } else {
-        cartStorage.push(product);
-        updateCartSidebar(product);
-    }
 
+    } else {
+        if (inStock <= 0) {
+            alert("Товар закончился");
+            return;
+        }
+        cartStorage.push(product);
+      //  updateCartSidebar(product);
+        console.log('Добавлен товар:', product.id);
+    }
 
     localStorage.setItem('cart', JSON.stringify(cartStorage));
 
     updateCartCount();
     updateCartSidebar();
+    setupQuantityButtons();
 }
 
 
@@ -23,11 +34,19 @@ export function updateCartCount() {
     const cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
     const count = cartStorage.reduce((sum, item) => sum + (item.quantity || 0), 0);
     const cartCount = document.getElementById('cart-total');
+    const cartIcon = document.getElementById('cart-total');
 
     if (cartCount) {
         cartCount.textContent = `${count}`;
         document.getElementsByClassName('items').textContent = `${count} items`;
+
     }
+    if (count === 0) {
+        cartIcon.classList.add('hidden');
+    }
+    else {
+            cartIcon.classList.remove('hidden');
+        }
     setupQuantityButtons();
 }
 
@@ -41,7 +60,8 @@ export function updateCartSidebar(){
     let alltotal=0;
 
     cartProducts.forEach(product =>{
-    const cartCard = document.createElement('div');
+    const cartCard = document.createElement('li');
+
     cartCard.className = 'item-container';
     cartCard.dataset.id = product.id;
     cartCard.innerHTML = `
@@ -49,7 +69,7 @@ export function updateCartSidebar(){
 						<div class="item-content">
 							<h1>${product.title}</h1>
 							<div class="item-color">${product.color} / Medium</div>
-							<div class="item-price">$ ${product.price}</div>
+							<p class="item-price">$ ${product.price}</p>
 							<div class="item-quantity">
 								<span>QTY:</span>
 								<span class="remove-item">-</span>
@@ -70,5 +90,5 @@ export function updateCartSidebar(){
         totalItems.textContent = `${alltotal} items`;
         document.querySelector('.subtotal').textContent=`Subtotal (${alltotal} items)`;
     }
-
+   // setupQuantityButtons();
 }

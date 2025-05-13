@@ -29,7 +29,7 @@
 							<path d="M6.15234 17.8828C6.15234 18.9005 6.98035 19.7285 7.99805 19.7285C9.01575 19.7285 9.84375 18.9005 9.84375 17.8828C9.84375 16.8651 9.01575 16.0371 7.99805 16.0371C6.98035 16.0371 6.15234 16.8651 6.15234 17.8828ZM7.99805 17.2676C8.33723 17.2676 8.61328 17.5436 8.61328 17.8828C8.61328 18.222 8.33723 18.498 7.99805 18.498C7.65887 18.498 7.38281 18.222 7.38281 17.8828C7.38281 17.5436 7.65887 17.2676 7.99805 17.2676Z" fill="black"/>
 							<path d="M14.8476 17.8828C14.8476 18.9005 15.6756 19.7285 16.6933 19.7285C17.711 19.7285 18.539 18.9005 18.539 17.8828C18.539 16.8651 17.711 16.0371 16.6933 16.0371C15.6756 16.0371 14.8476 16.8651 14.8476 17.8828ZM16.6933 17.2676C17.0325 17.2676 17.3086 17.5436 17.3086 17.8828C17.3086 18.222 17.0325 18.498 16.6933 18.498C16.3541 18.498 16.0781 18.222 16.0781 17.8828C16.0781 17.5436 16.3541 17.2676 16.6933 17.2676Z" fill="black"/>
 						</svg></a>
-							<span class="cart-items" id="cart-total"></span>
+							<span class="cart-items hidden" id="cart-total"></span>
 						</li></div>
 						<li class="nav__li"  aria-label="user"><a href="#" class="nav__link"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path fill-rule="evenodd" clip-rule="evenodd" d="M16.0015 6C16.0015 8.76142 13.7623 11 11 11C8.23777 11 5.99851 8.76142 5.99851 6C5.99851 3.23858 8.23777 1 11 1C13.7623 1 16.0015 3.23858 16.0015 6ZM14.001 5.99999C14.001 4.34314 12.6575 2.99999 11.0001 2.99999C9.34275 2.99999 7.99919 4.34314 7.99919 5.99999C7.99919 7.65684 9.34275 8.99999 11.0001 8.99999C12.6575 8.99999 14.001 7.65684 14.001 5.99999ZM20.893 19.55L19.0024 15.76C18.1545 14.0683 16.4239 13.0001 14.5311 13H7.46893C5.57614 13.0001 3.84555 14.0683 2.99758 15.76L1.10701 19.55C0.950991 19.8595 0.966419 20.2277 1.14778 20.5231C1.32915 20.8185 1.65058 20.9989 1.99728 21H20.0027C20.3494 20.9989 20.6709 20.8185 20.8522 20.5231C21.0336 20.2277 21.049 19.8595 20.893 19.55ZM4.78818 16.66L3.61782 19H18.3823L17.2119 16.66C16.7046 15.644 15.667 15.0015 14.5311 15H7.46899C6.33315 15.0015 5.29552 15.644 4.78818 16.66Z" fill="black"/>
@@ -38,41 +38,41 @@
 					</ul>
 					<div class="burger-menu">
 						<div class="burger-menu__icon">
-							<button><img src="src/src/img/Menu.png" alt="burger" id="burger"></button>
-
+							<button id="burger" class="burger">
+								<span></span>
+								<span></span>
+								<span></span>
+							</button>
 						</div>
-
-
 					</div>
 				</nav>
 			</div>
 		</div>
+		<nav id="mobile-menu" class="burger-menu__nav hidden">
+			<div class="container">
+		<ul class="burger-menu__list">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Shop</a></li>
+			<li><a href="#">My account</a></li>
+			<li><a href="#">Logout</a></li>
+		</ul></div>
+		</nav>
 	</header>
 
 	<main>
-		<nav id="mobile-menu" class="menu">
-		<button id="close-menu" class="close-btn">✖</button>
-		<ul>
-			<li><a href="#">Главная</a></li>
-			<li><a href="#">Каталог</a></li>
-			<li><a href="#">О нас</a></li>
-			<li><a href="#">Контакты</a></li>
-		</ul>
-	</nav>
 		<div class="catalog-container container">
 			<div class="shop-title">
 				<div class="shop-title__text">Shop The Latest</div>
 			</div>
 		</div>
 		<div class="shop-aside container">
-			<div class="filter"> <img src="src/src/img/Filter.svg" alt="filter"/>Filters
+			<div class="filter"> <a id="open-filter"><img src="src/src/img/Filter.svg" alt="filter"/>Filters</a>
 			</div>
 			<div class="shop-aside__form">
 				<div class="shop-search">
 					<div class="form__search">
-					<div>
 						<input type="text" class="form__input" placeholder="Search..." name="search" id="search">
-					</div>
+						<button type="button"><img src="src/src/img/search.svg" alt="search"/></button>
 					</div>
 				</div>
 				<div class="search-list">
@@ -84,7 +84,7 @@
 				</select>
 				</div>
 				<div class="shop-search__radio">
-					<div >
+					<div>
 						On sale
 					</div>
 					<label class="switch">
@@ -103,7 +103,7 @@
 				</div>
 			</div>
 			<div class="section">
-				<div class="catalog-items" id="product-list">
+				<ul class="shop-items" id="product-list">
 <!--			<div class="catalog-items">-->
 <!--				<div class="shop-item" data-id="1" data-title="Lira Earrings" data-price="20,00">-->
 <!--					<div class="shop-item__image">-->
@@ -333,7 +333,7 @@
 <!--				</div>-->
 <!--				</div>-->
 <!--			</div>-->
-				</div>
+				</ul>
 			<div class="button-section">
 				<button class="button-section__item page-button disabled" type="button">Prev</button>
 				<button class="button-section__item page-number selected-page" type="button">1</button>
@@ -362,8 +362,46 @@
 				<button class="view-cart">VIEW CART</button>
 			</div>
 		</div>
-	</main>
 
+	</main>dd
+	<div class="filter-menu hidden" id="filter">
+		<div class="shop-search">
+			<div class="form__search">
+				<input type="text" class="form__input" placeholder="Search..." name="search" id="search">
+				<button type="button"><img src="src/src/img/search.svg" alt="search"/></button>
+			</div>
+		</div>
+		<div class="search-list">
+			<select id="sort-filter" name="sort">
+				<option selected disabled>Sort by:</option>
+				<option value="price">Price</option>
+				<option value="name">Name</option>
+				<option value="date">Date</option>
+			</select>
+		</div>
+		<div class="shop-search__radio">
+			<div >
+				On sale
+			</div>
+			<label class="switch">
+				<input type="checkbox">
+				<span class="switch-btn"></span>
+			</label>
+		</div>
+		<div class="shop-search__radio">
+			<div>
+				In stock
+			</div>
+			<label class="switch">
+				<input type="checkbox">
+				<span class="switch-btn"></span>
+			</label>
+		</div>
+		<div>
+			<button class="filter-btn">apply filters</button>
+			<button class="filter-btn" id="close-filter">reset filters</button>
+		</div>
+	</div>
 	<footer>
 			<div class="footer-container container">
 
@@ -391,11 +429,13 @@
 						</ul>
 					</div>
 				</div>
+			</div>
 	</footer>
 </div>
 <script type="module" src="slider.js"></script>
 <script type="module" src="sidebar.js"></script>
 <script type="module" src="api.js"></script>
 <script type="module" src="main.js"></script>
+<script type="module" src="menu.js"></script>
 </body>
 </html>

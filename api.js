@@ -1,5 +1,6 @@
 import { updateCartCount, updateCartSidebar} from './cart.js';
 import {cardClick, setupQuantityButtons} from './main.js';
+import {closeMenu} from "./menu.js";
 
 const apiUrl = 'https://api.dev.cwe.su/api/products/?populate=*';
 const productsListContainerNode = document.getElementById('product-list');
@@ -21,7 +22,7 @@ async function loadProducts() {
             card.dataset.price = product.price;
             card.dataset.image = product.image;
             card.dataset.color = product.color;
-            card.dataset.discount = product.discountPercent;
+            card.dataset.inStock = product.itemsInStock;
 
             if (product.discountPercent>0) {
                 product.discountPrice = (product.price *(1- product.discountPercent/100)).toFixed(2);
@@ -66,6 +67,7 @@ async function loadProducts() {
         updateCartCount();
         updateCartSidebar();
         setupQuantityButtons();
+
     } catch (error) {
         productsListContainerNode.innerHTML = `<p>Ошибка загрузки товаров 😢</p>`;
         console.error(error);
@@ -73,3 +75,4 @@ async function loadProducts() {
 }
 
 loadProducts();
+closeMenu();

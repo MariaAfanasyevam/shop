@@ -12,7 +12,7 @@ async function loadSliderData() {
     const wrapper = document.querySelector('.swiper-wrapper');
 
     slides.forEach(item => {
-        const { title, price, image } = item.product;
+        const { title, price} = item.product;
 
         const slide = document.createElement('div');
         slide.classList.add('swiper-slide');

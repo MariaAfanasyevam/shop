@@ -5,6 +5,7 @@
 @use "swiper.scss";
 @use "sidebar.scss";
 @use "burger-menu.scss";
+@use "filter.scss";
 
 #app {
   width: 100vw;
@@ -47,7 +48,8 @@ a:link{
 }
 
 .container{
-  max-width: 1248px;
+  max-width: 1440px;
+  box-sizing: border-box;
   padding-top: 48px;
   margin: 0 auto;
   padding-left:96px;
@@ -112,6 +114,8 @@ a:link{
     &__ul {
       display: flex;
       margin-top: auto;
+      align-content: center;
+      flex-direction: row;
 
       &.text {
         gap: 64px;
@@ -255,7 +259,7 @@ a:link{
  height: 100%;
   justify-content: center;
   align-items: center;
-  grid-template-rows: auto auto;
+ // grid-template-rows: auto auto;
   margin:
   {
     top: 39px;
@@ -265,20 +269,11 @@ a:link{
     grid-template-columns: repeat(2, 1fr);
     margin: 20px auto;
     row-gap: 20px;
+  //  grid-template-rows: 137px 137px 137px;
   }
 }
 
-.shop-item {
-  font-family: "DMSans", sans-serif;
-  font-size: variables.$heading3;
-  left: auto;
-  right: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  min-height: auto;
-}
+
 .shop-img {
   max-width: 100%;
   max-height: 100%;
@@ -286,58 +281,25 @@ a:link{
   z-index: 100;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-
-  @media (max-width: 860px) {
-    width: 180px;
-    height: 180px;
-    font-size: variables.$large;
-  }
-
-  @media (max-width: 559px) {
-    width: 120px;
-    height: 120px;
-    font-size: variables.$medium;
-  }}
-
-  .shop-item{
-    &__title {
-      font-weight: variables.$regular;
-      color: variables.$black;
-      margin: 24px auto 16px;
-      @media (max-width: 860px) {
-        font-size: variables.$large;
-      }
-      @media (max-width: 559px) {
-
-        font-size: variables.$medium;
-      }
-    }
-
-    &__price {
-      font-weight: variables.$medium;
-      color: variables.$accent;
-      @media (max-width: 860px) {
-
-        font-size: variables.$large;
-      }
-      @media (max-width: 559px) {
-
-        font-size: variables.$medium;
-      }
-       .sale{
-        color: #D82700;
-        text-decoration: line-through;
-         margin-right: 10px;
-      }
-    }
-
-    @media (max-width: 1390px) {
-      width: 20vw;
-    }
-  }
-.shop-item{
-  position: relative;
+//
+//  @media (max-width: 860px) {
+//    width: 180px;
+//    height: 180px;
+//    font-size: variables.$large;
+//  }
+//
+//  @media (max-width: 559px) {
+//    width: 120px;
+//    height: 120px;
+//    font-size: variables.$medium;
+//  }
+//  @media (max-width: 320px) {
+//  width: 136px;
+//  height: 136px;
+//  font-size: variables.$medium;
+//}
 }
+
 
 .shop-title {
     display: flex;
@@ -346,8 +308,8 @@ a:link{
     font-weight: variables.$medium;
     font-family: "DMSans", sans-serif;
     margin-top: 64px;
-  @media (max-width:320px){
-    margin-top: 21px;
+  @media (max-width:560px){
+    margin-top: 25px;
   }
     &__text {
       font-size: variables.$heading1;
@@ -358,6 +320,7 @@ a:link{
       }
       @media (max-width:560px){
         font-size: variables.$heading3;
+
       }
     }
 

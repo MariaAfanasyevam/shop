@@ -15,6 +15,7 @@ export function cardClick() {
                 image: card.dataset.image,
                 color: card.dataset.color,
                 percent: card.dataset.percent,
+                inStock: card.dataset.inStock,
                 quantity: 1
             };
             img.src = 'src/src/img/shopping-cart-color.svg';
@@ -30,11 +31,10 @@ export function setupQuantityButtons() {
     cartItems.forEach(item => {
         const increaseBtn = item.querySelector('.add-item');
         const decreaseBtn = item.querySelector('.remove-item');
-        const deleteBtn = item.querySelector('.delete-button');
-
+        const deleteBtn = item.querySelector ('.delete-button');
         const id = item.dataset.id;
 
-       increaseBtn.addEventListener('click', () => {
+        increaseBtn.addEventListener('click', () => {
            changeItemQuantity(id, 1);
         });
 
@@ -51,32 +51,32 @@ export function setupQuantityButtons() {
 export function changeItemQuantity(productId, delta) {
     let  cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
     let existingCard = cartStorage.find(item => item.id === productId);
+    const inStock = Number(existingCard.inStock);
 
-    if (!existingCard) return;
-   if (existingCard.quantity==1 & delta== '-1') {
+    if (!existingCard)
+        return;
+
+    if (existingCard.quantity==1 & delta== -1) {
     return;
 }
-   if (delta == 0){
+    if (delta == 0){
        cartStorage = cartStorage.filter(p => p.id !== productId);
    }
-   else {
-       existingCard.quantity += delta;
+    else {
+       if( delta == 1)
+       {
+           if (existingCard.quantity >= inStock) {
+               alert("Достигнут лимит доступного количества товара");
+               return;
+           }
+           else existingCard.quantity += 1;
+       }
+       else {
+           existingCard.quantity += -1;
+       }
    }
-
-    console.log(existingCard.quantity);
+console.log(existingCard.quantity);
     localStorage.setItem('cart', JSON.stringify(cartStorage));
     updateCartSidebar();
     updateCartCount();
 }
-
-const burger = document.getElementById('burger');
-const menu = document.getElementById('mobile-menu');
-const closeBtn = document.getElementById('close-menu');
-
-burger.addEventListener('click', () => {
-    menu.classList.remove('hidden');
-});
-
-closeBtn.addEventListener('click', () => {
-    menu.classList.add('hidden');
-});
