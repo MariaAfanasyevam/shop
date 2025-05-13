@@ -38,7 +38,7 @@ async function loadProducts() {
         <button class="add-cart">
         <img src="../../src/img/shopping-cart.svg" alt="shopping-cart" class="cart-img"/></button>
         <button class="view-product"><img src="../../src/img/eye.svg" alt="eye"/></button>
-        <button class="favourite-product"><img src="../../src/src/img/heart.svg" alt="favourite"/></button>
+        <button class="favourite-product"><img src="../src/src/img/heart.svg" alt="favourite"/></button>
         </div>
         </div>
        
