@@ -90,5 +90,4 @@ export function updateCartSidebar(){
         totalItems.textContent = `${alltotal} items`;
         document.querySelector('.subtotal').textContent=`Subtotal (${alltotal} items)`;
     }
-   // setupQuantityButtons();
 }
