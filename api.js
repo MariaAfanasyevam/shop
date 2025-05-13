@@ -36,9 +36,9 @@ async function loadProducts() {
          <div class="add-cart__mobile">add to cart</div>
          <div class="icons">
         <button class="add-cart">
-        <img src="../../src/img/shopping-cart.svg" alt="shopping-cart" class="cart-img"/></button>
-        <button class="view-product"><img src="../../src/src/img/eye.svg" alt="eye"/></button>
-        <button class="favourite-product"><img src="src/src/img/heart.svg" alt="favourite"/></button>
+        <img src="/img/shopping-cart.svg" alt="shopping-cart" class="cart-img"/></button>
+        <button class="view-product"><img src="/img/eye.svg" alt="eye"/></button>
+        <button class="favourite-product"><img src="/img/heart.svg" alt="favourite"/></button>
         </div>
         </div>
        
