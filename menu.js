@@ -17,8 +17,4 @@ export function closeMenu() {
         menu.classList.toggle('hidden');
         burger.classList.toggle('active');
     });
-    // closeBtn.addEventListener('click', () => {
-    //     menu.classList.add('hidden');
-    // });
-
 }

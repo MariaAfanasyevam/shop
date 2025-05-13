@@ -167,7 +167,6 @@ a:link{
       &:hover path {
         fill: variables.$gray-dark;
       }
-
     }
   }
 }
@@ -223,7 +222,7 @@ a:link{
 .main-container {
     color: variables.$white;
     overflow-x: hidden;
-  }
+}
 
 
 
@@ -248,7 +247,7 @@ a:link{
 
 .shop-container {
     justify-content: center;
-  }
+}
 
 .shop-items {
   display: grid;
@@ -256,10 +255,9 @@ a:link{
   column-gap: 24px;
   row-gap: 86px;
   width:100%;
- height: 100%;
+  height: 100%;
   justify-content: center;
   align-items: center;
- // grid-template-rows: auto auto;
   margin:
   {
     top: 39px;
@@ -269,7 +267,6 @@ a:link{
     grid-template-columns: repeat(2, 1fr);
     margin: 20px auto;
     row-gap: 20px;
-  //  grid-template-rows: 137px 137px 137px;
   }
 }
 
@@ -281,23 +278,6 @@ a:link{
   z-index: 100;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-//
-//  @media (max-width: 860px) {
-//    width: 180px;
-//    height: 180px;
-//    font-size: variables.$large;
-//  }
-//
-//  @media (max-width: 559px) {
-//    width: 120px;
-//    height: 120px;
-//    font-size: variables.$medium;
-//  }
-//  @media (max-width: 320px) {
-//  width: 136px;
-//  height: 136px;
-//  font-size: variables.$medium;
-//}
 }
 
 
@@ -449,7 +429,6 @@ a:link{
         height: 5px;
         margin-left: -20px;
       }
-
     }
     &:hover{
       transform:scale(1.5);
@@ -539,8 +518,6 @@ a:link{
     flex-direction: row;
     padding-bottom: 18px;
     column-gap: 20px;
-
-
   }
 }
 
@@ -557,8 +534,4 @@ a:link{
 }
 .view-cart:hover, .add-item:hover, .remove-item:hover {
   cursor: pointer;
-}
-
-.cart-img{
-
 }

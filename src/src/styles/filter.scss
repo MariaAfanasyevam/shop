@@ -11,10 +11,10 @@
   max-width: 320px;
   z-index: 120;
   overflow-y: scroll;
-padding:30px;
+  padding:30px;
   display: flex;
   flex-direction: column;
-row-gap: 20px;
+  row-gap: 20px;
   align-items: center;
 }
 
@@ -29,7 +29,7 @@ div.hidden {
   text-transform: uppercase;
   height: 53px;
   width: 288px;
- margin-top: 30px;
+  margin-top: 30px;
   border-radius: 4px;
   background: #fff;
   border: 1px solid black;
