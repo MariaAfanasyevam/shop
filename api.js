@@ -69,7 +69,7 @@ async function loadProducts() {
         setupQuantityButtons();
 
     } catch (error) {
-        productsListContainerNode.innerHTML = `<p>Ошибка загрузки товаров 😢</p>`;
+        productsListContainerNode.innerHTML = `<p>Ошибка загрузки товаров😢</p>`;
         console.error(error);
     }
 }

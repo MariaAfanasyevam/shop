@@ -18,7 +18,7 @@ export function cardClick() {
                 inStock: card.dataset.inStock,
                 quantity: 1
             };
-            img.src = 'src/src/img/shopping-cart-color.svg';
+            img.src = '/img/shopping-cart-color.svg';
             addToCart(product);
         });
     });

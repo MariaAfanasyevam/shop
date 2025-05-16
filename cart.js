@@ -18,7 +18,7 @@ export function addToCart(product) {
             return;
         }
         cartStorage.push(product);
-      //  updateCartSidebar(product);
+
         console.log('Добавлен товар:', product.id);
     }
 
