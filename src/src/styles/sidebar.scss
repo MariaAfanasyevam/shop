@@ -26,6 +26,7 @@
     font-weight: 700;
     padding: 16px 100px;
     background-color: #fff;
+    margin: 0 auto;
   }
   .subtotal-container{
     margin: 21px auto;
@@ -117,4 +118,17 @@
     &:hover{
       cursor: pointer;
     }}
+}
+
+.sidebar-footer{
+ padding: 0 auto;
+  bottom:10px;
+  position: absolute;
+  width: 100%;
+}
+.button-wrapper{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }

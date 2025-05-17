@@ -1,28 +1,25 @@
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import 'swiper/scss';
+import 'swiper/scss/navigation';
+import 'swiper/scss/pagination';
 
 async function loadSliderData() {
     const res = await fetch('https://api.dev.cwe.su/api/promos/?populate=*');
     const json = await res.json();
-    const slides = json.data;
-
-    const wrapper = document.querySelector('.swiper-wrapper');
+    const slides = await json.data;
+    let wrapper = document.querySelector('.swiper-wrapper');
 
     slides.forEach(item => {
-        const { title, price} = item.product;
-
+        const {title, price} = item.product;
         const slide = document.createElement('div');
         slide.classList.add('swiper-slide');
-
         slide.innerHTML = `
       <div class="swiper-container">
       <div class ="title">${title}</div>
       <div class="subtitle">$${price}</div>
       <button class="swiper-button">View Product</button>
-  </div>
+      </div>
     `;
         wrapper.appendChild(slide);
     });

@@ -12,6 +12,7 @@
   height: 100vh;
   background-color: white;
   color: blue;
+  padding-top: 48px;
 }
 html,body {
   overflow-x:hidden;
@@ -50,7 +51,6 @@ a:link{
 .container{
   max-width: 1440px;
   box-sizing: border-box;
-  padding-top: 48px;
   margin: 0 auto;
   padding-left:96px;
   padding-right:96px;
@@ -252,12 +252,12 @@ a:link{
 .shop-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 24px;
+  column-gap: 54px;
   row-gap: 86px;
   width:100%;
   height: 100%;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   margin:
   {
     top: 39px;
@@ -370,7 +370,7 @@ a:link{
 .footer-container {
 
     padding-top: 40px;
-
+padding-bottom: 15px;
     @media (max-width: 730px) {
       column-gap: 10px;
     }
@@ -456,7 +456,6 @@ a:link{
       @media (max-width: 537px){
         order:1;
         font-size: variables.$small;
-        margin-top:36px;
       }
     }
 
@@ -490,12 +489,7 @@ a:link{
     svg:hover path {
       fill: variables.$black;
     }
-    @media (max-width: 537px){
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 26px;
-      margin-top:32px;
-    }
+
   }
 
 .footer__terms {
@@ -506,6 +500,8 @@ a:link{
     font-family: DMSans, sans-serif;
     font-weight: variables.$regular;
     font-size: variables.$small;
+    align-items: flex-start;
+    top:0;
   }
 }
 

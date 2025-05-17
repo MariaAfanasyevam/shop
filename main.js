@@ -1,9 +1,11 @@
 import {addToCart, updateCartCount, updateCartSidebar} from './cart.js';
+
 export function cardClick() {
     document.querySelectorAll('.add-cart').forEach(button => {
         button.addEventListener('click', (e) => {
             const card = e.target.closest('.shop-item');
             const img = card.querySelector('.cart-img');
+
             if (!card) {
                 console.error('Карточка не найдена');
                 return;
@@ -22,12 +24,13 @@ export function cardClick() {
             addToCart(product);
         });
     });
-
     updateCartCount();
     updateCartSidebar();
 }
+
 export function setupQuantityButtons() {
     const cartItems=document.querySelectorAll('.item-container');
+
     cartItems.forEach(item => {
         const increaseBtn = item.querySelector('.add-item');
         const decreaseBtn = item.querySelector('.remove-item');
@@ -55,15 +58,14 @@ export function changeItemQuantity(productId, delta) {
 
     if (!existingCard)
         return;
-
-    if (existingCard.quantity==1 & delta== -1) {
+    if (existingCard.quantity == 1 & delta == -1) {
     return;
-}
+    }
     if (delta == 0){
        cartStorage = cartStorage.filter(p => p.id !== productId);
-   }
+    }
     else {
-       if( delta == 1)
+       if (delta == 1)
        {
            if (existingCard.quantity >= inStock) {
                alert("Достигнут лимит доступного количества товара");
@@ -75,8 +77,20 @@ export function changeItemQuantity(productId, delta) {
            existingCard.quantity += -1;
        }
    }
-console.log(existingCard.quantity);
     localStorage.setItem('cart', JSON.stringify(cartStorage));
     updateCartSidebar();
     updateCartCount();
 }
+
+export function checkRadio() {
+    const radios= document.querySelectorAll('.radio-title');
+
+    radios.forEach(radio => {
+        radio.addEventListener('click', function (event) {
+            const selected = radio.closest('.shop-search__radio');
+            if (!selected) return;
+            const checkbox = selected.querySelector('input[type="checkbox"]');
+            if (!checkbox) return;
+                checkbox.checked = !checkbox.checked;
+    }
+    )})}

@@ -1,7 +1,7 @@
 import {setupQuantityButtons} from "./main.js";
 
 export function addToCart(product) {
-    const  cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
     const existingCard = cartStorage.find(item => item.id === product.id);
     const inStock = Number(product.inStock);
 
@@ -39,14 +39,13 @@ export function updateCartCount() {
     if (cartCount) {
         cartCount.textContent = `${count}`;
         document.getElementsByClassName('items').textContent = `${count} items`;
-
     }
     if (count === 0) {
         cartIcon.classList.add('hidden');
     }
     else {
-            cartIcon.classList.remove('hidden');
-        }
+        cartIcon.classList.remove('hidden');
+    }
     setupQuantityButtons();
 }
 
@@ -56,8 +55,8 @@ export function updateCartSidebar(){
     const totalElem = document.querySelector('.total');
     const totalItems = document.querySelector('.items');
     cartContainer.innerHTML = '';
-    let totalSum  = 0;
-    let alltotal=0;
+    let totalSum = 0;
+    let alltotal = 0;
 
     cartProducts.forEach(product =>{
     const cartCard = document.createElement('li');
@@ -66,22 +65,26 @@ export function updateCartSidebar(){
     cartCard.dataset.id = product.id;
     cartCard.innerHTML = `
     <img src="${product.image}" alt="${product.title}" class="cart-img"/>
-						<div class="item-content">
-							<h1>${product.title}</h1>
-							<div class="item-color">${product.color} / Medium</div>
-							<p class="item-price">$ ${product.price}</p>
-							<div class="item-quantity">
-								<span>QTY:</span>
-								<span class="remove-item">-</span>
-								<span class="item-timer">${product.quantity}</span>
-								<span class="add-item">+</span>
-							</div>
-						</div>
-						<div class="delete-icon"><button class="delete-button"><img src="src/src/img/delete.svg" alt="delete" /></button> </div>
+    <div class="item-content">
+	<h1>${product.title}</h1>
+	<div class="item-color">${product.color} / Medium</div>
+	<p class="item-price">$ ${product.price}</p>
+	<div class="item-quantity">
+	<span>QTY:</span>
+	<span class="remove-item">-</span>
+	<span class="item-timer">${product.quantity}</span>
+	<span class="add-item">+</span>
+	</div>
+	</div>
+	<div class="delete-icon">
+	<button class="delete-button">
+	<img src="/img/delete.svg" alt="delete"/>
+	</button> 
+	</div>
       `;
     cartContainer.appendChild(cartCard);
     totalSum += product.price * product.quantity;
-    alltotal+=product.quantity;
+    alltotal += product.quantity;
 });
     if (totalElem) {
         totalElem.textContent = `$ ${totalSum.toFixed(2)}`;
