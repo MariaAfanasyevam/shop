@@ -387,6 +387,9 @@ table {
   justify-content: space-between;
   align-items: center;
   color: #000000;
+  font-weight: 400;
+  font-size: 16px;
+  font-family: DMSans, sans-serif;
   width: 100%;
   row-gap: 20px;
   max-width: 100%;
@@ -617,6 +620,7 @@ span.hidden {
 
 .search-list {
   width: 100%;
+  position: relative;
 }
 .search-list select {
   width: 100%;
@@ -1099,7 +1103,7 @@ button.swiper-pagination-bullet {
     background-position: right 20% top 0;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 513px) {
   .swiper-container {
     background-image: url("../../src/img/Img01.png");
     background-repeat: no-repeat;

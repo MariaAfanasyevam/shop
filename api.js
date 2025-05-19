@@ -1,34 +1,36 @@
-import { updateCartCount, updateCartSidebar} from './cart.js';
-import {cardClick, setupQuantityButtons, checkRadio} from './main.js';
-import {handleCloseMenu} from "./menu.js";
+import { updateCartCount, updateCartSidebar } from "./cart.js";
+import { cardClick, setupQuantityButtons, checkRadio } from "./main.js";
+import { handleCloseMenu } from "./menu.js";
 
-const apiUrl = 'https://api.dev.cwe.su/api/products/?populate=*';
-const productsListContainerNode = document.getElementById('product-list');
+const apiUrl = "https://api.dev.cwe.su/api/products/?populate=*";
+const productsListContainerNode = document.getElementById("product-list");
 async function loadProducts() {
-    try {
-        const res = await fetch(apiUrl);
-        const result = await res.json();
-        const products = await result.data;
-        const maxProducts = 8; // Отображать максимум 8 карточек
-        const visibleProducts = products.slice(0, maxProducts);
+  try {
+    const res = await fetch(apiUrl);
+    const result = await res.json();
+    const products = await result.data;
+    const maxProducts = 6;
+    const visibleProducts = products.slice(0, maxProducts);
 
-        visibleProducts .forEach(product => {
-            const card = document.createElement('div');
+    visibleProducts.forEach((product) => {
+      const card = document.createElement("div");
 
-            card.classList.add('shop-item');
-            card.dataset.id = product.id;
-            card.dataset.title = product.title;
-            card.dataset.price = product.price;
-            card.dataset.image = product.image;
-            card.dataset.color = product.color;
-            card.dataset.inStock = product.itemsInStock;
-            if (product.discountPercent>0) {
-                product.discountPrice = (product.price *(1- product.discountPercent/100)).toFixed(2);
-            }
-            else{
-                product.discountPrice=product.price;
-            }
-            card.innerHTML = `
+      card.classList.add("shop-item");
+      card.dataset.id = product.id;
+      card.dataset.title = product.title;
+      card.dataset.price = product.price;
+      card.dataset.image = product.image;
+      card.dataset.color = product.color;
+      card.dataset.inStock = product.itemsInStock;
+      if (product.discountPercent > 0) {
+        product.discountPrice = (
+          product.price *
+          (1 - product.discountPercent / 100)
+        ).toFixed(2);
+      } else {
+        product.discountPrice = product.price;
+      }
+      card.innerHTML = `
         <div class="shop-item__image">
         <img class="shop-img" src="${product.image}" alt="${product.title}" />
          <div class="add-cart__mobile">add to cart</div>
@@ -52,23 +54,23 @@ async function loadProducts() {
         </div>
         </div>       
       `;
-            productsListContainerNode.appendChild(card);
-            const discountVisible= card.querySelector('.item-discount');
-            if (product.discountPercent == 0) {
-                discountVisible.classList.add('hidden');
-                card.querySelector('.sale').classList.add('hidden');
-            }
-            if( product.itemsInStock == 0) card.querySelector('.item-discount').innerHTML='sold out';
-        });
-        cardClick();
-        updateCartCount();
-        updateCartSidebar();
-        setupQuantityButtons();
-
-    } catch (error) {
-        productsListContainerNode.innerHTML = `<p>Ошибка загрузки товаров😢</p>`;
-        console.error(error);
-    }
+      productsListContainerNode.appendChild(card);
+      const discountVisible = card.querySelector(".item-discount");
+      if (product.discountPercent == 0) {
+        discountVisible.classList.add("hidden");
+        card.querySelector(".sale").classList.add("hidden");
+      }
+      if (product.itemsInStock == 0)
+        card.querySelector(".item-discount").innerHTML = "sold out";
+    });
+    cardClick();
+    updateCartCount();
+    updateCartSidebar();
+    setupQuantityButtons();
+  } catch (error) {
+    productsListContainerNode.innerHTML = `<p>Ошибка загрузки товаров😢</p>`;
+    console.error(error);
+  }
 }
 
 loadProducts();

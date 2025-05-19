@@ -1,67 +1,69 @@
-import {setupQuantityButtons} from "./main.js";
+import { changeItemQuantity, setupQuantityButtons } from "./main.js";
 
 export function addToCart(product) {
-    const cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
-    const existingCard = cartStorage.find(item => item.id === product.id);
-    const inStock = Number(product.inStock);
+  const cartStorage = JSON.parse(localStorage.getItem("cart")) || [];
+  const existingCard = cartStorage.find((item) => item.id === product.id);
+  const inStock = Number(product.inStock);
 
-    if (existingCard) {
-        if (existingCard.quantity >= inStock) {
-            alert("Достигнут лимит доступного количества товара");
-            return;
-        }
-        existingCard.quantity += 1;
-
-    } else {
-        if (inStock <= 0) {
-            alert("Товар закончился");
-            return;
-        }
-        cartStorage.push(product);
-
-        console.log('Добавлен товар:', product.id);
+  if (existingCard) {
+    // if (existingCard.quantity >= inStock) {
+    //     alert("Достигнут лимит доступного количества товара");
+    //     return;
+    // }
+    // existingCard.quantity += 1;
+    //удаление если кнопка корзины уже нажата на карточке товара
+    changeItemQuantity(product.id, 0);
+    console.log("Удален товар:", product.id);
+  } else {
+    if (inStock <= 0) {
+      alert("Товар закончился");
+      return;
     }
+    cartStorage.push(product);
 
-    localStorage.setItem('cart', JSON.stringify(cartStorage));
+    console.log("Добавлен товар:", product.id);
+    localStorage.setItem("cart", JSON.stringify(cartStorage));
+  }
 
-    updateCartCount();
-    updateCartSidebar();
-    setupQuantityButtons();
+  updateCartCount();
+  updateCartSidebar();
+  setupQuantityButtons();
 }
-
 
 export function updateCartCount() {
-    const cartStorage = JSON.parse(localStorage.getItem('cart')) || [];
-    const count = cartStorage.reduce((sum, item) => sum + (item.quantity || 0), 0);
-    const cartCount = document.getElementById('cart-total');
-    const cartIcon = document.getElementById('cart-total');
+  const cartStorage = JSON.parse(localStorage.getItem("cart")) || [];
+  const count = cartStorage.reduce(
+    (sum, item) => sum + (item.quantity || 0),
+    0,
+  );
+  const cartCount = document.getElementById("cart-total");
+  const cartIcon = document.getElementById("cart-total");
 
-    if (cartCount) {
-        cartCount.textContent = `${count}`;
-        document.getElementsByClassName('items').textContent = `${count} items`;
-    }
-    if (count === 0) {
-        cartIcon.classList.add('hidden');
-    }
-    else {
-        cartIcon.classList.remove('hidden');
-    }
-    setupQuantityButtons();
+  if (cartCount) {
+    cartCount.textContent = `${count}`;
+    document.getElementsByClassName("items").textContent = `${count} items`;
+  }
+  if (count === 0) {
+    cartIcon.classList.add("hidden");
+  } else {
+    cartIcon.classList.remove("hidden");
+  }
+  setupQuantityButtons();
 }
 
-export function updateCartSidebar(){
-    const cartContainer = document.querySelector('.items-container');
-    const cartProducts = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalElem = document.querySelector('.total');
-    const totalItems = document.querySelector('.items');
-    cartContainer.innerHTML = '';
-    let totalSum = 0;
-    let alltotal = 0;
+export function updateCartSidebar() {
+  const cartContainer = document.querySelector(".items-container");
+  const cartProducts = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalElem = document.querySelector(".total");
+  const totalItems = document.querySelector(".items");
+  cartContainer.innerHTML = "";
+  let totalSum = 0;
+  let alltotal = 0;
 
-    cartProducts.forEach(product =>{
-    const cartCard = document.createElement('li');
+  cartProducts.forEach((product) => {
+    const cartCard = document.createElement("li");
 
-    cartCard.className = 'item-container';
+    cartCard.className = "item-container";
     cartCard.dataset.id = product.id;
     cartCard.innerHTML = `
     <img src="${product.image}" alt="${product.title}" class="cart-img"/>
@@ -85,12 +87,13 @@ export function updateCartSidebar(){
     cartContainer.appendChild(cartCard);
     totalSum += product.price * product.quantity;
     alltotal += product.quantity;
-});
-    if (totalElem) {
-        totalElem.textContent = `$ ${totalSum.toFixed(2)}`;
-    }
-    if (totalItems) {
-        totalItems.textContent = `${alltotal} items`;
-        document.querySelector('.subtotal').textContent=`Subtotal (${alltotal} items)`;
-    }
+  });
+  if (totalElem) {
+    totalElem.textContent = `$ ${totalSum.toFixed(2)}`;
+  }
+  if (totalItems) {
+    totalItems.textContent = `${alltotal} items`;
+    document.querySelector(".subtotal").textContent =
+      `Subtotal (${alltotal} items)`;
+  }
 }

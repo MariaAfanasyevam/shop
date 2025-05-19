@@ -1,14 +1,17 @@
-const closeFilter = document.getElementById('close-filter');
-const openFilter = document.getElementById('open-filter');
-const filter=document.getElementById('filter');
+const closeFilters = document.querySelectorAll(".filter-btn");
+const openFilter = document.getElementById("open-filter");
+const filter = document.getElementById("filter");
 
 function handleFilter() {
-    openFilter.addEventListener('click', () => {
-        filter.classList.toggle('hidden');
-    });
-    closeFilter.addEventListener('click', () => {
-        filter.classList.toggle('hidden');
-    });
+  openFilter.addEventListener("click", () => {
+    filter.classList.toggle("hidden");
+  });
+  const handler = () => {
+    filter.classList.toggle("hidden");
+  };
+  closeFilters.forEach((closeFilter) => {
+    closeFilter.addEventListener("click", handler);
+  });
 }
 
 handleFilter();
