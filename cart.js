@@ -91,6 +91,10 @@ export function updateCartSidebar() {
       cartCard.querySelector(".add-item").classList.add("disable-link");
       cartCard.querySelector(".add-item").removeAttribute("href");
     }
+    if (product.quantity == 1) {
+      cartCard.querySelector(".remove-item").classList.add("disable-link");
+      cartCard.querySelector(".remove-item").removeAttribute("href");
+    }
   });
 
   if (totalElem) {
