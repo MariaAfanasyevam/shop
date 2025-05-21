@@ -531,3 +531,8 @@ padding-bottom: 15px;
 .view-cart:hover, .add-item:hover, .remove-item:hover {
   cursor: pointer;
 }
+
+  .disable-link {
+    pointer-events: none;
+    color: grey;
+  }

@@ -282,7 +282,7 @@ table {
 .add-cart__mobile {
   display: none;
 }
-@media (max-width: 320px) {
+@media (max-width: 647px) {
   .add-cart__mobile {
     display: block;
     align-items: center;
@@ -1059,7 +1059,6 @@ button.swiper-pagination-bullet {
 }
 
 .swiper {
-  height: 646px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -1095,8 +1094,10 @@ button.swiper-pagination-bullet {
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  background-image: url("../../src/img/Img01.png");
-  height: 646px;
+  background-image: url("/img/Img01.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 646px;
 }
 @media (max-width: 864px) {
   .swiper-container {
@@ -1105,18 +1106,19 @@ button.swiper-pagination-bullet {
 }
 @media (max-width: 513px) {
   .swiper-container {
-    background-image: url("../../src/img/Img01.png");
+    background-image: url("/img/Img01_mobile.png");
+    min-height: 354px;
     background-repeat: no-repeat;
     background-size: cover;
     padding-left: 8px;
     justify-content: flex-end;
     padding-bottom: 26px;
-    height: auto;
   }
 }
 
 .swiper-slide {
   text-align: center;
+  position: relative;
 }
 .swiper-slide img {
   max-width: 100%;
@@ -1124,23 +1126,52 @@ button.swiper-pagination-bullet {
   margin-top: 60px;
   height: 100%;
 }
-.swiper-slide .title {
+.swiper-slide .swiper-wrapper {
+  margin-top: 226px;
+  margin-left: 39px;
+  height: 150px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
   font-family: "DMSans", sans-serif;
+}
+@media (max-width: 505px) {
+  .swiper-slide .swiper-wrapper {
+    margin-left: 20px;
+    margin-top: 226px;
+  }
+}
+@media (max-width: 482px) {
+  .swiper-slide .swiper-wrapper {
+    margin-left: 18px;
+    margin-top: 226px;
+  }
+}
+@media (max-width: 320px) {
+  .swiper-slide .swiper-wrapper {
+    margin-left: 16px;
+    margin-top: 226px;
+  }
+}
+.swiper-slide .title {
   font-weight: 14px;
   font-size: 33px;
-  margin-top: 226px;
-  margin-left: 32px;
+  text-align: left;
+}
+@media (max-width: 505px) {
+  .swiper-slide .title {
+    font-size: 26px;
+  }
 }
 @media (max-width: 482px) {
   .swiper-slide .title {
     font-size: 26px;
-    text-align: left;
   }
 }
 @media (max-width: 320px) {
   .swiper-slide .title {
     font-size: 20px;
-    margin-left: 8px;
   }
 }
 .swiper-slide .subtitle {
@@ -1150,15 +1181,11 @@ button.swiper-pagination-bullet {
   align-items: center;
   justify-content: flex-start;
   margin-top: 16px;
-  margin-bottom: 48px;
-  margin-left: 32px;
 }
 @media (max-width: 320px) {
   .swiper-slide .subtitle {
     font-size: 14px;
-    margin-left: 8px;
     margin-top: 3px;
-    margin-bottom: 10px;
   }
 }
 .swiper-slide .swiper-button {
@@ -1170,16 +1197,25 @@ button.swiper-pagination-bullet {
   border: 2px #FFFFFF solid;
   background-color: transparent;
   padding: 13px 31px;
-  margin-left: 32px;
   border-radius: 6px;
+  margin-top: 48px;
+}
+@media (max-width: 482px) {
+  .swiper-slide .swiper-button {
+    font-size: 12px;
+    padding: 6px 9px;
+    border: 1px #FFFFFF solid;
+    font-weight: 400;
+    margin-top: 24px;
+  }
 }
 @media (max-width: 320px) {
   .swiper-slide .swiper-button {
     font-size: 12px;
     padding: 6px 9px;
     border: 1px #FFFFFF solid;
-    margin-left: 8px;
     font-weight: 400;
+    margin-top: 16px;
   }
 }
 .swiper-slide .swiper-button:hover {
@@ -2013,6 +2049,11 @@ a:link {
 
 .view-cart:hover, .add-item:hover, .remove-item:hover {
   cursor: pointer;
+}
+
+.disable-link {
+  pointer-events: none;
+  color: grey;
 }
 
 /*# sourceMappingURL=style.css.map */

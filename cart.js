@@ -87,7 +87,12 @@ export function updateCartSidebar() {
     cartContainer.appendChild(cartCard);
     totalSum += product.price * product.quantity;
     alltotal += product.quantity;
+    if (product.quantity >= product.inStock) {
+      cartCard.querySelector(".add-item").classList.add("disable-link");
+      cartCard.querySelector(".add-item").removeAttribute("href");
+    }
   });
+
   if (totalElem) {
     totalElem.textContent = `$ ${totalSum.toFixed(2)}`;
   }
