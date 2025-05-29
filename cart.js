@@ -70,7 +70,8 @@ export function updateCartSidebar() {
     <div class="item-content">
 	<h1>${product.title}</h1>
 	<div class="item-color">${product.color} / Medium</div>
-	<p class="item-price">$ ${product.price}</p>
+	<p class="item-price"> <span class="shop-item__price sale">$ ${product.price}</span>
+	$ ${product.discountPrice}</p>
 	<div class="item-quantity">
 	<span>QTY:</span>
 	<span class="remove-item">-</span>
@@ -85,22 +86,23 @@ export function updateCartSidebar() {
 	</div>
       `;
     cartContainer.appendChild(cartCard);
-    totalSum += product.price * product.quantity;
+    totalSum += product.discountPrice * product.quantity;
     alltotal += product.quantity;
     if (product.quantity >= product.inStock) {
-      cartCard.querySelector(".add-item").classList.add("disable-link");
-      cartCard.querySelector(".add-item").removeAttribute("href");
+      cartCard.querySelector(".add-item").classList.add("hidden");
     }
     if (product.quantity == 1) {
-      cartCard.querySelector(".remove-item").classList.add("disable-link");
-      cartCard.querySelector(".remove-item").removeAttribute("href");
+      cartCard.querySelector(".remove-item").classList.add("hidden");
     }
   });
 
   if (totalElem) {
     totalElem.textContent = `$ ${totalSum.toFixed(2)}`;
   }
-  if (totalItems) {
+
+  if (alltotal === 0) {
+    cartContainer.innerHTML = `Ваша корзина пуста, перейти в <a href="shop.html">Каталог</a>`;
+  } else if (totalItems) {
     totalItems.textContent = `${alltotal} items`;
     document.querySelector(".subtotal").textContent =
       `Subtotal (${alltotal} items)`;

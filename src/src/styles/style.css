@@ -1295,7 +1295,7 @@ button.swiper-pagination-bullet {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  overflow-y: auto;
+  overflow: hidden;
 }
 
 .item-content {
@@ -1310,6 +1310,10 @@ button.swiper-pagination-bullet {
 }
 .item-content .item-price {
   color: #A18A68;
+}
+.item-content .item-price .sale {
+  color: #D82700;
+  text-decoration: line-through;
 }
 .item-content .item-quantity {
   color: #707070;

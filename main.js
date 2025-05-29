@@ -18,6 +18,7 @@ export function cardClick() {
         color: card.dataset.color,
         percent: card.dataset.percent,
         inStock: card.dataset.inStock,
+        discountPrice: card.dataset.discountPrice,
         quantity: 1,
       };
       img.src = "/img/shopping-cart-color.svg";

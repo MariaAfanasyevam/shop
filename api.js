@@ -30,6 +30,7 @@ async function loadProducts() {
       } else {
         product.discountPrice = product.price;
       }
+      card.dataset.discountPrice = product.discountPrice;
       card.innerHTML = `
         <div class="shop-item__image">
         <img class="shop-img" src="${product.image}" alt="${product.title}" />
