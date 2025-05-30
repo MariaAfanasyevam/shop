@@ -23,7 +23,7 @@ max-width:977px;
   }
   @media (max-width: 559px) {
     grid-template-columns: repeat(2, 1fr);
-    margin: 20px auto;
+    margin: 1px auto;
     row-gap: 20px;
   }
 }
@@ -175,8 +175,7 @@ max-width:977px;
     row-gap: 8px;
     font-weight:400;
     font-size: 12px;
-    margin-bottom:16px;
-    margin-top:15px;
+    margin-top:16px;
     font-family: DMSans, sans-serif;
   }
   img{

@@ -168,7 +168,7 @@ table {
 @media (max-width: 559px) {
   .catalog-items {
     grid-template-columns: repeat(2, 1fr);
-    margin: 20px auto;
+    margin: 1px auto;
     row-gap: 20px;
   }
 }
@@ -332,8 +332,7 @@ table {
     row-gap: 8px;
     font-weight: 400;
     font-size: 12px;
-    margin-bottom: 16px;
-    margin-top: 15px;
+    margin-top: 16px;
     font-family: DMSans, sans-serif;
   }
 }
@@ -1522,7 +1521,6 @@ div.hidden {
   height: 100vh;
   background-color: white;
   color: blue;
-  padding-top: 48px;
 }
 
 html, body {
@@ -1574,7 +1572,7 @@ a:link {
 }
 @media (max-width: 600px) {
   .container {
-    padding-top: 15px;
+    padding-top: 1px;
   }
 }
 
@@ -1786,9 +1784,14 @@ a:link {
   font-family: "DMSans", sans-serif;
   margin-top: 64px;
 }
+@media (max-width: 900px) {
+  .shop-title {
+    margin-top: 10px;
+  }
+}
 @media (max-width: 560px) {
   .shop-title {
-    margin-top: 25px;
+    margin-top: 10px;
   }
 }
 .shop-title__text {
