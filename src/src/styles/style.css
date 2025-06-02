@@ -1486,7 +1486,6 @@ button.swiper-pagination-bullet {
   position: fixed;
   top: 70px;
   right: 0;
-  max-width: 320px;
   z-index: 120;
   overflow-y: scroll;
   padding: 30px;
@@ -1514,6 +1513,12 @@ div.hidden {
 }
 .filter-btn:hover {
   cursor: pointer;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #app {
@@ -1555,7 +1560,6 @@ a:link {
 .container {
   max-width: 1440px;
   box-sizing: border-box;
-  margin: 0 auto;
   padding-left: 96px;
   padding-right: 96px;
   height: max-content;
@@ -1577,7 +1581,7 @@ a:link {
 }
 
 .header {
-  margin-top: 16px;
+  margin-top: 66px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

@@ -102,9 +102,9 @@ export function updateCartSidebar() {
 
   if (alltotal === 0) {
     cartContainer.innerHTML = `Ваша корзина пуста, перейти в <a href="shop.html">Каталог</a>`;
-  } else if (totalItems) {
-    totalItems.textContent = `${alltotal} items`;
-    document.querySelector(".subtotal").textContent =
-      `Subtotal (${alltotal} items)`;
   }
+
+  totalItems.textContent = `${alltotal} items`;
+  document.querySelector(".subtotal").textContent =
+    `Subtotal (${alltotal} items)`;
 }

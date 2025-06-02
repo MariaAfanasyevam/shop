@@ -8,7 +8,7 @@
   position: fixed;
   top: 70px;
   right: 0;
-  max-width: 320px;
+//  max-width: 320px;
   z-index: 120;
   overflow-y: scroll;
   padding:30px;
@@ -36,4 +36,9 @@ div.hidden {
   &:hover{
     cursor: pointer;
   }
+}
+.filter-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
