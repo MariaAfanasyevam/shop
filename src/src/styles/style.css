@@ -482,7 +482,7 @@ input:checked + .switch-btn:before {
 }
 
 .shop-header {
-  margin-top: 64px;
+  margin-top: 64px !important;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -506,7 +506,7 @@ input:checked + .switch-btn:before {
 }
 @media (max-width: 768px) {
   .shop-header {
-    margin-top: 16px;
+    margin-top: 16px !important;
   }
 }
 @media (max-width: 647px) {
@@ -1406,10 +1406,15 @@ button.swiper-pagination-bullet {
   color: black;
   height: 100vh;
   position: fixed;
-  top: 40px;
+  top: 120px;
   right: 0;
   z-index: 120;
   overflow-y: scroll;
+}
+@media (max-width: 768px) {
+  .burger-menu__nav {
+    top: 60px;
+  }
 }
 
 .burger-menu__nav .hidden {
@@ -1563,16 +1568,11 @@ a:link {
   padding-left: 96px;
   padding-right: 96px;
   height: max-content;
-  margin: auto;
+  margin: 0 auto;
 }
 @media (max-width: 1024px) {
   .container {
     padding: 0 48px;
-  }
-}
-@media (max-width: 768px) {
-  .container {
-    padding: 0 16px;
   }
 }
 @media (max-width: 600px) {

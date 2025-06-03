@@ -330,8 +330,8 @@ input:checked + .switch-btn:before  {
   transform: translateX(13px);
 }
 
-.shop-header{
-  margin-top: 64px;
+.shop-header {
+ margin-top: 64px !important;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
@@ -357,7 +357,7 @@ input:checked + .switch-btn:before  {
     }
   }
   @media(max-width: 768px) {
-    margin-top: 16px;
+    margin-top: 16px !important;
   }
   @media(max-width: 647px) {
     border-bottom: none;

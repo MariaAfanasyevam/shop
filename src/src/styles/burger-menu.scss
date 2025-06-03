@@ -26,11 +26,14 @@
   color: black;
   height: 100vh;
   position: fixed;
-  top: 40px;
+  top: 120px;
   right: 0;
  // min-width: 360px;
   z-index: 120;
   overflow-y: scroll;
+  @media(max-width: 768px) {
+    top: 60px;
+  }
 }
 
 .burger-menu__nav .hidden {
