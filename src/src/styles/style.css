@@ -1406,7 +1406,7 @@ button.swiper-pagination-bullet {
   color: black;
   height: 100vh;
   position: fixed;
-  top: 120px;
+  top: 40px;
   right: 0;
   z-index: 120;
   overflow-y: scroll;
@@ -1563,6 +1563,7 @@ a:link {
   padding-left: 96px;
   padding-right: 96px;
   height: max-content;
+  margin: auto;
 }
 @media (max-width: 1024px) {
   .container {
@@ -1619,7 +1620,8 @@ a:link {
 }
 .menu .nav {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  flex-direction: row;
   margin-top: auto;
   justify-content: center;
 }
