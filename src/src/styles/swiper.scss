@@ -41,8 +41,10 @@
   background-repeat: no-repeat;
   background-size: cover;
  min-height: 646px;
-
-  @media(max-width: 864px) {
+  @media(max-width: 1200px) {
+    background-position: right 10% top 0;
+  }
+  @media(max-width: 868px) {
     background-position: right 20% top 0;
   }
     @media(max-width: 513px) {
