@@ -1109,7 +1109,6 @@ button.swiper-pagination-bullet {
     min-height: 354px;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-left: 8px;
     justify-content: flex-end;
     padding-bottom: 26px;
   }
@@ -1134,8 +1133,9 @@ button.swiper-pagination-bullet {
   justify-content: flex-start;
   flex-direction: column;
   font-family: "DMSans", sans-serif;
+  width: 80%;
 }
-@media (max-width: 505px) {
+@media (max-width: 510px) {
   .swiper-slide .swiper-wrapper {
     margin-left: 20px;
     margin-top: 226px;
@@ -1158,7 +1158,7 @@ button.swiper-pagination-bullet {
   font-size: 33px;
   text-align: left;
 }
-@media (max-width: 505px) {
+@media (max-width: 510px) {
   .swiper-slide .title {
     font-size: 26px;
   }
@@ -1168,7 +1168,7 @@ button.swiper-pagination-bullet {
     font-size: 26px;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 338px) {
   .swiper-slide .title {
     font-size: 20px;
   }
@@ -1199,7 +1199,7 @@ button.swiper-pagination-bullet {
   border-radius: 6px;
   margin-top: 48px;
 }
-@media (max-width: 482px) {
+@media (max-width: 515px) {
   .swiper-slide .swiper-button {
     font-size: 12px;
     padding: 6px 9px;
@@ -1218,8 +1218,8 @@ button.swiper-pagination-bullet {
   }
 }
 .swiper-slide .swiper-button:hover {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   transition: background-color 0.5s ease;
 }
 
@@ -1572,7 +1572,7 @@ a:link {
 }
 @media (max-width: 1024px) {
   .container {
-    padding: 0 48px;
+    padding: 0 20px;
   }
 }
 @media (max-width: 600px) {
@@ -1790,14 +1790,9 @@ a:link {
   font-family: "DMSans", sans-serif;
   margin-top: 64px;
 }
-@media (max-width: 900px) {
-  .shop-title {
-    margin-top: 10px;
-  }
-}
 @media (max-width: 560px) {
   .shop-title {
-    margin-top: 10px;
+    margin-top: 20px;
   }
 }
 .shop-title__text {

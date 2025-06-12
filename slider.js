@@ -17,7 +17,7 @@ async function loadSliderData() {
     slide.innerHTML = `
       <div class="swiper-container">
       <div class="swiper-wrapper">
-      <div class ="title">${title}</div>
+      <div class ="title"><p>${title}</p></div>
       <div class="subtitle">$${price}</div>
       <button class="swiper-button">View Product</button>
       </div>
