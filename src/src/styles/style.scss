@@ -73,7 +73,7 @@ a:link{
   display:flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 
   .logo{
 
@@ -119,7 +119,7 @@ a:link{
       margin-top: auto;
       align-content: center;
       flex-direction: row;
-
+      justify-content: center;
       &.text {
         gap: 64px;
         margin-top: auto;
@@ -130,7 +130,6 @@ a:link{
 
       &.icon {
         gap: 30px;
-
       }
 
     }
@@ -144,7 +143,7 @@ a:link{
 
     &__li {
       list-style: none;
-      padding-bottom: 18px;
+
 
       &:not(:nth-child(2)):hover {
         border-bottom: 1px solid variables.$gray-dark;
@@ -372,9 +371,7 @@ a:link{
   }
 
 .footer-container {
-
-    padding-top: 40px;
-padding-bottom: 15px;
+  padding-top: 40px;
     @media (max-width: 730px) {
       column-gap: 10px;
     }
@@ -382,6 +379,9 @@ padding-bottom: 15px;
       display: flex;
       flex-direction:column;
       border-top: none;
+    }
+    @media (max-width:450px){
+      padding-top: 15px;
     }
   }
 
@@ -493,6 +493,9 @@ padding-bottom: 15px;
     svg:hover path {
       fill: variables.$black;
     }
+  @media (max-width: 537px) {
+    padding-top:18px;
+  }
 
   }
 
@@ -511,12 +514,12 @@ padding-bottom: 15px;
 
 .burger-menu {
   display: none;
-  margin-left:12px;
+  margin-left:18px;
   @media (max-width: 647px) {
     display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    padding-bottom: 18px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     column-gap: 20px;
   }
 }

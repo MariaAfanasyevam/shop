@@ -17,7 +17,7 @@ max-width:977px;
   justify-content: center;
   align-items: flex-start;
   margin:
-  { left:10px;
+  {
     top: 10px;
     bottom:39px;
   }
@@ -144,12 +144,18 @@ max-width:977px;
     bottom:0;
     text-align: center;
    overflow:hidden;
+    &:hover{
+      cursor: pointer;
+    }
   }
 }
 
 .shop-item:hover .shop-img{
   opacity: 0.5;
   transition: opacity .3s ease;
+  @media (max-width:647px) {
+  opacity: 1;
+  }
 }
 
 .shop-aside{
@@ -175,7 +181,7 @@ max-width:977px;
     row-gap: 8px;
     font-weight:400;
     font-size: 12px;
-    margin-top:16px;
+    margin-top:20px;
     font-family: DMSans, sans-serif;
   }
   img{
@@ -437,6 +443,9 @@ input:checked + .switch-btn:before  {
   align-items: center;
   justify-content: center;
   align-self: center;
+  li{
+
+  }
 }
 
 .cart-items{

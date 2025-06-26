@@ -1,30 +1,32 @@
 import { addToCart, updateCartCount, updateCartSidebar } from "./cart.js";
 
 export function cardClick() {
-  document.querySelectorAll(".add-cart").forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const card = e.target.closest(".shop-item");
-      const img = card.querySelector(".cart-img");
+  document
+    .querySelectorAll(".add-cart, .add-cart__mobile")
+    .forEach((button) => {
+      button.addEventListener("click", (e) => {
+        const card = e.target.closest(".shop-item");
+        const img = card.querySelector(".cart-img");
 
-      if (!card) {
-        console.error("Карточка не найдена");
-        return;
-      }
-      const product = {
-        id: card.dataset.id,
-        title: card.dataset.title,
-        price: Number(card.dataset.price),
-        image: card.dataset.image,
-        color: card.dataset.color,
-        percent: card.dataset.percent,
-        inStock: card.dataset.inStock,
-        discountPrice: card.dataset.discountPrice,
-        quantity: 1,
-      };
-      img.src = "/img/shopping-cart-color.svg";
-      addToCart(product);
+        if (!card) {
+          console.error("Карточка не найдена");
+          return;
+        }
+        const product = {
+          id: card.dataset.id,
+          title: card.dataset.title,
+          price: Number(card.dataset.price),
+          image: card.dataset.image,
+          color: card.dataset.color,
+          percent: card.dataset.percent,
+          inStock: card.dataset.inStock,
+          discountPrice: card.dataset.discountPrice,
+          quantity: 1,
+        };
+        img.src = "/img/shopping-cart-color.svg";
+        addToCart(product);
+      });
     });
-  });
   updateCartCount();
   updateCartSidebar();
 }

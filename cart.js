@@ -6,12 +6,6 @@ export function addToCart(product) {
   const inStock = Number(product.inStock);
 
   if (existingCard) {
-    // if (existingCard.quantity >= inStock) {
-    //     alert("Достигнут лимит доступного количества товара");
-    //     return;
-    // }
-    // existingCard.quantity += 1;
-    //удаление если кнопка корзины уже нажата на карточке товара
     changeItemQuantity(product.id, 0);
     console.log("Удален товар:", product.id);
   } else {
@@ -101,7 +95,7 @@ export function updateCartSidebar() {
   }
 
   if (alltotal === 0) {
-    cartContainer.innerHTML = `Ваша корзина пуста, перейти в <a href="shop.html">Каталог</a>`;
+    cartContainer.innerHTML = `Ваша корзина пуста`;
   }
 
   totalItems.textContent = `${alltotal} items`;

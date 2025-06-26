@@ -161,7 +161,6 @@ table {
   height: 100%;
   justify-content: center;
   align-items: flex-start;
-  margin-left: 10px;
   margin-top: 10px;
   margin-bottom: 39px;
 }
@@ -300,11 +299,19 @@ table {
     text-align: center;
     overflow: hidden;
   }
+  .add-cart__mobile:hover {
+    cursor: pointer;
+  }
 }
 
 .shop-item:hover .shop-img {
   opacity: 0.5;
   transition: opacity 0.3s ease;
+}
+@media (max-width: 647px) {
+  .shop-item:hover .shop-img {
+    opacity: 1;
+  }
 }
 
 .shop-aside {
@@ -332,7 +339,7 @@ table {
     row-gap: 8px;
     font-weight: 400;
     font-size: 12px;
-    margin-top: 16px;
+    margin-top: 20px;
     font-family: DMSans, sans-serif;
   }
 }
@@ -588,7 +595,6 @@ input:checked + .switch-btn:before {
   justify-content: center;
   align-self: center;
 }
-
 .cart-items {
   position: absolute;
   top: -1px;
@@ -1494,7 +1500,7 @@ button.swiper-pagination-bullet {
   color: black;
   height: 100vh;
   position: fixed;
-  top: 70px;
+  top: 80px;
   right: 0;
   z-index: 120;
   overflow-y: scroll;
@@ -1596,7 +1602,7 @@ a:link {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
 }
 .header .logo .title {
   font-family: "Allerta_Stencil", sans-serif;
@@ -1640,6 +1646,7 @@ a:link {
   margin-top: auto;
   align-content: center;
   flex-direction: row;
+  justify-content: center;
 }
 .menu .nav__ul.text {
   gap: 64px;
@@ -1659,7 +1666,6 @@ a:link {
 }
 .menu .nav__li {
   list-style: none;
-  padding-bottom: 18px;
 }
 .menu .nav__li:not(:nth-child(2)):hover {
   border-bottom: 1px solid #707070;
@@ -1891,7 +1897,6 @@ a:link {
 
 .footer-container {
   padding-top: 40px;
-  padding-bottom: 15px;
 }
 @media (max-width: 730px) {
   .footer-container {
@@ -1903,6 +1908,11 @@ a:link {
     display: flex;
     flex-direction: column;
     border-top: none;
+  }
+}
+@media (max-width: 450px) {
+  .footer-container {
+    padding-top: 15px;
   }
 }
 
@@ -2024,6 +2034,11 @@ a:link {
 .footer-social svg:hover path {
   fill: #000000;
 }
+@media (max-width: 537px) {
+  .footer-social {
+    padding-top: 18px;
+  }
+}
 
 .footer__terms {
   display: none;
@@ -2042,14 +2057,14 @@ a:link {
 
 .burger-menu {
   display: none;
-  margin-left: 12px;
+  margin-left: 18px;
 }
 @media (max-width: 647px) {
   .burger-menu {
     display: flex;
-    align-items: flex-start;
-    flex-direction: row;
-    padding-bottom: 18px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     column-gap: 20px;
   }
 }
