@@ -1417,15 +1417,10 @@ button.swiper-pagination-bullet {
   color: black;
   height: 100vh;
   position: fixed;
-  top: 120px;
+  top: 73px;
   right: 0;
   z-index: 120;
   overflow-y: scroll;
-}
-@media (max-width: 768px) {
-  .burger-menu__nav {
-    top: 60px;
-  }
 }
 
 .burger-menu__nav .hidden {
