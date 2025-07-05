@@ -1,0 +1,164 @@
+@use "../../../node_modules/swiper/swiper.scss" as *;
+@use "../../../node_modules/swiper/modules/pagination.scss" as *;
+@use "../../../node_modules/swiper/modules/pagination.scss" as *;
+@use "variables";
+
+.swiper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  --swiper-pagination-bullet-horizontal-gap: 6px;
+  .swiper-pagination-bullet {
+    border: 1px solid white;
+    border-radius: 50%;
+    background: white;
+    opacity: 1;
+    width: 9px;
+    height: 9px;
+    transition: all 0.3s ease;
+    &:hover {
+      transform: scale(1.2);
+      opacity: 0.8;
+    }
+
+  }
+
+  .swiper-pagination-bullet-active {
+    background: variables.$gray;
+    border-color: white;
+    width: 16px;
+    height: 16px;
+    transition: all 0.3s ease;
+
+
+  }
+  @media(max-width: 320px) {
+    justify-content: flex-end;
+    padding-bottom: 26px;
+    height: 354px;
+  }
+}
+.swiper-container {
+  display: flex;
+  width:100%;
+  flex-direction: column;
+  align-items: flex-start;
+  background-image: url("/img/Img01.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+ min-height: 646px;
+  @media(max-width: 1200px) {
+    background-position: right 10% top 0;
+  }
+  @media(max-width: 868px) {
+    background-position: right 20% top 0;
+  }
+    @media(max-width: 513px) {
+    background-image: url('/img/Img01_mobile.png');
+    min-height: 354px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: flex-end;
+    padding-bottom: 26px;
+  }
+}
+.swiper-slide {
+  text-align: center;
+  position: relative;
+
+  img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 60px;
+    height: 100%;
+  }
+
+  .swiper-wrapper {
+    margin-top: 226px;
+    margin-left: 39px;
+    height: 150px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+    font-family: "DMSans", sans-serif;
+    width: 80%;
+    @media (max-width: 510px) {
+      margin-left: 20px;
+      margin-top: 226px;
+    }
+    @media (max-width: 482px) {
+      margin-left: 18px;
+      margin-top: 226px;
+    }
+    @media (max-width: 320px) {
+      margin-left: 16px;
+      margin-top: 180px;
+    }
+
+    .title {
+      font-weight: variables.$medium;
+      font-size: variables.$heading1;
+      text-align: left;
+
+      @media (max-width: 510px) {
+        font-size: variables.$heading2;
+      }
+      @media (max-width: 482px) {
+        font-size: variables.$heading2;
+      }
+      @media (max-width: 338px) {
+        font-size: variables.$heading3;
+      }
+    }
+
+    .subtitle {
+      font-family: "DMSans", sans-serif;
+      font-weight: variables.$regular;
+      font-size: variables.$heading1;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 16px;
+      @media (max-width: 320px) {
+        font-size: variables.$medium;
+        margin-top: 3px;
+      }
+    }
+
+    .swiper-button {
+      font-family: "DMSans", sans-serif;
+      font-weight: variables.$bold;
+      font-size: variables.$heading3;
+      color: variables.$white;
+      cursor: pointer;
+      border: 2px variables.$white solid;
+      background-color: transparent;
+      padding: 13px 31px;
+      border-radius: 6px;
+      margin-top: 48px;
+      @media (max-width: 515px) {
+        font-size: variables.$small;
+        padding: 6px 9px;
+        border: 1px variables.$white solid;
+        font-weight: variables.$regular;
+        margin-top: 24px;
+      }
+      @media (max-width: 320px) {
+        font-size: variables.$small;
+        padding: 6px 9px;
+        border: 1px variables.$white solid;
+        font-weight: variables.$regular;
+        margin-top: 15px;
+      }
+
+      &:hover {
+        background-color: white;
+        color: black;
+        transition: background-color 0.5s ease;
+      }
+    }
+  }
+}
+

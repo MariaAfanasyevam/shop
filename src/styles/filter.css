@@ -1,0 +1,28 @@
+.filter-menu {
+  background: white;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+  color: black;
+  height: 100vh;
+  position: fixed;
+  top: 70px;
+  right: 0;
+  min-width: 360px;
+  z-index: 120;
+  overflow-y: scroll;
+}
+
+.filter-menu__nav .hidden {
+  display: none;
+}
+
+.filter-btn {
+  font-family: DM Sans, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 16px 88px;
+}
+
+/*# sourceMappingURL=filter.css.map */
