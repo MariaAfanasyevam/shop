@@ -21,7 +21,7 @@ defineProps({
             <router-link to="/shop">
               <li class="nav__li">Shop</li>
             </router-link>
-            <li class="nav__li"><img src="/public/img/Line2.png" class="nav__img" alt="line" /></li>
+            <li class="nav__li"><img src="/img/Line2.png" class="nav__img" alt="line" /></li>
           </ul>
           <ul class="nav__ul icon">
             <div class="cart" aria-label="cart">

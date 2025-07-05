@@ -15,8 +15,8 @@ const allReviews = ref([])
 const productReviews = ref([])
 const averageRating = ref(0)
 const reviewsCount = ref([])
-const image1 = '/public/img/heart.svg'
-const image2 = '/public/img/heartclick.svg'
+const image1 = '/img/heart.svg'
+const image2 = '/img/heartclick.svg'
 const currentImage = ref(image1)
 const activeTab = ref(2)
 
@@ -119,14 +119,14 @@ const swapImages = () => {
           <div class="rate">
             <div class="stars">
               <template v-for="i in 5" :key="i">
-                <img v-if="averageRating >= i" src="../../public/img/star.svg" alt="full" class="star" />
+                <img v-if="averageRating >= i" src="/img/star.svg" alt="full" class="star" />
                 <img
                   v-else-if="averageRating >= i - 0.5"
-                  src="../../public/img/star-half.svg"
+                  src="/img/star-half.svg"
                   alt="half"
                   class="star"
                 />
-                <img v-else src="../../public/img/star-outline.svg" alt="empty" class="star" />
+                <img v-else src="/img/star-outline.svg" alt="empty" class="star" />
               </template>
               <span class="rating-value">({{ averageRating }})</span>
             </div>

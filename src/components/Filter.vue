@@ -6,7 +6,7 @@ const emit = defineEmits(['closeFilterMenu'])
     <div class="shop-search">
       <div class="form__search">
         <input type="text" class="form__input" placeholder="Search..." name="search" id="search" />
-        <button type="button"><img src="../../public/img/search.svg" alt="search" /></button>
+        <button type="button"><img src="/img/search.svg" alt="search" /></button>
       </div>
     </div>
     <div class="search-list">

@@ -13,16 +13,16 @@ const props = defineProps({
   onClickAdd: Function,
   productId: Number,
 })
-const image1 = '/public/img/heart.svg'
-const image2 = '/public/img/heartclick.svg'
+const image1 = '/img/heart.svg'
+const image2 = '/img/heartclick.svg'
 const currentImage = ref(image1)
 
 function toggleImage() {
   currentImage.value = currentImage.value === image1 ? image2 : image1
 }
 
-const image3 = '/public/img/shopping-cart.svg'
-const image4 = '/public/img/shopping-cart-color.svg'
+const image3 = '/img/shopping-cart.svg'
+const image4 = '/img/shopping-cart-color.svg'
 const currentCartImage = ref(image3)
 
 function toggleCartImage() {
@@ -50,7 +50,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
           />
         </button>
         <router-link :to="{ name: 'Product', params: { id: props.productId } }"
-          ><button class="view-product"><img src="/public/img/eye.svg" alt="Open product" /></button
+          ><button class="view-product"><img src="/img/eye.svg" alt="Open product" /></button
         ></router-link>
         <button class="favourite-product">
           <img

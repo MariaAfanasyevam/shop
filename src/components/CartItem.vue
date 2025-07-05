@@ -66,7 +66,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
     </div>
 
     <button class="delete-button">
-      <img @click="emit('onClickRemove')" src="/public/img/delete.svg" alt="delete" />
+      <img @click="emit('onClickRemove')" src="/img/delete.svg" alt="delete" />
     </button>
   </li>
 </template>
