@@ -1,23 +1,14 @@
 <script setup>
 import Catalog from '../components/Catalog.vue'
 import Filter from '../components/Filter.vue'
-import { ref } from 'vue'
+import { useFilterStore } from '../store/filterStore.js'
 
-const filterOpen = ref(false)
-
-const filterMenuOpen = () => {
-  filterOpen.value = true
-}
-const closeFilterMenu = () => {
-  filterOpen.value = false
-}
+const filterStore = useFilterStore()
 </script>
 <template>
-  <Filter v-if="filterOpen" @close-filter-menu="closeFilterMenu" />
+  <Filter v-if="filterStore.filterOpen" @close-filter-menu="filterStore.closeFilterMenu" />
   <div class="shop-aside container">
-    <div class="filter" id="open-filter" @click="filterMenuOpen">
-      <img src="/img/Filter.svg" alt="filter" />Filters
-    </div>
+    <div class="filter" id="open-filter" @click="filterStore.filterMenuOpen"><img src="/img/Filter.svg" alt="filter" />Filters</div>
     <div class="shop-aside__form">
       <div class="shop-search">
         <div class="form__search">

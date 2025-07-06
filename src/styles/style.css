@@ -1106,7 +1106,7 @@ div.hidden {
   color: black;
   display: flex;
   flex-direction: column;
-  font-family: DM Sans;
+  font-family: "DM Sans", sans-serif;
   padding-top: 20px;
 }
 
@@ -1198,18 +1198,7 @@ div.hidden {
   flex-direction: row;
   margin-top: 48px;
 }
-
-.inrease {
-  display: flex;
-  flex-direction: row;
-  background-color: #efefef;
-  column-gap: 24px;
-  color: #707070;
-  padding: 14px 16px;
-  align-items: center;
-}
-
-.add-button {
+.product__buttons .add-button {
   padding: 16px 127px;
   font-size: 16px;
   font-weight: 700;
@@ -1219,10 +1208,28 @@ div.hidden {
   text-transform: uppercase;
   margin-left: 23px;
   background-color: white;
+  cursor: pointer;
 }
-.add-button :hover {
+.product__buttons .add-button:hover {
   background-color: black;
   color: white;
+  transition: background-color 0.5s ease;
+}
+
+.increase {
+  display: flex;
+  flex-direction: row;
+  background-color: #efefef;
+  column-gap: 24px;
+  color: #707070;
+  padding: 14px 16px;
+  align-items: center;
+}
+.increase button {
+  cursor: pointer;
+}
+
+.icon {
   cursor: pointer;
 }
 
@@ -1257,7 +1264,7 @@ div.hidden {
   margin-top: 123px;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid #D8D8D8;
+  border-bottom: 1px solid #d8d8d8;
 }
 
 .tab {
@@ -1266,6 +1273,7 @@ div.hidden {
   line-height: 26px;
   color: #707070;
   padding-bottom: 34px;
+  cursor: pointer;
 }
 .tab:nth-child(2) {
   margin: auto 37px 0 37px;

@@ -3,37 +3,40 @@ import DrawerHead from './DrawerHead.vue'
 import CartItemList from './CartItemList.vue'
 import InfoBlock from './InfoBlock.vue'
 import axios from 'axios'
-import { computed, inject, ref } from 'vue'
+import { computed, ref } from 'vue'
 
+
+import { useCartStore } from '../store/cartStore'
+
+const cartStore = useCartStore()
 const props = defineProps({
   totalPrice: Number,
   buttonDisabled: Boolean,
   totalItems: Number,
 })
 
-const { cart, closeDrawer } = inject('cart')
 
 const isCreating = ref(false)
 const orderId = ref(null)
-const cartIsEmpty = computed(() => cart.value.length === 0)
+const cartIsEmpty = computed(() => cartStore.cart.length === 0)
 
 const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
 
-const createOrder = async () => {
-  try {
-    isCreating.value = true
-    const { data } = await axios.post(`https://81c31a2e3155d8c0.mokky.dev/orders`, {
-      items: cart.value,
-      totalPrice: props.totalPrice,
-    })
-    cart.value = []
-    orderId.value = data.id
-  } catch (err) {
-    console.log(err)
-  } finally {
-    isCreating.value = false
-  }
-}
+// const createOrder = async () => {
+//   try {
+//     isCreating.value = true
+//     const { data } = await axios.post(`https://81c31a2e3155d8c0.mokky.dev/orders`, {
+//       items: cartStore.cart.value,
+//       totalPrice: props.totalPrice,
+//     })
+//     cartStore.cart.value = []
+//     orderId.value = data.id
+//   } catch (err) {
+//     console.log(err)
+//   } finally {
+//     isCreating.value = false
+//   }
+// }
 </script>
 <template>
   <main>

@@ -1,10 +1,16 @@
 <script setup>
 import Card from '../components/Card.vue'
 import axios from 'axios'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
+import { useCardStore } from '../store/cardStore'
+import { useCartStore } from '../store/cartStore'
+import { useFavoriteStore } from '../store/favoriteStore.js'
 
-const items = ref([])
+const favoriteStore = useFavoriteStore()
+const cartStore = useCartStore()
+const cardStore = useCardStore()
+const similarItems = ref([])
 const request = ref({})
 const route = useRoute()
 const imageUrls = ref([])
@@ -35,7 +41,7 @@ const fetchSimilarItems = async () => {
   try {
     const { data } = await axios.get(`https://api.dev.cwe.su/api/products/?pagination[pageSize]=3`)
     const result = data.data
-    items.value = result.map((obj) => ({
+    similarItems.value = result.map((obj) => ({
       ...obj,
     }))
   } catch (e) {
@@ -86,6 +92,12 @@ const swapImages = () => {
   additionalUrl.value = temp
   console.log(mainUrl, additionalUrl)
 }
+watch(
+  () => route.params.id,
+  (newId) => {
+    fetchProduct(newId)
+  },
+)
 </script>
 <template>
   <div class="shop-container container">
@@ -120,12 +132,7 @@ const swapImages = () => {
             <div class="stars">
               <template v-for="i in 5" :key="i">
                 <img v-if="averageRating >= i" src="/img/star.svg" alt="full" class="star" />
-                <img
-                  v-else-if="averageRating >= i - 0.5"
-                  src="/img/star-half.svg"
-                  alt="half"
-                  class="star"
-                />
+                <img v-else-if="averageRating >= i - 0.5" src="/img/star-half.svg" alt="half" class="star" />
                 <img v-else src="/img/star-outline.svg" alt="empty" class="star" />
               </template>
               <span class="rating-value">({{ averageRating }})</span>
@@ -142,22 +149,29 @@ const swapImages = () => {
           </div>
 
           <div class="product__buttons">
-            <div class="inrease">
+            <div class="increase">
               <button>-</button>
               {{ quantity }}
               <button>+</button>
             </div>
-            <button class="add-button">add to cart</button>
+            <button class="add-button" @click="cartStore.toggleCart(request.documentId)">
+              {{cartStore.cart.includes(request.documentId) ? 'add to cart' : 'remove from cart'}}
+            </button>
           </div>
           <div class="additional-info">
-            <img @click="toggleImage" :src="currentImage" alt="Add to favourites" />
+            <img
+              class="icon"
+              @click="cardStore.handleClick(request.documentId)"
+              :src="favoriteStore.favorites.includes(request.documentId) ? image2 : image1"
+              alt="Add to favourites"
+            />
 
             <div>
               <h2>SKU</h2>
               <em>12</em>
             </div>
             <div>
-              <h2>Categoties:</h2>
+              <h2>Categories:</h2>
               <em>Fashion, Style</em>
             </div>
           </div>
@@ -175,7 +189,7 @@ const swapImages = () => {
       </div>
       <div class="product__description" v-if="activeTab === 2">
         <p><span class="description__category">Weight:</span> {{ request.weight }} kg</p>
-        <p><span class="description__category">Dimentions:</span> {{ requestdimentions }} cm</p>
+        <p><span class="description__category">Dimentions:</span> {{ request.dimentions }} cm</p>
         <p><span class="description__category">Colours:</span> {{ request.color }}</p>
         <p><span class="description__category">Material:</span> {{ request.material }}</p>
       </div>
@@ -192,13 +206,15 @@ const swapImages = () => {
         <h1>Similar items</h1>
         <div class="shop-items">
           <Card
-            v-for="item in items"
+            v-for="item in similarItems"
             :key="item.id"
             :id="item.id"
             :imageUrl="item.image"
             :title="item.title"
             :price="item.price"
             :discountPercent="item.discountPercent"
+            :productId="item.documentId"
+            :itemsInStock="item.itemsInStock"
           />
         </div>
       </div>

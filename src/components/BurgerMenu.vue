@@ -1,11 +1,13 @@
 <script setup>
-import { inject } from 'vue'
-const { closeBurger } = inject('cart')
+
+import { useCartStore } from '../store/cartStore'
+
+const cartStore = useCartStore()
 </script>
 <template>
   <nav id="mobile-menu" class="burger-menu__nav">
     <div class="container">
-      <ul class="burger-menu__list" @click="closeBurger">
+      <ul class="burger-menu__list" @click="cartStore.closeBurger">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/shop">Shop</router-link></li>
         <li><router-link to="/profile">My account</router-link></li>

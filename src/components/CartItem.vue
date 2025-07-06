@@ -1,7 +1,8 @@
 <script setup>
 import { computed, ref } from 'vue'
+import { useCartStore } from '../store/cartStore'
 
-const emit = defineEmits(['onClickRemove', 'onClickChange'])
+const cartStore = useCartStore()
 
 const props = defineProps({
   id: Number,
@@ -12,6 +13,7 @@ const props = defineProps({
   discountPrice: Number,
   discountPercent: Number,
   itemsInStock: Number,
+  productId: Number,
   quantity: Number,
 })
 const quantity = ref(1)
@@ -41,7 +43,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
           @click="
             () => {
               quantity--
-              emit('onClickChange', { id, quantity })
+              cartStore.changeItemQuantity( id, quantity)
               console.log(id, quantity)
             }
           "
@@ -55,7 +57,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
           @click="
             () => {
               quantity++
-              emit('onClickChange', { id, quantity })
+              cartStore.changeItemQuantity( id, quantity)
               console.log(id, quantity)
             }
           "
@@ -66,7 +68,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
     </div>
 
     <button class="delete-button">
-      <img @click="emit('onClickRemove')" src="/img/delete.svg" alt="delete" />
+      <img @click="cartStore.removeFromCart(props)" src="/img/delete.svg" alt="delete" />
     </button>
   </li>
 </template>

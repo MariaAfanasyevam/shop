@@ -1,11 +1,14 @@
-<script setup lang="ts">
+<script setup >
 import Card from './Card.vue'
+import { useCardStore } from '../store/cardStore'
+import { useCartStore } from '../store/cartStore'
+const cardStore = useCardStore()
+const cartStore = useCartStore()
+
 defineProps({
   items: Array,
   isFavorites: Boolean,
 })
-
-const emit = defineEmits(['addToFavorite', 'addToCart'])
 </script>
 <template>
   <div class="shop-items">
@@ -18,8 +21,7 @@ const emit = defineEmits(['addToFavorite', 'addToCart'])
       :price="item.price"
       :discountPercent="item.discountPercent"
       :productId="item.documentId"
-      :onClickAdd="isFavorites ? null : () => emit('addToCart', item)"
-      :onClickFavorite="isFavorites ? null : () => emit('addToFavorite', item)"
+      :itemsInStock="item.itemsInStock"
     />
   </div>
 </template>

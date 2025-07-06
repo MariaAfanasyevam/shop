@@ -1,6 +1,6 @@
 <script setup>
-const emit = defineEmits(['openDrawer', 'burgerMenuOpen'])
-
+import { useCartStore } from '../store/cartStore'
+const cartStore = useCartStore()
 defineProps({
   totalItems: Number,
 })
@@ -25,7 +25,7 @@ defineProps({
           </ul>
           <ul class="nav__ul icon">
             <div class="cart" aria-label="cart">
-              <li class="nav__li" @click="() => emit('openDrawer')">
+              <li class="nav__li" @click="cartStore.openDrawer()">
                 <a href="#" class="nav__link">
                   <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -63,7 +63,7 @@ defineProps({
           </ul>
           <div class="burger-menu">
             <div class="burger-menu__icon">
-              <button id="burger" class="burger" @click="() => emit('burgerMenuOpen')">
+              <button id="burger" class="burger" @click="cartStore.burgerMenuOpen()">
                 <span></span>
                 <span></span>
                 <span></span>
