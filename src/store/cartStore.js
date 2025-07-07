@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, watch, computed } from 'vue'
+import { useCardStore } from './cardStore.js'
 
 export const useCartStore = defineStore(
   'cart',
@@ -8,7 +9,6 @@ export const useCartStore = defineStore(
     const cart = ref([])
     const drawerOpen = ref(false)
     const burgerOpen = ref(false)
-    const isInCart = ref(false)
     const closeDrawer = () => {
       drawerOpen.value = false
     }
@@ -33,7 +33,9 @@ export const useCartStore = defineStore(
       cart.value.push({ ...item, quantity: 1 })
 
     }
-
+    function isInCart(product) {
+      return  cart.value.some(item => item.id === product.id)
+    }
 
     const removeFromCart = (item) => {
       const index = cart.value.findIndex((i) => i.id === item.id)
@@ -42,14 +44,15 @@ export const useCartStore = defineStore(
       }
     }
     const toggleCart = (item) => {
+
       const existingItem = cart.value.find((i) => i.id === item.id)
       if (existingItem) {
         removeFromCart(existingItem)
-        isInCart.value = false
       } else {
         addToCart(item)
-        isInCart.value = true
       }
+
+
     }
 
     const changeItemQuantity = (productId, newQuantity) => {
@@ -61,13 +64,7 @@ export const useCartStore = defineStore(
       }
     }
 
-    watch(
-      cart,
-      () => {
-        localStorage.setItem('cart', JSON.stringify(cart.value))
-      },
-      { deep: true },
-    )
+
     return {
       cart,
       totalPrice,

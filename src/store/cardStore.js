@@ -59,8 +59,6 @@ export const useCardStore = defineStore('cardStore', () => {
       const result = data.data
       items.value = result.map((obj) => ({
         ...obj,
-        favoriteId: null,
-        isAdded: false,
         quantity: 1,
       }))
     } catch (e) {

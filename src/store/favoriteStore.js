@@ -18,6 +18,9 @@ export const useFavoriteStore = defineStore('favorites', {
       else {
         this.addFavorite(productId)
       }
+    },
+    isFavorite(productId) {
+      return this.favorites.includes(productId)
     }
   },
   persist: true

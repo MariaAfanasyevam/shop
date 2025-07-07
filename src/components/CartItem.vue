@@ -50,7 +50,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
         >
           -
         </button>
-        <span class="item-timer">{{ quantity }}</span>
+        <span class="item-timer">{{ props.quantity }}</span>
         <button
           class="add-item"
           :disabled="increaseIsDisabled"

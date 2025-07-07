@@ -12,8 +12,7 @@ const props = defineProps({
   imageUrl: String,
   price: Number,
   discountPercent: Number,
-  productId: String,
-  itemsInStock: Number,
+  productId: String
 })
 const image1 = '/img/heart.svg'
 const image2 = '/img/heartclick.svg'
@@ -33,7 +32,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
         <button class="add-cart">
           <img
             @click="cartStore.toggleCart(props)"
-            :src="cartStore.isInCart ? image4 : image3"
+            :src="cartStore.isInCart(props) ? image4 : image3"
             class="cart-img"
             alt="Add to cart"
           />
@@ -47,7 +46,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
         <button class="favourite-product">
           <img
             @click="favoriteStore.toggleFavorite(props.productId)"
-            :src="favoriteStore.favorites.includes(props.productId) ? image2 : image1"
+            :src="favoriteStore.isFavorite(props.productId) ? image2 : image1"
             alt="Add to favourites"
           />
         </button>
