@@ -53,6 +53,10 @@ const fetchProduct = async (id) => {
     const { data } = await axios.get(`https://api.dev.cwe.su/api/products/${id}`)
     request.value = await data.data
     mainUrl.value = request.value.image
+    request.value = request.map((obj) => ({
+      ...obj,
+      quantity: 1
+    }))
   } catch (e) {
     console.log(e)
   }
@@ -154,8 +158,8 @@ watch(
               {{ quantity }}
               <button>+</button>
             </div>
-            <button class="add-button" @click="cartStore.toggleCart(request.documentId)">
-              {{cartStore.cart.includes(request.documentId) ? 'add to cart' : 'remove from cart'}}
+            <button class="add-button" @click="cartStore.toggleCart(request)">
+              {{cartStore.isInCart(request) ? 'remove from cart' : 'add to cart'}}
             </button>
           </div>
           <div class="additional-info">
@@ -209,7 +213,7 @@ watch(
             v-for="item in similarItems"
             :key="item.id"
             :id="item.id"
-            :imageUrl="item.image"
+            :image="item.image"
             :title="item.title"
             :price="item.price"
             :discountPercent="item.discountPercent"

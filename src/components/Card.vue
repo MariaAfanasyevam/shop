@@ -9,7 +9,7 @@ const favoriteStore = useFavoriteStore()
 const props = defineProps({
   id: Number,
   title: String,
-  imageUrl: String,
+  image: String,
   price: Number,
   discountPercent: Number,
   productId: String
@@ -26,7 +26,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
 <template>
   <div class="shop-item">
     <div class="shop-item__image">
-      <img class="shop-img" :src="imageUrl" :alt="props.title" />
+      <img class="shop-img" :src="image" :alt="props.title" />
       <div class="add-cart__mobile">add to cart</div>
       <div class="icons">
         <button class="add-cart">

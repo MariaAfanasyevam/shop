@@ -12,7 +12,7 @@ const cartStore = useCartStore()
       v-for="item in cartStore.cart" :key="item.id"
       :id="item.id"
       :title="item.title"
-      :imageUrl="item.imageUrl"
+      :image="item.image"
       :price="item.price"
       :color="item.color"
       :quantity="item.quantity"

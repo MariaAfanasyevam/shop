@@ -7,7 +7,7 @@ const cartStore = useCartStore()
 const props = defineProps({
   id: Number,
   title: String,
-  imageUrl: String,
+  image: String,
   price: Number,
   color: String,
   discountPrice: Number,
@@ -25,7 +25,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
 </script>
 <template>
   <li class="item-container">
-    <img :src="imageUrl" :alt="title" class="cart-img" />
+    <img :src="image" :alt="title" class="cart-img" />
 
     <div class="item-content">
       <h1>{{ title }}</h1>

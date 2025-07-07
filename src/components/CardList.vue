@@ -16,7 +16,7 @@ defineProps({
       v-for="item in items"
       :key="item.id"
       :id="item.id"
-      :imageUrl="item.image"
+      :image="item.image"
       :title="item.title"
       :price="item.price"
       :discountPercent="item.discountPercent"
