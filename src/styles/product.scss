@@ -222,10 +222,13 @@
     margin-left: 37px;
     margin-right: 37px;
   }
-  &.selected {
+
+    .selected {
+
     border-bottom: 1px solid black;
     color: black;
-  }
+    }
+
   @media (max-width: 800px) {
     border-bottom: none;
   }
@@ -266,6 +269,10 @@ img.active {
     &.expanded {
       max-height: 500px;
     }
+
+  }
+  @media (min-width: 800px) {
+    display: none;
   }
 
   .view-more {

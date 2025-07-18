@@ -13,7 +13,7 @@ export const useProductStore = defineStore('products', {
     productReviews: [],
     averageRating: 0,
     reviewsCount: 0,
-    activeTab: 2,
+    activeTab: 1,
 
   }),
 

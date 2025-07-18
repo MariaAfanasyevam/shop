@@ -1371,7 +1371,7 @@ div.hidden {
   margin-left: 37px;
   margin-right: 37px;
 }
-.tab.selected {
+.tab .selected {
   border-bottom: 1px solid black;
   color: black;
 }
@@ -1418,6 +1418,11 @@ img.active {
 }
 .description-block .short-description.expanded {
   max-height: 500px;
+}
+@media (min-width: 800px) {
+  .description-block {
+    display: none;
+  }
 }
 .description-block .view-more {
   background: none;
