@@ -57,7 +57,7 @@ const currentTabComponent = computed(() => {
     case 3:
       return TabReviews
     default:
-      TabDescription
+     return TabDescription
   }
 })
 const tabs = [

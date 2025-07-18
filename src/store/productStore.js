@@ -14,6 +14,7 @@ export const useProductStore = defineStore('products', {
     averageRating: 0,
     reviewsCount: 0,
     activeTab: 2,
+
   }),
 
   actions: {
@@ -48,9 +49,10 @@ export const useProductStore = defineStore('products', {
 
     async fetchReviews(id) {
       try {
-        const { data } = await axios.get(`https://api.dev.cwe.su/api/reviews/?populate=*`)
-        this.allReviews = data.data
-        this.productReviews = this.allReviews.filter(review => review.product?.documentId == id)
+        const { data } = await axios.get(`https://api.dev.cwe.su/api/products/${id}/?populate=*`)
+        this.allReviews = data.data.reviews
+        console.log(data.data.reviews)
+        this.productReviews = this.allReviews
         this.reviewsCount = this.productReviews.length
 
         if (this.reviewsCount > 0) {
@@ -60,27 +62,28 @@ export const useProductStore = defineStore('products', {
         } else {
           this.averageRating = 0
         }
+
       } catch (e) {
         console.error('Error fetching reviews:', e)
       }
     },
-    swapImages (newUrl)  {
+    swapImages(newUrl) {
       this.additionalUrl = this.mainUrl
       this.mainUrl = newUrl
 
-    }
-  },
-
-  getters: {
-    computedImageUrls: (state) => {
-      const images = state.request?.additionalImages?.additionalImages
-      if (images && typeof images === 'object') {
-        const first = images[0]
-        if (first && typeof first === 'object') {
-          return Object.values(first)
-        }
-      }
-      return []
     },
-  },
+
+    getters: {
+      computedImageUrls: (state) => {
+        const images = state.request?.additionalImages?.additionalImages
+        if (images && typeof images === 'object') {
+          const first = images[0]
+          if (first && typeof first === 'object') {
+            return Object.values(first)
+          }
+        }
+        return []
+      },
+    },
+  }
 })

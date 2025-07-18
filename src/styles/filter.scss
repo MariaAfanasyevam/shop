@@ -6,16 +6,20 @@
   color: black;
   height: 100vh;
   position: fixed;
-  top: 80px;
+  top: 160px;
   right: 0;
 //  max-width: 320px;
   z-index: 120;
   overflow-y: scroll;
-  padding:30px;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   align-items: center;
+  max-width: 1440px;
+  box-sizing: border-box;
+  padding-left:96px;
+  padding-right:96px;
+  margin: 0 auto ;
 }
 
 div.hidden {

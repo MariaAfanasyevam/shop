@@ -29,8 +29,8 @@ async function loadSliderData() {
     modules: [Navigation, Pagination, Autoplay],
     loop: true,
     autoplay: {
-      delay: 5000, // 5 секунд
-      disableOnInteraction: false, // автопрокрутка НЕ останавливается после взаимодействия
+      delay: 5000,
+      disableOnInteraction: false,
     },
     pagination: {
       el: ".swiper-pagination",

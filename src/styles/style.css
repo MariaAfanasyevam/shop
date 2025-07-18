@@ -1065,15 +1065,19 @@ span.hidden {
   color: black;
   height: 100vh;
   position: fixed;
-  top: 80px;
+  top: 160px;
   right: 0;
   z-index: 120;
   overflow-y: scroll;
-  padding: 30px;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
   align-items: center;
+  max-width: 1440px;
+  box-sizing: border-box;
+  padding-left: 96px;
+  padding-right: 96px;
+  margin: 0 auto;
 }
 
 div.hidden {
@@ -1607,6 +1611,67 @@ input[type=text] {
   color: white;
   border-radius: 4px;
   font-size: 16px;
+}
+
+.notification-container {
+  width: 100%;
+  position: relative;
+}
+
+.notification {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background: #EFEFEF;
+  border-top: 2px solid #A18A68;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  width: 100%;
+  max-width: 1200px;
+  padding: 1rem 2rem;
+  box-sizing: border-box;
+}
+.notification .notification__text {
+  color: black;
+  font-family: DMSans, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+.notification .notification__text::before {
+  content: "";
+  background: url("/public/img/check-icon.svg") no-repeat center center;
+  background-size: contain;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 39px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
+.view-cart {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 100%;
+  color: #A18A68;
+  text-transform: uppercase;
+  padding-top: 21px;
+  padding-bottom: 21px;
+  margin-right: 24px;
 }
 
 #app {

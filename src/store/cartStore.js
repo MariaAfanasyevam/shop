@@ -8,10 +8,11 @@ export const useCartStore = defineStore(
     const totalItems = computed(() => cart.value.reduce((acc, cur) => acc + cur.quantity, 0))
     const cart = ref([])
     const drawerOpen = ref(false)
-   // const burgerOpen = ref(false)
+    // const burgerOpen = ref(false)
     const closeDrawer = () => {
       drawerOpen.value = false
     }
+    const notification = ref({ show: false, message: '' })
 
     const totalPrice = computed(() =>
       cart.value.reduce(
@@ -26,10 +27,17 @@ export const useCartStore = defineStore(
 
     const addToCart = (item) => {
       cart.value.push({ ...item, quantity: 1 })
-
+      showNotification(`${item.title} added to your Shopping bag!`)
     }
+    const showNotification = (message) => {
+      notification.value = { show: true, message }
+      setTimeout(() => {
+        notification.value.show = false
+      }, 3000)
+    }
+
     function isInCart(product) {
-      return  cart.value.some(item => item.id === product.id)
+      return cart.value.some((item) => item.id === product.id)
     }
 
     const removeFromCart = (item) => {
@@ -39,14 +47,12 @@ export const useCartStore = defineStore(
       }
     }
     const toggleCart = (item) => {
-
       const existingItem = cart.value.find((i) => i.id === item.id)
       if (existingItem) {
         removeFromCart(existingItem)
       } else {
         addToCart(item)
       }
-
     }
 
     const changeItemQuantity = (productId, newQuantity) => {
@@ -70,6 +76,8 @@ export const useCartStore = defineStore(
       changeItemQuantity,
       toggleCart,
       isInCart,
+      notification,
+      showNotification
     }
   },
   { persist: true },
