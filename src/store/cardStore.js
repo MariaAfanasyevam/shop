@@ -16,16 +16,6 @@ export const useCardStore = defineStore('cardStore', () => {
     searchQuery: '',
   })
 
-  const onClickAddPlus = (item) => {
-    const cartStore = useCartStore()
-    if (!item.isAdded && item.itemsInStock != 0) {
-      cartStore.addToCart(item)
-    } else if (item.itemsInStock == 0) {
-      alert('Нет товаров')
-    } else {
-      cartStore.removeFromCart(item)
-    }
-  }
 
   const onChangeSelect = (event) => {
     filters.sortBy = event.target.value
@@ -34,16 +24,6 @@ export const useCardStore = defineStore('cardStore', () => {
   const onChangeSearchInput = debounce((event) => {
     filters.searchQuery = event.target.value
   }, 500)
-
-  const addToFavorite = (item) => {
-    favorite.value.push(item)
-    item.isFavorite = true
-  }
-
-  const removeFromFavorite = (item) => {
-    favorite.value.splice(favorite.value.indexOf(item), 1)
-    item.isFavorite.value = false
-  }
 
   const fetchItems = async () => {
     try {
@@ -74,16 +54,13 @@ export const useCardStore = defineStore('cardStore', () => {
   watch(filters, fetchItems)
 
   return {
-    onClickAddPlus,
     onChangeSelect,
     onChangeSearchInput,
-    addToFavorite,
     fetchItems,
     items,
     filters,
     sortBy,
     searchQuery,
-    removeFromFavorite,
     handleClick,
   }
 })

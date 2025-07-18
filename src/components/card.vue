@@ -1,8 +1,11 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, shallowRef } from 'vue'
 import { useFavoriteStore } from '../store/favoriteStore.js'
-import { useCardStore } from '../store/cardStore.js'
 import { useCartStore } from '../store/cartStore.js'
+import heartIcon from '/img/heartIcon.svg'
+import  filledHeartIcon   from '/img/filledHeartIcon.svg'
+import  shoppingCartIcon  from '/img/shoppingCartIcon.svg'
+import filledShoppingCartIcon from '/img/filledShoppingCartIcon.svg'
 
 const cartStore = useCartStore()
 const favoriteStore = useFavoriteStore()
@@ -12,14 +15,9 @@ const props = defineProps({
   image: String,
   price: Number,
   discountPercent: Number,
-  productId: String
+  productId: String,
+  itemsInStock: Number,
 })
-const image1 = '/img/heart.svg'
-const image2 = '/img/heartclick.svg'
-
-const image3 = '/img/shopping-cart.svg'
-const image4 = '/img/shopping-cart-color.svg'
-
 
 const discountPrice = computed(() => Math.round(props.price * (1 - props.discountPercent / 100)).toFixed(2))
 </script>
@@ -27,12 +25,14 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
   <div class="shop-item">
     <div class="shop-item__image">
       <img class="shop-img" :src="image" :alt="props.title" />
-      <div class="add-cart__mobile">add to cart</div>
+      <div class="add-cart__mobile" @click="cartStore.toggleCart(props)">
+        {{ cartStore.isInCart(props) ? 'remove from cart' : 'add to cart' }}
+      </div>
       <div class="icons">
         <button class="add-cart">
           <img
             @click="cartStore.toggleCart(props)"
-            :src="cartStore.isInCart(props) ? image4 : image3"
+            :src="cartStore.isInCart(props) ? filledShoppingCartIcon : shoppingCartIcon"
             class="cart-img"
             alt="Add to cart"
           />
@@ -46,7 +46,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
         <button class="favourite-product">
           <img
             @click="favoriteStore.toggleFavorite(props.productId)"
-            :src="favoriteStore.isFavorite(props.productId) ? image2 : image1"
+            :src="favoriteStore.isFavorite(props.productId) ? filledHeartIcon : heartIcon"
             alt="Add to favourites"
           />
         </button>

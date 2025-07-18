@@ -7,7 +7,7 @@ const cartStore = useCartStore()
 <template>
   <nav id="mobile-menu" class="burger-menu__nav">
     <div class="container">
-      <ul class="burger-menu__list" @click="cartStore.closeBurger">
+      <ul class="burger-menu__list" @click="cartStore.burgerOpen=false">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/shop">Shop</router-link></li>
         <li><router-link to="/profile">My account</router-link></li>

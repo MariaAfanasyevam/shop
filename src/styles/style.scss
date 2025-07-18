@@ -7,6 +7,9 @@
 @use "burger-menu.scss";
 @use "filter.scss";
 @use "product.scss";
+@use "slider.scss";
+@use "reviews.scss";
+
 #app {
   width: 100vw;
   height: 100vh;
@@ -54,27 +57,18 @@ a:link{
   padding-right:96px;
   height: max-content;
   margin: 0 auto ;
-  @media (max-width:1024px){
-    padding: 0 30px;
-  }
-  @media (max-width: 768px){
 
-  }
-  @media (max-width: 600px){
-   padding-top: 1px;
-  }
-  @media (max-width: 400px){
-    padding: 0 10px;
-  }
 }
-
+.underline{
+  border-bottom: 0.1px  solid variables.$gray;
+}
 .header {
   margin-top: 66px;
   display:flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-
+padding-bottom: 20px;
   .logo{
 
 
@@ -110,26 +104,26 @@ a:link{
 
   .nav {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
     margin-top: auto;
-    justify-content: center;
+    justify-content: flex-start;
+
     &__ul {
       display: flex;
-      margin-top: auto;
       align-content: center;
       flex-direction: row;
       justify-content: center;
       &.text {
-        gap: 64px;
-        margin-top: auto;
+
+
         @media (max-width: 647px) {
           display: none;
         }
       }
 
       &.icon {
-        gap: 30px;
+        gap: 40px;
       }
 
     }
@@ -143,7 +137,7 @@ a:link{
 
     &__li {
       list-style: none;
-
+      padding-bottom: 30px;
 
       &:not(:nth-child(2)):hover {
         border-bottom: 1px solid variables.$gray-dark;
@@ -153,10 +147,7 @@ a:link{
 
           display: none;
         } }
-      .underline
-      {
-        border-bottom: 1px solid variables.$gray-dark;
-      }
+
     }
 
     &__link {
@@ -172,10 +163,19 @@ a:link{
     }
   }
 }
+.nav__li:hover {
+      border-bottom: 1px solid variables.$gray-dark;
+}
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+.nav__ul:first-child::after {
+    content: '|';
+    margin: 0 78px;
+    color: #999;
+  height: 17px;
+  }
 .main-content {
     background-image: url("../img/Img01.png");
     background-repeat: no-repeat;
@@ -524,6 +524,7 @@ button:disabled {
     align-items: center;
     flex-direction: column;
     column-gap: 20px;
+
   }
 }
 
@@ -546,3 +547,7 @@ button:disabled {
     pointer-events: none;
     color: grey;
   }
+
+.active {
+  border-bottom: 2px solid #42b983;
+}

@@ -8,25 +8,20 @@ export const useCartStore = defineStore(
     const totalItems = computed(() => cart.value.reduce((acc, cur) => acc + cur.quantity, 0))
     const cart = ref([])
     const drawerOpen = ref(false)
-    const burgerOpen = ref(false)
+   // const burgerOpen = ref(false)
     const closeDrawer = () => {
       drawerOpen.value = false
     }
+
     const totalPrice = computed(() =>
       cart.value.reduce(
         (acc, cur) => acc + Math.round(cur.price * (1 - cur.discountPercent / 100)).toFixed(2) * cur.quantity,
         0,
       ),
     )
+
     const openDrawer = () => {
       drawerOpen.value = true
-    }
-
-    const burgerMenuOpen = () => {
-      burgerOpen.value = true
-    }
-    const closeBurger = () => {
-      burgerOpen.value = false
     }
 
     const addToCart = (item) => {
@@ -52,7 +47,6 @@ export const useCartStore = defineStore(
         addToCart(item)
       }
 
-
     }
 
     const changeItemQuantity = (productId, newQuantity) => {
@@ -64,17 +58,13 @@ export const useCartStore = defineStore(
       }
     }
 
-
     return {
       cart,
       totalPrice,
       totalItems,
       drawerOpen,
-      burgerOpen,
       closeDrawer,
       openDrawer,
-      burgerMenuOpen,
-      closeBurger,
       addToCart,
       removeFromCart,
       changeItemQuantity,

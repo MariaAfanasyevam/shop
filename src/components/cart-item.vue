@@ -14,14 +14,14 @@ const props = defineProps({
   discountPercent: Number,
   itemsInStock: Number,
   productId: Number,
-  quantity: Number,
+  quantity: Number
 })
-const quantity = ref(1)
-const val = 1
-const val1 = -1
-const increaseIsDisabled = computed(() => quantity.value >= props.itemsInStock)
-const decreaseIsDisabled = computed(() => quantity.value <= 1)
+
+const increaseIsDisabled = computed(() => props.quantity >= props.itemsInStock)
+const decreaseIsDisabled = computed(() => props.quantity <= 1)
 const discountPrice = computed(() => Math.round(props.price * (1 - props.discountPercent / 100)).toFixed(2))
+
+
 </script>
 <template>
   <li class="item-container">
@@ -37,33 +37,9 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
 
       <div class="item-quantity">
         <span>QTY:</span>
-        <button
-          class="remove-item"
-          :disabled="decreaseIsDisabled"
-          @click="
-            () => {
-              quantity--
-              cartStore.changeItemQuantity( id, quantity)
-              console.log(id, quantity)
-            }
-          "
-        >
-          -
-        </button>
+        <button class="remove-item" :disabled="decreaseIsDisabled" @click="cartStore.changeItemQuantity(props.id, props.quantity-1)">-</button>
         <span class="item-timer">{{ props.quantity }}</span>
-        <button
-          class="add-item"
-          :disabled="increaseIsDisabled"
-          @click="
-            () => {
-              quantity++
-              cartStore.changeItemQuantity( id, quantity)
-              console.log(id, quantity)
-            }
-          "
-        >
-          +
-        </button>
+        <button class="add-item" :disabled="increaseIsDisabled" @click="cartStore.changeItemQuantity(props.id, props.quantity+1)">+</button>
       </div>
     </div>
 

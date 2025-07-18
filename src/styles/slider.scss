@@ -1,0 +1,28 @@
+.slide-title {
+  font-size: 1.7rem;
+}
+.slide-subtitle {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+.swiper-pagination-bullet {
+  border: 1px solid white;
+  border-radius: 50%;
+  background: white;
+  opacity: 1;
+  width: 9px;
+  height: 9px;
+  transition: all 0.3s ease;
+  &:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background: transparent;
+  border-color: white;
+  width: 16px;
+  height: 16px;
+  transition: all 0.3s ease;
+}

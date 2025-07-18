@@ -1,14 +1,22 @@
 <script setup>
-import Catalog from '../components/Catalog.vue'
-import Filter from '../components/Filter.vue'
+import Catalog from '../components/catalog.vue'
+import Filter from '../components/filter.vue'
 import { useFilterStore } from '../store/filterStore.js'
 
 const filterStore = useFilterStore()
 </script>
 <template>
   <Filter v-if="filterStore.filterOpen" @close-filter-menu="filterStore.closeFilterMenu" />
+  <div class="container">
+    <div class="shop-title">
+      <div class="shop-title__text">Shop The Latest</div>
+    </div>
+  </div>
+
   <div class="shop-aside container">
-    <div class="filter" id="open-filter" @click="filterStore.filterMenuOpen"><img src="/img/Filter.svg" alt="filter" />Filters</div>
+    <div class="filter" id="open-filter" @click="filterStore.filterMenuOpen">
+      <img src="/img/Filter.svg" alt="filter" />Filters
+    </div>
     <div class="shop-aside__form">
       <div class="shop-search">
         <div class="form__search">
@@ -45,6 +53,13 @@ const filterStore = useFilterStore()
     </div>
     <div class="shop-container">
       <Catalog />
+      <div class="button-section">
+        <button class="button-section__item page-button disabled" type="button">Prev</button>
+        <button class="button-section__item page-number selected-page" type="button">1</button>
+        <button class="button-section__item page-number" type="button">2</button>
+        <button class="button-section__item page-number" type="button">3</button>
+        <button class="button-section__item page-button" type="button">Next</button>
+      </div>
     </div>
   </div>
 </template>

@@ -1,19 +1,25 @@
 <script setup>
-import CardList from './CardList.vue'
-import { onMounted } from 'vue'
+import CardList from './card-list.vue'
+import { computed, onMounted } from 'vue'
 import { useCardStore } from '../store/cardStore'
 import { useCartStore } from '../store/cartStore.js'
 
 const cardStore = useCardStore()
-const cartStore = useCartStore()
+const props = defineProps({
+  limit: {
+    type: Number
+  }
+})
+
 
 onMounted(async () => {
   await cardStore.fetchItems()
 })
+const limitedItems= computed(() => cardStore.items.slice(0, props.limit ?? cardStore.items.length))
 </script>
 <template>
   <div class="shop-container">
-    <CardList :items="cardStore.items" />
+    <CardList :items="limitedItems"/>
   </div>
 </template>
 

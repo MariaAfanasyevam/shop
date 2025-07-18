@@ -1,6 +1,6 @@
 <script setup>
-import Catalog from '../components/Catalog.vue'
-import Slider from '../components/Slider.vue'
+import Catalog from '../components/catalog.vue'
+import Slider from '../components/slider.vue'
 </script>
 <template>
   <div class="main-container container"><Slider /></div>
@@ -11,7 +11,7 @@ import Slider from '../components/Slider.vue'
         <div class="shop-title__view">View All</div>
       </router-link>
     </div>
-    <Catalog />
+    <Catalog :limit="6"/>
   </div>
 </template>
 
