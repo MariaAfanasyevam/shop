@@ -1,0 +1,18 @@
+.reviews__block {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.reviews__list {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+}
+
+.reviews__form {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+}
+
+/*# sourceMappingURL=reviews.css.map */
