@@ -115,4 +115,4 @@ const submitReview = async () => {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style src="../pages/productPage/product.scss" lang="scss" scoped></style>
