@@ -1,29 +1,25 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import {useCardStore} from './cardStore.js'
-
+import { useCardStore } from './cardStore.js'
 
 export const useFilterStore = defineStore('filterStore', () => {
-
   const filterOpen = ref(false)
-
+  const defaultFilters = {
+    sortBy: 'title',
+    searchQuery: '',
+    onSale: false,
+    inStock: false,
+  }
   const filterMenuOpen = () => {
     filterOpen.value = true
-    const cardStore = useCardStore()
-    cardStore.filters.sortBy = 'title'
-    cardStore.filters.searchQuery = ''
-    cardStore.filters.onSale = false
-    cardStore.filters.inStock = false
+
   }
   const closeFilterMenu = () => {
     filterOpen.value = false
   }
   const resetAndCloseFilters = () => {
     const cardStore = useCardStore()
-    cardStore.filters.sortBy = 'title'
-    cardStore.filters.searchQuery = ''
-    cardStore.filters.onSale = false
-    cardStore.filters.inStock = false
+    Object.assign(cardStore.filters, defaultFilters)
     cardStore.fetchItems()
 
     closeFilterMenu()
@@ -32,6 +28,6 @@ export const useFilterStore = defineStore('filterStore', () => {
     filterOpen,
     filterMenuOpen,
     closeFilterMenu,
-    resetAndCloseFilters
+    resetAndCloseFilters,
   }
 })

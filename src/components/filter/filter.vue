@@ -1,12 +1,13 @@
 <script setup>
-import { useCardStore } from '../store/cardStore.js'
-import { useFilterStore } from '../store/filterStore.js'
+import { useCardStore } from '../../store/cardStore.js'
+import { useFilterStore } from '../../store/filterStore.js'
 
 const cardStore = useCardStore()
 const filterStore = useFilterStore()
 const applyFilters = () => {
   cardStore.fetchItems()
-  filterStore.closeFilterMenu() // ← закрыть фильтры
+  filterStore.closeFilterMenu()
+
 }
 </script>
 <template>
@@ -61,4 +62,4 @@ const applyFilters = () => {
 export default {}
 </script>
 
-<style lang="scss" scoped></style>
+<style src="./filter.scss" lang="scss" scoped></style>

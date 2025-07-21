@@ -1,6 +1,6 @@
 <script setup>
 
-import { useCartStore } from '../store/cartStore'
+import { useCartStore } from '../../store/cartStore'
 
 const cartStore = useCartStore()
 </script>
@@ -17,4 +17,4 @@ const cartStore = useCartStore()
   </nav>
 </template>
 
-<style lang="scss" scoped></style>
+<style src="./burger-menu.scss" lang="scss" scoped></style>

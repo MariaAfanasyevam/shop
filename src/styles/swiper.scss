@@ -43,7 +43,7 @@
   width:100%;
   flex-direction: column;
   align-items: flex-start;
-  background-image: url("/img/Img01.png");
+  background-image: url("../../public/img/Img01.png");
   background-repeat: no-repeat;
   background-size: cover;
  min-height: 646px;
@@ -54,7 +54,7 @@
     background-position: right 20% top 0;
   }
     @media(max-width: 513px) {
-    background-image: url('/img/Img01_mobile.png');
+    background-image: url('../../public/img/Img01_mobile.png');
     min-height: 354px;
     background-repeat: no-repeat;
     background-size: cover;

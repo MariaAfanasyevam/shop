@@ -1,11 +1,11 @@
 <script setup>
 import Catalog from '../components/catalog.vue'
-import Filter from '../components/filter.vue'
+import Filter from '../components/filter/filter.vue'
 import { ref } from 'vue'
 import { useFilterStore } from '../store/filterStore.js'
 import { useCardStore } from '../store/cardStore.js'
 import { useCartStore } from '../store/cartStore.js'
-import Notification from '../components/notification.vue'
+
 const filterStore = useFilterStore()
 const cartStore= useCartStore()
 const cardStore = useCardStore()

@@ -1,20 +1,20 @@
 <script setup>
-import Card from '../components/card.vue'
+import Card from '../../components/card.vue'
 import axios from 'axios'
 import { onMounted, ref, watch, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
-import { useCardStore } from '../store/cardStore'
-import { useCartStore } from '../store/cartStore'
-import { useFavoriteStore } from '../store/favoriteStore.js'
+import { useCardStore } from '../../store/cardStore'
+import { useCartStore } from '../../store/cartStore'
+import { useFavoriteStore } from '../../store/favoriteStore.js'
 import heartIcon from '/img/heartIcon.svg'
 import filledHeartIcon from '/img/filledHeartIcon.svg'
-import { useProductStore } from '../store/productStore'
-import TabAdditional from '../tabs/tab-additional.vue'
-import TabReviews from '../tabs/tab-reviews.vue'
-import TabDescription from '../tabs/tab-description.vue'
-import shareIcon from '../icons/share-icon.vue'
-import arrowIcon from '../icons/arrow-icon.vue'
+import { useProductStore } from '../../store/productStore'
+import TabAdditional from '../../tabs/tab-additional.vue'
+import TabReviews from '../../tabs/tab-reviews.vue'
+import TabDescription from '../../tabs/tab-description.vue'
+import shareIcon from '../../icons/share-icon.vue'
+import arrowIcon from '../../icons/arrow-icon.vue'
 
 const productStore = useProductStore()
 const favoriteStore = useFavoriteStore()
@@ -57,7 +57,7 @@ const currentTabComponent = computed(() => {
     case 3:
       return TabReviews
     default:
-     return TabDescription
+      return TabDescription
   }
 })
 const tabs = [
@@ -209,10 +209,10 @@ watch(
             <arrow-icon />
           </div>
         </div>
-        </router-link>
+      </router-link>
 
     </div>
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style src="./product.scss" lang="scss" scoped></style>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, onUnmounted } from 'vue'
-import { useCartStore } from '../store/cartStore.js'
+import { useCartStore } from '../../store/cartStore.js'
 const cartStore = useCartStore()
 const props = defineProps({
   message: String,
@@ -38,4 +38,4 @@ onUnmounted(() => clearTimeout(timeout))
     </div>
   </transition>
 </template>
-
+<style src="./notification.scss" scoped></style>

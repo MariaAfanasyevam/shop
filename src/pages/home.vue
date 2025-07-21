@@ -1,6 +1,7 @@
 <script setup>
 import Catalog from '../components/catalog.vue'
 import Slider from '../components/slider.vue'
+
 </script>
 <template>
   <div class="main-container container"><Slider /></div>
@@ -15,4 +16,4 @@ import Slider from '../components/slider.vue'
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" ></style>

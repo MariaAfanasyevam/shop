@@ -1,7 +1,7 @@
 <script setup>
 import { useCartStore } from '../store/cartStore'
 import { ref } from 'vue'
-import BurgerMenu from './burger-menu.vue'
+import BurgerMenu from './burger-menu/burger-menu.vue'
 import CartIcon from '../icons/cart-icon.vue'
 import UserIcon from '../icons/user-icon.vue'
 const cartStore = useCartStore()

@@ -1,11 +1,12 @@
 <script setup>
+import './styles/style.css'
 import Header from './components/header.vue'
 import Footer from './components/footer.vue'
 import Cart from './components/cart.vue'
-import BurgerMenu from './components/burger-menu.vue'
 import {useCartStore} from './store/cartStore'
-import Notification from './components/notification.vue'
+import Notification from './components/notification/notification.vue'
 import { storeToRefs } from 'pinia'
+
 
 const cartStore= useCartStore()
 const { notification } = storeToRefs(cartStore)
@@ -21,4 +22,4 @@ const { notification } = storeToRefs(cartStore)
   <Footer></Footer>
 </template>
 
-<style scoped></style>
+<style></style>

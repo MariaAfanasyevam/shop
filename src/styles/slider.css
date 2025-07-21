@@ -1,5 +1,11 @@
 .slide-title {
   font-size: 1.7rem;
+  margin-left: 0;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  wrap-option: wrap;
+  text-align: left;
 }
 
 .slide-subtitle {

@@ -9,3 +9,4 @@ export const fetchSliderItems = async () => {
     console.log(e)
   }
 }
+

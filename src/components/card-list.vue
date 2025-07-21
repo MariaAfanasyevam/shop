@@ -11,7 +11,7 @@ defineProps({
 })
 </script>
 <template>
-  <div class="shop-items">
+  <div class="shop-items" v-auto-animate>
     <Card
       v-for="item in items"
       :key="item.id"

@@ -99,3 +99,4 @@ export const useCardStore = defineStore('cardStore', () => {
     setPage,
   }
 })
+

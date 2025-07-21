@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watch, computed } from 'vue'
-import { useCardStore } from './cardStore.js'
+import { ref, computed } from 'vue'
 
 export const useCartStore = defineStore(
   'cart',
@@ -8,7 +7,6 @@ export const useCartStore = defineStore(
     const totalItems = computed(() => cart.value.reduce((acc, cur) => acc + cur.quantity, 0))
     const cart = ref([])
     const drawerOpen = ref(false)
-    // const burgerOpen = ref(false)
     const closeDrawer = () => {
       drawerOpen.value = false
     }
@@ -59,8 +57,7 @@ export const useCartStore = defineStore(
       const item = cart.value.find((i) => i.id === productId)
       if (item) {
         item.quantity = newQuantity
-        console.log(`Обновлено: Товар ${productId} — количество ${newQuantity}`)
-        localStorage.setItem('cart', JSON.stringify(cart.value))
+
       }
     }
 

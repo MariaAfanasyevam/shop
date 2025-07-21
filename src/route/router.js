@@ -1,7 +1,7 @@
 import Home from '../pages/home.vue'
 import Shop from '../pages/shop.vue'
 import Profile from '../pages/profile.vue'
-import ProductPage from '../pages/product-page.vue'
+import Product from '../pages/productPage/product.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 
@@ -9,7 +9,7 @@ const routes = [
   { path: '/', name: 'Home', component: Home },
   { path: '/shop', name: 'Shop', component: Shop },
   { path: '/profile', name: 'Profile', component: Profile },
-  { path: '/product/:id', name: 'Product', component: ProductPage },
+  { path: '/product/:id', name: 'Product', component: Product },
 ]
 export const router = createRouter({
   history: createWebHistory(),
