@@ -10,3 +10,16 @@ export const fetchSliderItems = async () => {
   }
 }
 
+const BASE_URL = 'https://api.dev.cwe.su/api'
+
+export const fetchProductApi = (id) => {
+  return axios.get(`${BASE_URL}/products/${id}`)
+}
+
+export const fetchReviewsApi = (id) => {
+  return axios.get(`${BASE_URL}/products/${id}/?populate=*`)
+}
+
+export const fetchSimilarItemsApi = () => {
+  return axios.get(`${BASE_URL}/products/?pagination[pageSize]=3`)
+}

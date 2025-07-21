@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia'
-import axios from 'axios'
 import { computed, ref } from 'vue'
+import {
+  fetchProductApi,
+  fetchReviewsApi,
+  fetchSimilarItemsApi,
+} from '../api'
 
 export const useProductStore = defineStore('products', () => {
   const similarItems = ref([])
@@ -32,10 +36,8 @@ export const useProductStore = defineStore('products', () => {
 
   const fetchSimilarItems = async () => {
     try {
-      const { data } = await axios.get(`https://api.dev.cwe.su/api/products/?pagination[pageSize]=3`)
-      similarItems.value = data.data.map((obj) => ({
-        ...obj,
-      }))
+      const { data } = await fetchSimilarItemsApi()
+      similarItems.value = data.data
     } catch (e) {
       console.error('Error fetching similar items:', e)
     }
@@ -43,7 +45,7 @@ export const useProductStore = defineStore('products', () => {
 
   const fetchProduct = async (id) => {
     try {
-      const { data } = await axios.get(`https://api.dev.cwe.su/api/products/${id}`)
+      const { data } = await fetchProductApi(id)
       const productData = data.data
       request.value = {
         ...productData,
@@ -57,7 +59,7 @@ export const useProductStore = defineStore('products', () => {
 
   const fetchReviews = async (id) => {
     try {
-      const { data } = await axios.get(`https://api.dev.cwe.su/api/products/${id}/?populate=*`)
+      const { data } = await fetchReviewsApi(id)
       allReviews.value = data.data.reviews
       productReviews.value = allReviews.value
       reviewsCount.value = productReviews.value.length
