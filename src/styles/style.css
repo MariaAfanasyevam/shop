@@ -1014,7 +1014,8 @@ span.hidden {
   color: white;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
   box-sizing: border-box;
 }
@@ -1543,15 +1544,21 @@ button:disabled {
   display: none;
 }
 
-.add-cart, .view-product, .favourite-product {
+.add-cart,
+.view-product,
+.favourite-product {
   border: none;
   background-color: transparent;
 }
-.add-cart:hover, .view-product:hover, .favourite-product:hover {
+.add-cart:hover,
+.view-product:hover,
+.favourite-product:hover {
   cursor: pointer;
 }
 
-.view-cart:hover, .add-item:hover, .remove-item:hover {
+.view-cart:hover,
+.add-item:hover,
+.remove-item:hover {
   cursor: pointer;
 }
 

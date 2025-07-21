@@ -1,9 +1,7 @@
-<script setup >
+<script setup>
 import Card from './card.vue'
 import { useCardStore } from '../store/cardStore'
 import { useCartStore } from '../store/cartStore'
-const cardStore = useCardStore()
-const cartStore = useCartStore()
 
 defineProps({
   items: Array,

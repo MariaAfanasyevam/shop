@@ -10,20 +10,22 @@ export const useFilterStore = defineStore('filterStore', () => {
     onSale: false,
     inStock: false,
   }
+
   const filterMenuOpen = () => {
     filterOpen.value = true
-
   }
+
   const closeFilterMenu = () => {
     filterOpen.value = false
   }
+
   const resetAndCloseFilters = () => {
     const cardStore = useCardStore()
     Object.assign(cardStore.filters, defaultFilters)
     cardStore.fetchItems()
-
     closeFilterMenu()
   }
+
   return {
     filterOpen,
     filterMenuOpen,

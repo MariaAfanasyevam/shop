@@ -13,7 +13,6 @@ const saveInfo = ref(false)
 const { request, reviewsCount, productReviews, averageRating } = storeToRefs(productStore)
 
 const submitReview = async () => {
-
   if (!author.value || !reviewText.value || !rating.value) {
     alert('Заполните все поля')
     return

@@ -1,8 +1,9 @@
-import {defineStore} from 'pinia'
-import {ref} from 'vue'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
-export const useFavoriteStore = defineStore('favorites',
-  ()=> {
+export const useFavoriteStore = defineStore(
+  'favorites',
+  () => {
     const favorites = ref([])
 
     function addFavorite(productId) {
@@ -10,7 +11,7 @@ export const useFavoriteStore = defineStore('favorites',
     }
 
     function removeFavorite(productId) {
-      favorites.value = favorites.value.filter(id => id !== productId)
+      favorites.value = favorites.value.filter((id) => id !== productId)
     }
 
     function toggleFavorite(productId) {
@@ -28,8 +29,10 @@ export const useFavoriteStore = defineStore('favorites',
     return {
       favorites,
       toggleFavorite,
-      isFavorite
+      isFavorite,
     }
-  }, {
-  persist: true
-})
+  },
+  {
+    persist: true,
+  },
+)

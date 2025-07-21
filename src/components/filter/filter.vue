@@ -4,12 +4,13 @@ import { useFilterStore } from '../../store/filterStore.js'
 
 const cardStore = useCardStore()
 const filterStore = useFilterStore()
+
 const applyFilters = () => {
   cardStore.fetchItems()
   filterStore.closeFilterMenu()
-
 }
 </script>
+
 <template>
   <div class="filter-menu" id="filter">
     <div class="shop-search">

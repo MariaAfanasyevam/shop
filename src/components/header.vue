@@ -5,22 +5,22 @@ import BurgerMenu from './burger-menu/burger-menu.vue'
 import CartIcon from '../icons/cart-icon.vue'
 import UserIcon from '../icons/user-icon.vue'
 const cartStore = useCartStore()
+
 defineProps({
   totalItems: Number,
 })
+
 const burgerOpen = ref(false)
 </script>
 <template>
   <header class="container">
-    <div class="header  underline">
+    <div class="header underline">
       <div class="logo">
-        <!--        <a class="logo__link" title="Home" href="index.html">-->
         <router-link to="/">
           <h1 class="title">Shoppe</h1>
         </router-link>
-        <!--        </a>-->
       </div>
-      <div class="menu ">
+      <div class="menu">
         <nav class="nav">
           <ul class="nav__ul text">
             <router-link to="/shop">
@@ -30,14 +30,13 @@ const burgerOpen = ref(false)
           <ul class="nav__ul icon">
             <div class="cart" aria-label="cart">
               <li class="nav__li" @click="cartStore.openDrawer()">
-                <a href="#" class="nav__link">
-                 <CartIcon/></a>
+                <a href="#" class="nav__link"> <CartIcon /></a>
                 <span class="cart-items" v-if="totalItems" id="cart-total">{{ totalItems }}</span>
               </li>
             </div>
             <li class="nav__li">
               <router-link to="/profile">
-                <UserIcon/>
+                <UserIcon />
               </router-link>
             </li>
           </ul>
@@ -46,7 +45,7 @@ const burgerOpen = ref(false)
               <button
                 id="burger"
                 class="burger"
-                :class="{active : burgerOpen}"
+                :class="{ active: burgerOpen }"
                 @click="
                   () => {
                     burgerOpen = !burgerOpen

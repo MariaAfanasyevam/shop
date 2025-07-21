@@ -1,7 +1,6 @@
 <script setup>
 import Card from '../../components/card.vue'
-import axios from 'axios'
-import { onMounted, ref, watch, computed } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useRoute } from 'vue-router'
 import { useCardStore } from '../../store/cardStore'
@@ -35,19 +34,19 @@ const { quantity, mainUrl, additionalUrl, request, averageRating, reviewsCount, 
 const { fetchProduct, fetchSimilarItems, fetchReviews, setActiveTab } = productStore
 
 const swapImages = productStore.swapImages
+
 const fullText = computed(() => request.value?.description || '')
+
 const truncatedText = computed(() => fullText.value.slice(0, 85) + '...')
-onMounted(async () => {
-  await fetchProduct(route.params.id)
-  await fetchSimilarItems()
-  await fetchReviews(route.params.id)
-})
+
 const increaseQuantity = () => {
   quantity.value++
 }
+
 const decreaseQuantity = () => {
   if (quantity.value > 1) quantity.value--
 }
+
 const currentTabComponent = computed(() => {
   switch (activeTab.value) {
     case 1:
@@ -60,6 +59,7 @@ const currentTabComponent = computed(() => {
       return TabDescription
   }
 })
+
 const tabs = [
   { title: 'Description', content: TabDescription },
   { title: 'Additional information', content: TabAdditional },
@@ -67,10 +67,12 @@ const tabs = [
 ]
 watch(
   () => route.params.id,
-  (newId) => {
-    productStore.fetchProduct(newId)
-    productStore.fetchReviews(newId)
+  async (newId) => {
+    await fetchProduct(newId)
+    await fetchReviews(newId)
+    await fetchSimilarItems()
   },
+  { immediate: true },
 )
 </script>
 <template>
@@ -210,7 +212,6 @@ watch(
           </div>
         </div>
       </router-link>
-
     </div>
   </div>
 </template>

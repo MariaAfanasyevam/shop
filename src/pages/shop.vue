@@ -7,9 +7,10 @@ import { useCardStore } from '../store/cardStore.js'
 import { useCartStore } from '../store/cartStore.js'
 
 const filterStore = useFilterStore()
-const cartStore= useCartStore()
+const cartStore = useCartStore()
 const cardStore = useCardStore()
 const searchValue = ref('')
+
 const goToPage = (page) => {
   if (page >= 1 && page <= cardStore.totalPages) {
     cardStore.currentPage = page

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import {computed, ref} from 'vue'
+import { computed, ref } from 'vue'
 
 export const useProductStore = defineStore('products', () => {
   const similarItems = ref([])
@@ -11,13 +11,14 @@ export const useProductStore = defineStore('products', () => {
   const mainUrl = ref('')
   const allReviews = ref([])
   const productReviews = ref([])
-  const averageRating = ref (0)
+  const averageRating = ref(0)
   const reviewsCount = ref(0)
   const activeTab = ref(1)
 
   const setActiveTab = (id) => {
     activeTab.value = id
   }
+
   const computedImageUrls = computed(() => {
     const images = request.value?.additionalImages?.additionalImages
     if (images && typeof images === 'object') {
@@ -28,6 +29,7 @@ export const useProductStore = defineStore('products', () => {
     }
     return []
   })
+
   const fetchSimilarItems = async () => {
     try {
       const { data } = await axios.get(`https://api.dev.cwe.su/api/products/?pagination[pageSize]=3`)
@@ -76,6 +78,7 @@ export const useProductStore = defineStore('products', () => {
     additionalUrl.value = mainUrl.value
     mainUrl.value = newUrl
   }
+
   return {
     similarItems,
     request,
@@ -93,6 +96,6 @@ export const useProductStore = defineStore('products', () => {
     fetchSimilarItems,
     fetchReviews,
     swapImages,
-    fetchProduct
+    fetchProduct,
   }
 })

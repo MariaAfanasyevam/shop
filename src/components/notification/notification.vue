@@ -1,25 +1,29 @@
 <script setup>
 import { ref, watch, onUnmounted } from 'vue'
 import { useCartStore } from '../../store/cartStore.js'
+
 const cartStore = useCartStore()
 const props = defineProps({
   message: String,
-  show: Boolean
+  show: Boolean,
 })
 
 const emit = defineEmits(['update:show'])
 const visible = ref(props.show)
 let timeout
 
-watch(() => props.show, (val) => {
-  visible.value = val
-  if (val) {
-    clearTimeout(timeout)
-    timeout = setTimeout(() => {
-      close()
-    }, 3000)
-  }
-})
+watch(
+  () => props.show,
+  (val) => {
+    visible.value = val
+    if (val) {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        close()
+      }, 3000)
+    }
+  },
+)
 
 function close() {
   visible.value = false
@@ -31,10 +35,10 @@ onUnmounted(() => clearTimeout(timeout))
 <template>
   <transition name="fade">
     <div v-if="visible" class="notification-container container">
-    <div class="notification">
-      <span class="notification__text">{{ message }}</span>
-      <div @click="cartStore.openDrawer()" class="view-cart">view cart</div>
-    </div>
+      <div class="notification">
+        <span class="notification__text">{{ message }}</span>
+        <div @click="cartStore.openDrawer()" class="view-cart">view cart</div>
+      </div>
     </div>
   </transition>
 </template>

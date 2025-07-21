@@ -13,6 +13,7 @@ onMounted(async () => {
   slides.value = await fetchSliderItems()
   console.log(slides.value)
 })
+
 </script>
 <template>
   <Swiper

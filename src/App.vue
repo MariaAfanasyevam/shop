@@ -7,10 +7,10 @@ import {useCartStore} from './store/cartStore'
 import Notification from './components/notification/notification.vue'
 import { storeToRefs } from 'pinia'
 
-
 const cartStore= useCartStore()
 const { notification } = storeToRefs(cartStore)
 </script>
+
 <template>
   <Notification
     v-model:show="notification.show"

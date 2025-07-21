@@ -1,8 +1,7 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
-import { onMounted, reactive, ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import debounce from 'lodash.debounce'
-import { useCartStore } from './cartStore.js'
 import { useFavoriteStore } from './favoriteStore.js'
 
 export const useCardStore = defineStore('cardStore', () => {
@@ -29,7 +28,6 @@ export const useCardStore = defineStore('cardStore', () => {
     filters.searchQuery = value
   }, 500)
 
-
   const searchByInputValue = (value) => {
     filters.searchQuery = value
     console.log(value)
@@ -41,7 +39,6 @@ export const useCardStore = defineStore('cardStore', () => {
         'pagination[page]': currentPage.value,
         'pagination[pageSize]': pageSize.value,
       }
-
 
       if (filters.sortBy) {
         params.sort = `${filters.sortBy}:asc`
@@ -78,10 +75,14 @@ export const useCardStore = defineStore('cardStore', () => {
     fetchItems()
   }
 
-  watch(filters, () => {
-    currentPage.value = 1
-    fetchItems()
-  }, { deep: true })
+  watch(
+    filters,
+    () => {
+      currentPage.value = 1
+      fetchItems()
+    },
+    { deep: true },
+  )
 
   return {
     onChangeSelect,
@@ -99,4 +100,3 @@ export const useCardStore = defineStore('cardStore', () => {
     setPage,
   }
 })
-

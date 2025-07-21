@@ -57,7 +57,6 @@ export const useCartStore = defineStore(
       const item = cart.value.find((i) => i.id === productId)
       if (item) {
         item.quantity = newQuantity
-
       }
     }
 
@@ -74,7 +73,7 @@ export const useCartStore = defineStore(
       toggleCart,
       isInCart,
       notification,
-      showNotification
+      showNotification,
     }
   },
   { persist: true },
