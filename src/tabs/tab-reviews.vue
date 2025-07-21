@@ -50,7 +50,7 @@ const submitReview = async () => {
   <div class="reviews__block">
     <div class="reviews__list">
       <div class="reviews__title">
-        <h1>{{ productReviews.length }} Reviews for {{ request.title }}</h1>
+        <h1>{{ productStore.productReviews.length }} Reviews for {{ request.title }}</h1>
       </div>
       <div v-if="reviewsCount != 0">
         <div class="review__items" v-for="productReview in productReviews">
