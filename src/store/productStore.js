@@ -63,7 +63,7 @@ export const useProductStore = defineStore('products', () => {
       allReviews.value = data.data.reviews
       productReviews.value = allReviews.value
       reviewsCount.value = productReviews.value.length
-
+console.log(allReviews.value)
       if (reviewsCount.value > 0) {
         const sum = productReviews.value.reduce((total, r) => total + r.rate, 0)
         const avg = sum / reviewsCount.value

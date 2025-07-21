@@ -57,8 +57,7 @@ const submitReview = async () => {
           <div class="rate">
             <div class="stars">
               <template v-for="i in 5" :key="i">
-                <img v-if="averageRating >= i" src="/img/star.svg" alt="full" class="star" />
-                <img v-else-if="averageRating >= i - 0.5" src="/img/star-half.svg" alt="half" class="star" />
+                <img v-if="productReview.rate >= i" src="/img/star.svg" alt="full" class="star" />
                 <img v-else src="/img/star-outline.svg" alt="empty" class="star" />
               </template>
             </div>
