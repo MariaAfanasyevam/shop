@@ -1,5 +1,5 @@
 <script setup>
-import './styles/style.css'
+import './styles/style.scss'
 import Header from './components/header/header.vue'
 import Footer from './components/footer/footer.vue'
 import Cart from './components/cart/cart.vue'
@@ -22,4 +22,4 @@ const { notification } = storeToRefs(cartStore)
   <Footer></Footer>
 </template>
 
-<style></style>
+<style src="styles/style.scss" lang="scss"></style>
