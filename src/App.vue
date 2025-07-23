@@ -22,4 +22,4 @@ const { notification } = storeToRefs(cartStore)
   <Footer></Footer>
 </template>
 
-<style src="styles/style.scss" lang="scss"></style>
+<style src="./styles/style.scss" lang="scss"></style>
