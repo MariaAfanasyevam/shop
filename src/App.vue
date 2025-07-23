@@ -1,8 +1,8 @@
 <script setup>
 import './styles/style.css'
-import Header from './components/header.vue'
-import Footer from './components/footer.vue'
-import Cart from './components/cart.vue'
+import Header from './components/header/header.vue'
+import Footer from './components/footer/footer.vue'
+import Cart from './components/cart/cart.vue'
 import {useCartStore} from './store/cartStore'
 import Notification from './components/notification/notification.vue'
 import { storeToRefs } from 'pinia'

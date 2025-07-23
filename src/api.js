@@ -4,7 +4,6 @@ export const fetchSliderItems = async () => {
   try {
     const response = await axios.get(`https://api.dev.cwe.su/api/promos/?populate=*`)
     return response.data.data
-
   } catch (e) {
     console.log(e)
   }
@@ -22,4 +21,8 @@ export const fetchReviewsApi = (id) => {
 
 export const fetchSimilarItemsApi = () => {
   return axios.get(`${BASE_URL}/products/?pagination[pageSize]=3`)
+}
+
+export const fetchItems = async () => {
+  return axios.get(`${BASE_URL}/products/?populate=*`)
 }

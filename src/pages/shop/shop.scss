@@ -1,0 +1,38 @@
+@use "../../styles/variables";
+.filter
+{
+  display:none;
+  @media (max-width: 900px)
+  {
+    display:flex;
+    flex-direction: row;
+    color: variables.$accent;
+    row-gap: 8px;
+    font-weight:400;
+    font-size: 12px;
+    margin-top:20px;
+    font-family: DMSans, sans-serif;
+  }
+  img{
+    margin-right:8px;
+  }
+  a {
+    cursor: pointer;
+  }
+}
+.shop-aside__form {
+  display: flex;
+  flex: 0 0 261px;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 20px;
+  font-family: "DMSans", sans-serif;
+  font-weight: 400;
+  margin-top: 20px;
+  width: 261px !important;
+}
+@media (max-width: 900px) {
+  .shop-aside__form {
+    display: none;
+  }
+}

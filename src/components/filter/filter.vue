@@ -1,14 +1,33 @@
 <script setup>
-import { useCardStore } from '../../store/cardStore.js'
-import { useFilterStore } from '../../store/filterStore.js'
+import { reactive, ref, watch } from 'vue'
+import debounce from 'lodash.debounce'
 
-const cardStore = useCardStore()
-const filterStore = useFilterStore()
+const emit = defineEmits(['update-filters', 'reset-filters', 'apply-filters'])
+const filters = reactive({
+  sortBy: '',
+  searchQuery: '',
+  onSale: false,
+  inStock: false,
+})
 
-const applyFilters = () => {
-  cardStore.fetchItems()
-  filterStore.closeFilterMenu()
-}
+watch(
+  () => ({
+    sortBy: filters.sortBy,
+    onSale: filters.onSale,
+    inStock: filters.inStock,
+  }),
+  () => {
+    emit('update-filters', { ...filters })
+  },
+  { deep: true }
+)
+
+watch(
+  () => filters.searchQuery,
+  debounce(() => {
+    emit('update-filters', { ...filters })
+  }, 500)
+)
 </script>
 
 <template>
@@ -21,17 +40,17 @@ const applyFilters = () => {
           placeholder="Search..."
           name="search"
           id="search"
-          @input="cardStore.onChangeSearchInput($event.target.value)"
+          v-model="filters.searchQuery"
         />
         <button type="button"><img src="/img/search.svg" alt="search" /></button>
       </div>
     </div>
     <div class="search-list">
-      <select id="sort-filter" name="sort" @change="cardStore.onChangeSelect">
-        <option selected disabled>Sort by:</option>
+      <select id="sort-filter" name="sort" v-model="filters.sortBy">
+        <option selected disabled value="">Sort by:</option>
         <option value="price">Price</option>
         <option value="title">Name</option>
-        <option value="date">Date</option>
+        <option value="createdAt">Date</option>
       </select>
     </div>
     <div class="shop-search__radio">
@@ -39,7 +58,7 @@ const applyFilters = () => {
         <a class="radio-title">On sale</a>
       </div>
       <label class="switch">
-        <input type="checkbox" v-model="cardStore.filters.onSale" />
+        <input type="checkbox" v-model="filters.onSale" />
         <span class="switch-btn"></span>
       </label>
     </div>
@@ -48,13 +67,13 @@ const applyFilters = () => {
         <a class="radio-title">In stock</a>
       </div>
       <label class="switch">
-        <input type="checkbox" v-model="cardStore.filters.inStock" />
+        <input type="checkbox" v-model="filters.inStock" />
         <span class="switch-btn"></span>
       </label>
     </div>
     <div class="filter-section">
-      <button class="filter-btn" @click="applyFilters">apply filters</button>
-      <button class="filter-btn" @click="filterStore.resetAndCloseFilters" id="close-filter">reset filters</button>
+      <button class="filter-btn" @click="emit('apply-filters')">apply filters</button>
+      <button class="filter-btn" @click="emit('reset-filters')" id="close-filter">reset filters</button>
     </div>
   </div>
 </template>

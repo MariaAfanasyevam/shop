@@ -1,0 +1,39 @@
+@use "../../styles/variables";
+.home-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-weight: variables.$medium;
+  font-family: 'DMSans', sans-serif;
+  margin-top: 64px;
+  @media (max-width: 560px) {
+    margin-top: 20px;
+  }
+  &__text {
+    font-size: variables.$heading1;
+    color: variables.$black;
+    @media (max-width: 730px) {
+      font-size: variables.$heading2;
+    }
+    @media (max-width: 560px) {
+      font-size: variables.$heading3;
+    }
+  }
+
+  &__view {
+    font-size: variables.$heading3;
+    color: variables.$accent;
+    top: auto;
+    @media (max-width: 560px) {
+      font-size: variables.$heading5;
+    }
+    @media (max-width: 370px) {
+      font-size: variables.$medium;
+    }
+    a:hover {
+      color: variables.$black;
+      cursor: pointer;
+      text-decoration: none;
+    }
+  }
+}

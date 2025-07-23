@@ -1,39 +1,37 @@
 <script setup>
-import Card from '../../components/card.vue'
-import { ref, watch, computed } from 'vue'
-import { storeToRefs } from 'pinia'
+import Card from '../../components/card/card.vue'
+import { ref, watch, computed, h } from 'vue'
 import { useRoute } from 'vue-router'
-import { useCardStore } from '../../store/cardStore'
 import { useCartStore } from '../../store/cartStore'
 import { useFavoriteStore } from '../../store/favoriteStore.js'
 import heartIcon from '/img/heartIcon.svg'
 import filledHeartIcon from '/img/filledHeartIcon.svg'
-import { useProductStore } from '../../store/productStore'
-import TabAdditional from '../../tabs/tab-additional.vue'
-import TabReviews from '../../tabs/tab-reviews.vue'
-import TabDescription from '../../tabs/tab-description.vue'
+import TabAdditional from '../../tabs/tab-additional/tab-additional.vue'
+import TabReviews from '../../tabs/tab-reviews/tab-reviews.vue'
+import TabDescription from '../../tabs/tab-description/tab-description.vue'
 import shareIcon from '../../icons/share-icon.vue'
 import arrowIcon from '../../icons/arrow-icon.vue'
-
-const productStore = useProductStore()
-const favoriteStore = useFavoriteStore()
-const cartStore = useCartStore()
-const cardStore = useCardStore()
-const isExpanded = ref(false)
+import { fetchProductApi, fetchReviewsApi, fetchSimilarItemsApi } from '../../api.js'
 
 const route = useRoute()
-
+const favoriteStore = useFavoriteStore()
+const cartStore = useCartStore()
+const isExpanded = ref(false)
 const openTab = ref(null)
+const similarItems = ref([])
+const request = ref({})
+const quantity = ref(1)
+const additionalUrl = ref('')
+const mainUrl = ref('')
+const allReviews = ref([])
+const productReviews = ref([])
+const averageRating = ref(0)
+const reviewsCount = ref(0)
+const activeTab = ref(1)
 
 const toggleTab = (index) => {
   openTab.value = openTab.value === index ? null : index
 }
-const { quantity, mainUrl, additionalUrl, request, averageRating, reviewsCount, activeTab, similarItems } =
-  storeToRefs(productStore)
-
-const { fetchProduct, fetchSimilarItems, fetchReviews, setActiveTab } = productStore
-
-const swapImages = productStore.swapImages
 
 const fullText = computed(() => request.value?.description || '')
 
@@ -45,6 +43,11 @@ const increaseQuantity = () => {
 
 const decreaseQuantity = () => {
   if (quantity.value > 1) quantity.value--
+}
+
+const handleClick = (item) => {
+  const favoriteStore = useFavoriteStore()
+  favoriteStore.toggleFavorite(item)
 }
 
 const currentTabComponent = computed(() => {
@@ -60,11 +63,73 @@ const currentTabComponent = computed(() => {
   }
 })
 
+const fetchReviews = async (id) => {
+  try {
+    const { data } = await fetchReviewsApi(id)
+    allReviews.value = data.data.reviews
+    productReviews.value = allReviews.value
+    reviewsCount.value = productReviews.value.length
+    console.log(allReviews.value)
+    if (reviewsCount.value > 0) {
+      const sum = productReviews.value.reduce((total, r) => total + r.rate, 0)
+      const avg = sum / reviewsCount.value
+      averageRating.value = Math.round(avg * 2) / 2
+    } else {
+      averageRating.value = 0
+    }
+  } catch (e) {
+    console.error('Error fetching reviews:', e)
+  }
+}
+
+const information = computed(() => ({
+  weight: request.value.weight,
+  dimensions: request.value.dimensions,
+  color: request.value.color,
+  material: request.value.material,
+}))
+
 const tabs = [
-  { title: 'Description', content: TabDescription },
-  { title: 'Additional information', content: TabAdditional },
-  { title: 'Reviews', content: TabReviews },
+  { title: 'Description', content: () => h(TabDescription, { productDescription: request.description }) },
+  { title: 'Additional information', content: () => h(TabAdditional, { productInformation: information.value }) },
+  {
+    title: 'Reviews',
+    content: () => h(TabReviews, { productReviews: productReviews.value, title: request.value.title }),
+  },
 ]
+
+const setActiveTab = (id) => {
+  activeTab.value = id
+}
+
+const fetchSimilarItems = async () => {
+  try {
+    const { data } = await fetchSimilarItemsApi()
+    similarItems.value = data.data
+  } catch (e) {
+    console.error('Error fetching similar items:', e)
+  }
+}
+
+const fetchProduct = async (id) => {
+  try {
+    const { data } = await fetchProductApi(id)
+    const productData = data.data
+    request.value = {
+      ...productData,
+      quantity: 1,
+    }
+    mainUrl.value = request.value.image
+  } catch (e) {
+    console.error('Error fetching product:', e)
+  }
+}
+
+const swapImages = (newUrl) => {
+  additionalUrl.value = mainUrl.value
+  mainUrl.value = newUrl
+}
+
 watch(
   () => route.params.id,
   async (newId) => {
@@ -146,7 +211,7 @@ watch(
           <div class="additional-info">
             <img
               class="icon"
-              @click="cardStore.handleClick(request.documentId)"
+              @click="handleClick(request.documentId)"
               :src="favoriteStore.favorites.includes(request.documentId) ? filledHeartIcon : heartIcon"
               alt="Add to favourites"
             />
@@ -173,7 +238,22 @@ watch(
         </div>
 
         <keep-alive>
-          <component :is="currentTabComponent" />
+          <component
+            :is="currentTabComponent"
+            v-bind="
+              activeTab === 3
+                ? {
+                    title: request.title,
+                    id: request.documentId,
+                    productReviews: productReviews,
+                  }
+                : activeTab === 1
+                  ? { productDescription: request.description }
+                  : {
+                      productInformation: information,
+                    }
+            "
+          />
         </keep-alive>
       </div>
 
