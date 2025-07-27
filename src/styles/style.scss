@@ -11,10 +11,18 @@
 }
 html,
 body {
-  overflow-x: hidden;
+
   box-sizing: border-box;
+  height: auto !important;
+}
+html {
+  scroll-behavior: smooth;
 }
 
+body {
+
+  position: relative;
+}
 *,
 *::after,
 *::before {
@@ -25,6 +33,7 @@ body {
   main {
     color: black;
   }
+
 }
 
 a:visited {
@@ -48,6 +57,14 @@ a:link {
   padding-right: 96px;
   height: max-content;
   margin: 0 auto;
+  @media (max-width: 750px) {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  @media (max-width: 450px) {
+    padding-left: 17px;
+    padding-right: 17px;
+  }
 }
 .underline {
   border-bottom: 0.1px solid variables.$gray;
@@ -247,11 +264,8 @@ button:disabled {
     top: 39px;
     bottom: 39px;
   }
-  @media (max-width: 559px) {
-    grid-template-columns: repeat(2, 1fr);
-    margin: 20px auto;
-    row-gap: 20px;
-    column-gap: 24px;
+  @media (max-width: 560px) {
+    display: inline-block;
   }
 }
 
@@ -262,6 +276,8 @@ button:disabled {
   z-index: 100;
   aspect-ratio: 1 / 1;
   overflow: hidden;
+
+
 }
 
 .shop-title {

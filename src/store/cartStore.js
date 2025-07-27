@@ -23,8 +23,8 @@ export const useCartStore = defineStore(
       drawerOpen.value = true
     }
 
-    const addToCart = (item) => {
-      cart.value.push({ ...item, quantity: 1 })
+    const addToCart = (item, quantity) => {
+      cart.value.push({ ...item, quantity: quantity })
       showNotification(`${item.title} added to your Shopping bag!`)
     }
     const showNotification = (message) => {
@@ -44,12 +44,12 @@ export const useCartStore = defineStore(
         cart.value.splice(index, 1)
       }
     }
-    const toggleCart = (item) => {
+    const toggleCart = (item, quantity) => {
       const existingItem = cart.value.find((i) => i.id === item.id)
       if (existingItem) {
         removeFromCart(existingItem)
       } else {
-        addToCart(item)
+        addToCart(item, quantity)
       }
     }
 

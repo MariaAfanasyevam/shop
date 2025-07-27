@@ -231,12 +231,7 @@
   }
 }
 .similar-items{
-  margin-top: 20px;
-  h1 {
-    font-weight: 400;
-    font-size: 26px;
-    line-height: 35px;
-  }
+
 }
 
 
@@ -349,3 +344,19 @@ img.active {
 
 }
 
+.gallery-container {
+  @media (max-width: 560px) {
+  display: inline-block;
+  width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 20px;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 20px;
+  h1 {
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 35px;
+  }
+}
+}

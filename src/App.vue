@@ -9,6 +9,7 @@ import { storeToRefs } from 'pinia'
 
 const cartStore= useCartStore()
 const { notification } = storeToRefs(cartStore)
+
 </script>
 
 <template>

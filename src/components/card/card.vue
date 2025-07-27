@@ -22,27 +22,37 @@ const props = defineProps({
 
 const discountPrice = computed(() => Math.round(props.price * (1 - props.discountPercent / 100)).toFixed(2))
 
+const handleProductClick = (navigate) => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+}
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
 
 </script>
 <template>
   <div class="shop-item">
     <div class="shop-item__image">
       <img class="shop-img" :src="image" :alt="props.title" />
-      <div class="add-cart__mobile" @click="cartStore.toggleCart(props)">
+      <div class="add-cart__mobile" @click="cartStore.toggleCart(props,1)">
         {{ cartStore.isInCart(props) ? 'remove from cart' : 'add to cart' }}
       </div>
       <div class="icons">
         <button class="add-cart">
           <img
-            @click="cartStore.toggleCart(props)"
+            @click="cartStore.toggleCart(props,1)"
             :src="cartStore.isInCart(props) ? filledShoppingCartIcon : shoppingCartIcon"
             class="cart-img"
             alt="Add to cart"
           />
         </button>
 
-        <router-link :to="{ name: 'Product', params: { id: props.productId } }" v-slot="{ navigate }">
-          <button class="view-product" @click="navigate()">
+        <router-link :to="{ name: 'Product', params: { id: props.productId } }"   @click.native="scrollToTop">
+          <button class="view-product" >
             <img src="/img/eye.svg" alt="Open product" />
           </button>
         </router-link>

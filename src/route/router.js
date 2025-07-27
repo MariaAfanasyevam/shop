@@ -13,3 +13,7 @@ export const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.afterEach((to, from) => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});

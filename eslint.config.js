@@ -18,7 +18,6 @@ module.exports = {
     ecmaVersion: 'latest',
   },
   rules: {
-    // Ваши правила ESLint здесь. Например:
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'prettier/prettier': [

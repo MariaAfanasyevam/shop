@@ -1,6 +1,6 @@
 <script setup>
 import Card from '../../components/card/card.vue'
-import { ref, watch, computed, h } from 'vue'
+import { ref, watch, computed, h, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCartStore } from '../../store/cartStore'
 import { useFavoriteStore } from '../../store/favoriteStore.js'
@@ -20,7 +20,7 @@ const isExpanded = ref(false)
 const openTab = ref(null)
 const similarItems = ref([])
 const request = ref({})
-const quantity = ref(1)
+const quantity = ref( 1);
 const additionalUrl = ref('')
 const mainUrl = ref('')
 const allReviews = ref([])
@@ -50,6 +50,13 @@ const handleClick = (item) => {
   favoriteStore.toggleFavorite(item)
 }
 
+const onClick = (navigate) => {
+  navigate()
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, 100)
+}
+
 const currentTabComponent = computed(() => {
   switch (activeTab.value) {
     case 1:
@@ -62,7 +69,7 @@ const currentTabComponent = computed(() => {
       return TabDescription
   }
 })
-
+const increaseIsDisabled = computed(() => (quantity.value >= request.value.itemsInStock) || cartStore.isInCart(request.value))
 const fetchReviews = async (id) => {
   try {
     const { data } = await fetchReviewsApi(id)
@@ -90,7 +97,7 @@ const information = computed(() => ({
 }))
 
 const tabs = [
-  { title: 'Description', content: () => h(TabDescription, { productDescription: request.description }) },
+  { title: 'Description', content: () => h(TabDescription, { productDescription: request.value.description }) },
   { title: 'Additional information', content: () => h(TabAdditional, { productInformation: information.value }) },
   {
     title: 'Reviews',
@@ -124,18 +131,28 @@ const fetchProduct = async (id) => {
     console.error('Error fetching product:', e)
   }
 }
+const toggleProductInCart = () => {
+  cartStore.toggleCart(request.value, quantity.value)
+  quantity.value = 1
+  console.log(request.value)
+}
 
 const swapImages = (newUrl) => {
   additionalUrl.value = mainUrl.value
   mainUrl.value = newUrl
 }
-
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
 watch(
   () => route.params.id,
   async (newId) => {
+    quantity.value = 1
     await fetchProduct(newId)
     await fetchReviews(newId)
     await fetchSimilarItems()
+    await nextTick()
+    scrollToTop()
   },
   { immediate: true },
 )
@@ -191,11 +208,19 @@ watch(
 
           <div class="product__buttons">
             <div class="increase">
-              <button @click="decreaseQuantity" :disabled="quantity <= 1">-</button>
+              <button @click=" () => {
+          if (quantity > 1) {
+            quantity--;
+
+          }
+        }" :disabled="quantity <= 1">-</button>
               {{ quantity }}
-              <button @click="increaseQuantity">+</button>
+              <button :disabled="increaseIsDisabled" @click="  () => {
+          quantity++;
+
+        }">+</button>
             </div>
-            <button class="add-button" @click="cartStore.toggleCart(request)">
+            <button class="add-button" @click="toggleProductInCart">
               {{ cartStore.isInCart(request) ? 'remove from cart' : 'add to cart' }}
             </button>
           </div>
@@ -268,7 +293,7 @@ watch(
           </div>
         </div>
       </div>
-      <div class="similar-items">
+      <div class="gallery-container">
         <h1>Similar items</h1>
         <div class="shop-items">
           <Card

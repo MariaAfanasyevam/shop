@@ -35,9 +35,9 @@ const burgerOpen = ref(false)
               </li>
             </div>
             <li class="nav__li">
-              <router-link to="/profile">
+
                 <UserIcon />
-              </router-link>
+
             </li>
           </ul>
           <div class="burger-menu">

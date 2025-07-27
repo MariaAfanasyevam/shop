@@ -10,7 +10,7 @@ const cartStore = useCartStore()
       <ul class="burger-menu__list" @click="cartStore.burgerOpen=false">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/shop">Shop</router-link></li>
-        <li><router-link to="/profile">My account</router-link></li>
+        <li>My account</li>
         <li><a href="#">Logout</a></li>
       </ul>
     </div>

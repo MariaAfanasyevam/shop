@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
 const author = ref('')
@@ -41,6 +41,11 @@ const submitReview = async (id) => {
       },
     )
     console.log(response.data)
+    if (saveInfo.value) {
+      localStorage.setItem('savedAuthorName', author.value)
+    } else {
+      localStorage.removeItem('savedAuthorName')
+    }
     reviewText.value = ''
     author.value = ''
     rating.value = 5
@@ -49,6 +54,14 @@ const submitReview = async (id) => {
     console.error('Ошибка при отправке отзыва:', error)
   }
 }
+
+onMounted(() => {
+  const savedName = localStorage.getItem('savedAuthorName')
+  if (savedName) {
+    author.value = savedName
+    saveInfo.value = true
+  }
+})
 </script>
 <template>
   <div class="reviews__block">
