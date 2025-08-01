@@ -37,11 +37,17 @@ const scrollToTop = () => {
 <template>
   <div class="shop-item">
     <div class="shop-item__image">
+
       <img class="shop-img" :src="image" :alt="props.title" />
+
       <div class="add-cart__mobile" @click="cartStore.toggleCart(props,1)">
         {{ cartStore.isInCart(props) ? 'remove from cart' : 'add to cart' }}
       </div>
-      <div class="icons">
+      <router-link :to="{ name: 'Product', params: { id: props.productId } }" @click.native="scrollToTop">
+        <div class="mobile__link">
+      </div>
+      </router-link>
+    <div class="icons">
         <button class="add-cart">
           <img
             @click="cartStore.toggleCart(props,1)"

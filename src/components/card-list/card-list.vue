@@ -8,7 +8,8 @@ defineProps({
 </script>
 <template>
   <div class="card-list" v-auto-animate>
-    <Card
+      <Card
+        class="shop-item"
       v-for="item in items"
       :key="item.id"
       :id="item.id"

@@ -17,7 +17,7 @@ const limitedItems = computed(() => props.items.slice(0, props.limit ?? props.it
 </script>
 <template>
   <div class="catalog-list__container">
-    <CardList :items="limitedItems" />
+    <CardList :items="limitedItems"/>
   </div>
 </template>
 

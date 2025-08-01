@@ -2,6 +2,7 @@
 import Catalog from '../../components/catalog/catalog.vue'
 import { onMounted, reactive, ref, watch } from 'vue'
 import FilterDesktop from '../../components/FilterDesktop/filterDesktop.vue'
+import Filter from '../../components/filter/filter.vue'
 import axios from 'axios'
 
 const filterOpen = ref(false)

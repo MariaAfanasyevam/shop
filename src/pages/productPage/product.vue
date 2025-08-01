@@ -293,21 +293,27 @@ watch(
           </div>
         </div>
       </div>
-      <div class="gallery-container">
+      <div class="gallery">
         <h1>Similar items</h1>
-        <div class="shop-items">
-          <Card
-            v-for="item in similarItems"
-            :key="item.id"
-            :id="item.id"
-            :image="item.image"
-            :title="item.title"
-            :price="item.price"
-            :discountPercent="item.discountPercent"
-            :productId="item.documentId"
-            :itemsInStock="item.itemsInStock"
-          />
+        <div class="gallery-container">
+
+          <div class="similar-items">
+            <Card
+              class="similar-item"
+              v-bind="$attrs"
+              v-for="item in similarItems"
+              :key="item.id"
+              :id="item.id"
+              :image="item.image"
+              :title="item.title"
+              :price="item.price"
+              :discountPercent="item.discountPercent"
+              :productId="item.documentId"
+              :itemsInStock="item.itemsInStock"
+            />
+          </div>
         </div>
+
       </div>
       <router-link to="/shop">
         <div class="continue">

@@ -1,13 +1,13 @@
 <script setup>
 
 import { useCartStore } from '../../store/cartStore'
+const emit= defineEmits(['burgerClose'])
 
-const cartStore = useCartStore()
 </script>
 <template>
   <nav id="mobile-menu" class="burger-menu__nav">
     <div class="container">
-      <ul class="burger-menu__list" @click="cartStore.burgerOpen=false">
+      <ul class="burger-menu__list" @click="emit('burgerClose')">
         <li><router-link to="/">Home</router-link></li>
         <li><router-link to="/shop">Shop</router-link></li>
         <li>My account</li>

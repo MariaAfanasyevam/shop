@@ -5,12 +5,13 @@ import BurgerMenu from '../burger-menu/burger-menu.vue'
 import CartIcon from '../../icons/cart-icon.vue'
 import UserIcon from '../../icons/user-icon.vue'
 const cartStore = useCartStore()
-
+const burgerOpen = ref(false)
 defineProps({
   totalItems: Number,
 })
-
-const burgerOpen = ref(false)
+const burgerClose = () => {
+  burgerOpen.value = false
+}
 </script>
 <template>
   <header class="container">
@@ -35,9 +36,7 @@ const burgerOpen = ref(false)
               </li>
             </div>
             <li class="nav__li">
-
-                <UserIcon />
-
+              <UserIcon />
             </li>
           </ul>
           <div class="burger-menu">
@@ -63,7 +62,7 @@ const burgerOpen = ref(false)
       </div>
     </div>
   </header>
-  <BurgerMenu v-if="burgerOpen" />
+  <BurgerMenu v-if="burgerOpen" @burger-close="burgerClose" />
 </template>
 
 <script>
