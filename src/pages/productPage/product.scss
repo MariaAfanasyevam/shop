@@ -238,11 +238,11 @@ img.active {
 }
 .description-block {
   margin-top: 16px;
-  border-bottom: 1px solid #707070;
+  border-bottom: 1px solid #D8D8D8;
   padding-bottom: 14px;
   margin-bottom: 14px;
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 400;
   line-height: 20px;
   .short-description {
@@ -303,7 +303,9 @@ img.active {
       padding: 12px 0;
       cursor: pointer;
       margin-bottom: 10px;
-
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 26px;
       .arrow {
         transition: transform 0.3s;
       }
@@ -311,11 +313,19 @@ img.active {
       .arrow.open {
         transform: rotate(180deg);
       }
+      @media (max-width: 400px) {
+        font-size: 16px;
+        line-height: 20px;
+      }
     }
 
     .tab-content {
-      font-size: 14px;
+      font-size: 16px;
       color: black;
+      @media (max-width: 400px) {
+        font-size: 14px;
+        line-height: 20px;
+      }
     }
   }
   @media (min-width: 800px) {
@@ -338,25 +348,36 @@ img.active {
   font-weight: 400;
   line-height: 20px;
 }
-.gallery h1 {
-  font-weight: 400;
-  font-size: 26px;
-  line-height: 35px;
+.gallery {
+  border-top: 1px solid #D8D8D8;
+  padding-top: 20px;
+  h1 {
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 35px;
+    font-family: DMSans, sans-serif;
+@media (max-width: 400px) {
+  font-size: 18px;
+  line-height: 27px;
+}
+  }
 }
 .gallery-container {
-  display: inline-block;
-  width: 100%;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding-bottom: 20px;
-  -webkit-overflow-scrolling: touch;
-  margin-top: 20px;
-}
+    display: inline-block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-bottom: 20px;
+    -webkit-overflow-scrolling: touch;
+    margin-top: 13px;
 
-.similar-item {
-  display: inline-block;
-  width: 200px;
-  margin-right: 20px;
-  vertical-align: top;
-  white-space: normal;
-}
+  }
+
+  .similar-item {
+    display: inline-block;
+    width: 200px;
+    margin-right: 20px;
+    vertical-align: top;
+    white-space: normal;
+  }
+
