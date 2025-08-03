@@ -12,6 +12,11 @@ defineProps({
 const burgerClose = () => {
   burgerOpen.value = false
 }
+
+const toggleBurger = () => {
+  burgerOpen.value = !burgerOpen.value
+  document.body.classList.toggle('no-scroll')
+}
 </script>
 <template>
   <header class="container">
@@ -45,11 +50,7 @@ const burgerClose = () => {
                 id="burger"
                 class="burger"
                 :class="{ active: burgerOpen }"
-                @click="
-                  () => {
-                    burgerOpen = !burgerOpen
-                  }
-                "
+                @click="toggleBurger"
               >
                 <span v-if="!burgerOpen"></span>
                 <span></span>

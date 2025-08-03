@@ -7,11 +7,9 @@
   color: black;
   height: 100vh;
   position: fixed;
-  top: 160px;
+  top: 73px;
   right: 0;
-//  max-width: 320px;
   z-index: 120;
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   row-gap: 20px;
@@ -21,6 +19,10 @@
   padding-left:96px;
   padding-right:96px;
   margin: 0 auto ;
+  @media (max-width: 739px) {
+    padding-left:30px;
+    padding-right:30px;
+  }
 }
 
 div.hidden {

@@ -70,10 +70,12 @@ const goToPage = (page) => {
 
 const filterMenuOpen = () => {
   filterOpen.value = true
+  document.body.classList.add('no-scroll')
 }
 
 const closeFilterMenu = () => {
   filterOpen.value = false
+  document.body.classList.remove('no-scroll')
 }
 
 const resetAndCloseFilters = () => {
@@ -123,10 +125,10 @@ onMounted(async () => {
       <Catalog :items="items" />
       <div class="button-section">
         <button
-          class="button-section__item page-button disabled"
+          class="button-section__item page-button"
           type="button"
           :disabled="currentPage === 1"
-          @click="goToPage(currentPage.value - 1)"
+          @click="goToPage(currentPage - 1)"
         >
           Prev
         </button>
@@ -134,17 +136,17 @@ onMounted(async () => {
           v-for="page in totalPages"
           :key="page"
           class="button-section__item page-number"
-          :class="{ 'selected-page': page === currentPage.value }"
+          :class="{ 'selected-page': page === currentPage}"
           @click="goToPage(page)"
           type="button"
         >
           {{ page }}
         </button>
         <button
-          class="button-section__item page-button disabled"
+          class="button-section__item page-button "
           type="button"
-          :disabled="currentPage.value === totalPages.value"
-          @click="goToPage(currentPage.value + 1)"
+          :disabled="currentPage === totalPages"
+          @click="goToPage(currentPage + 1)"
         >
           Next
         </button>

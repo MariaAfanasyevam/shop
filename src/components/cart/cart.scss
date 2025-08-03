@@ -47,6 +47,9 @@
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  @media (max-width: 439px) {
+    width:100vw;
+  }
 }
 
 .sidebar[aria-hidden='true'] {
