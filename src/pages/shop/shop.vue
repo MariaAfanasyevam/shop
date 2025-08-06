@@ -7,6 +7,7 @@ import axios from 'axios'
 
 const filterOpen = ref(false)
 const items = ref([])
+const isLoading = ref(true)
 const defaultFilters = {
   sortBy: '',
   searchQuery: '',
@@ -25,6 +26,7 @@ const totalPages = ref(2)
 
 const fetchItems = async () => {
   try {
+    isLoading.value = true;
     const params = {
       'pagination[page]': currentPage.value,
       'pagination[pageSize]': pageSize.value,
@@ -46,13 +48,18 @@ const fetchItems = async () => {
       params,
     })
     const result = data.data
+    setTimeout(() => {
     items.value = result.map((obj) => ({
       ...obj,
       quantity: 1,
     }))
     totalPages.value = data.meta.pagination.pageCount
+    }, 500);
   } catch (e) {
     console.log(e)
+  }
+  finally {
+    isLoading.value = false;
   }
 }
 const updateFiltersFromChild = (newFilters) => {
@@ -121,7 +128,10 @@ onMounted(async () => {
     <div class="shop-aside__form">
       <FilterDesktop @update-filters="updateFiltersFromChild" />
     </div>
-    <div class="shop-container">
+    <div v-if="isLoading" class="loader-wrapper">
+      <div class="loader"></div>
+    </div>
+    <div v-else class="shop-container">
       <Catalog :items="items" />
       <div class="button-section">
         <button

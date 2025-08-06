@@ -193,7 +193,6 @@ watch(
                 <img v-else-if="averageRating >= i - 0.5" src="/img/star-half.svg" alt="half" class="star" />
                 <img v-else src="/img/star-outline.svg" alt="empty" class="star" />
               </template>
-              <span class="rating-value">({{ averageRating }})</span>
             </div>
             <div class="review__text" v-if="reviewsCount">
               {{ reviewsCount }} customer

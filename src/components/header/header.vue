@@ -11,6 +11,7 @@ defineProps({
 })
 const burgerClose = () => {
   burgerOpen.value = false
+  document.body.classList.toggle('no-scroll')
 }
 
 const toggleBurger = () => {
@@ -34,12 +35,12 @@ const toggleBurger = () => {
             </router-link>
           </ul>
           <ul class="nav__ul icon">
-            <div class="cart" aria-label="cart">
-              <li class="nav__li" @click="cartStore.openDrawer()">
+            <li class="cart" aria-label="cart">
+              <div class="nav__li" @click="cartStore.openDrawer()">
                 <a href="#" class="nav__link"> <CartIcon /></a>
-                <span class="cart-items" v-if="totalItems" id="cart-total">{{ totalItems }}</span>
-              </li>
-            </div>
+                <div class="cart-items" v-if="totalItems" id="cart-total">{{ totalItems }}</div>
+              </div>
+            </li>
             <li class="nav__li">
               <UserIcon />
             </li>
@@ -52,7 +53,6 @@ const toggleBurger = () => {
                 :class="{ active: burgerOpen }"
                 @click="toggleBurger"
               >
-                <span v-if="!burgerOpen"></span>
                 <span></span>
                 <span></span>
                 <span></span>

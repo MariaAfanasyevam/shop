@@ -71,7 +71,7 @@ onMounted(() => {
       </div>
       <div v-if="productReviews.length !== 0">
         <div class="review__items" v-for="productReview in productReviews">
-          <h2>{{ productReview.author }}:</h2>
+          <h2>{{ productReview.author }}</h2>
           <div class="rate">
             <div class="stars">
               <template v-for="i in 5" :key="i">

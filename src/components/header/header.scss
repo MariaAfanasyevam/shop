@@ -1,12 +1,16 @@
-
+@use '../../styles/variables.scss';
 .burger.active span:nth-child(1) {
-  transform: rotate(45deg) translateY(9px);
+  transform: rotate(45deg) translate(5px, 4px);
+  width: 20px;
 }
 .burger.active span:nth-child(2) {
   opacity: 0;
+  width: 0;
 }
 .burger.active span:nth-child(3) {
-  transform: rotate(-45deg) translateY(-9px);
+  width: 20px;
+  transform: rotate(-45deg) translate(5px, -4px);
+
 }
 .burger {
   font-size: 24px;
@@ -19,11 +23,38 @@
   flex-direction: column;
   justify-content: space-between;
   z-index: 200;
+  align-items: flex-end;
   span {
     display: block;
     height: 2px;
     background: #000;
     transition: 0.3s;
+    width: 20px;
     border-radius: 2px;
+    &:nth-child(3) {
+      width:13px;
+    }
+  }
+}
+.underline {
+  border-bottom: 0.1px solid variables.$gray;
+  @media (max-width: 800px) {
+    border-bottom: none;
+  }
+}
+.header {
+  margin-top: 66px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  .logo {
+    &__link {
+      text-decoration: none;
+    }
+  }
+  @media (max-width: 768px) {
+    margin-top: 16px;
   }
 }

@@ -1,6 +1,4 @@
 <script setup>
-
-import { useCartStore } from '../../store/cartStore'
 const emit= defineEmits(['burgerClose'])
 
 </script>

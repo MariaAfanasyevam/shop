@@ -66,25 +66,8 @@ a:link {
     padding-right: 17px;
   }
 }
-.underline {
-  border-bottom: 0.1px solid variables.$gray;
-}
-.header {
-  margin-top: 66px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 20px;
-  .logo {
-    &__link {
-      text-decoration: none;
-    }
-  }
-  @media (max-width: 768px) {
-    margin-top: 16px;
-  }
-}
+
+
 .title {
   font-family: 'Allerta_Stencil';
   color: variables.$black;

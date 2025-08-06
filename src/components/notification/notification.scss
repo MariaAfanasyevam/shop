@@ -18,6 +18,9 @@
   max-width: 1200px;
   padding: 1rem 2rem;
   box-sizing: border-box;
+  @media (max-width: 630px){
+    flex-direction: column;
+  }
   .notification__text {
     color: black;
     font-family: DMSans, sans-serif;
@@ -55,4 +58,8 @@
   padding-top: 21px;
   padding-bottom: 21px;
   margin-right: 24px;
+  @media (max-width: 630px){
+    padding-top: 10px;
+
+  }
 }
