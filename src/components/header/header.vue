@@ -11,17 +11,17 @@ defineProps({
 })
 const burgerClose = () => {
   burgerOpen.value = false
-  document.body.classList.toggle('no-scroll')
+  document.body.style.overflow = burgerOpen.value ? 'hidden' : ''
 }
 
 const toggleBurger = () => {
   burgerOpen.value = !burgerOpen.value
-  document.body.classList.toggle('no-scroll')
+  document.body.style.overflow = burgerOpen.value ? 'hidden' : ''
 }
 </script>
 <template>
   <header class="container">
-    <div class="header underline">
+    <div class="header">
       <div class="logo">
         <router-link to="/">
           <h1 class="title">Shoppe</h1>
@@ -30,29 +30,28 @@ const toggleBurger = () => {
       <div class="menu">
         <nav class="nav">
           <ul class="nav__ul text">
-            <router-link to="/shop">
-              <li class="nav__li">Shop</li>
-            </router-link>
+            <li class="nav__li">
+              <div class="nav__li_wrapper"><router-link to="/shop">Shop</router-link></div>
+            </li>
           </ul>
-          <ul class="nav__ul icon">
-            <li class="cart" aria-label="cart">
-              <div class="nav__li" @click="cartStore.openDrawer()">
-                <a href="#" class="nav__link"> <CartIcon /></a>
-                <div class="cart-items" v-if="totalItems" id="cart-total">{{ totalItems }}</div>
+          <ul class="nav__ul icon-header">
+            <li class="nav__li" aria-label="cart">
+
+                <div class="nav__cart-items" @click="cartStore.openDrawer()">
+                    <CartIcon />
+                  <span class="cart-items" v-if="totalItems" id="cart-total">{{ totalItems }}</span>
+
               </div>
             </li>
             <li class="nav__li">
-              <UserIcon />
+              <div class="nav__li_wrapper">
+                <UserIcon />
+              </div>
             </li>
           </ul>
           <div class="burger-menu">
             <div class="burger-menu__icon">
-              <button
-                id="burger"
-                class="burger"
-                :class="{ active: burgerOpen }"
-                @click="toggleBurger"
-              >
+              <button id="burger" class="burger" :class="{ active: burgerOpen }" @click="toggleBurger">
                 <span></span>
                 <span></span>
                 <span></span>

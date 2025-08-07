@@ -1,6 +1,6 @@
 <script setup>
-import { reactive, ref, watch } from 'vue'
-
+import { reactive, ref, watch, onUnmounted } from 'vue'
+import debounce from 'lodash.debounce'
 const searchValue = ref('')
 
 const emit = defineEmits(['update-filters'])
@@ -11,18 +11,29 @@ const filters = reactive({
   inStock: false,
 })
 
-const searchByInputValue = (value) => {
-  filters.searchQuery = value
+const searchByInputValue = () => {
+  debouncedSearch.cancel()
+  filters.searchQuery = searchValue.value
 }
+
+const debouncedSearch = debounce((value) => {
+  filters.searchQuery = value
+}, 1000)
+
+watch(searchValue, (newVal) => {
+  debouncedSearch(newVal)
+})
+
 watch(
   filters,
   () => {
     emit('update-filters', { ...filters })
   },
-  { deep: true }
+  { deep: true },
 )
-
-
+onUnmounted(() => {
+  debouncedSearch.cancel()
+})
 </script>
 
 <template>
@@ -30,7 +41,7 @@ watch(
     <div class="form__search">
       <input type="text" class="form__input" placeholder="Search..." name="search" id="search" v-model="searchValue" />
       <button type="button">
-        <img src="/img/search.svg" alt="search" @click="searchByInputValue(searchValue)" />
+        <img src="/img/search.svg" alt="search" @click="searchByInputValue" />
       </button>
     </div>
   </div>

@@ -8,6 +8,7 @@ import axios from 'axios'
 const filterOpen = ref(false)
 const items = ref([])
 const isLoading = ref(true)
+const hasResults = ref()
 const defaultFilters = {
   sortBy: '',
   searchQuery: '',
@@ -21,12 +22,12 @@ const filters = reactive({
   inStock: false,
 })
 const currentPage = ref(1)
-const pageSize = ref(24)
+const pageSize = ref(6)
 const totalPages = ref(2)
 
 const fetchItems = async () => {
   try {
-    isLoading.value = true;
+    isLoading.value = true
     const params = {
       'pagination[page]': currentPage.value,
       'pagination[pageSize]': pageSize.value,
@@ -48,18 +49,19 @@ const fetchItems = async () => {
       params,
     })
     const result = data.data
+    result.length !== 0 ? hasResults.value = true: hasResults.value = false
     setTimeout(() => {
-    items.value = result.map((obj) => ({
-      ...obj,
-      quantity: 1,
-    }))
-    totalPages.value = data.meta.pagination.pageCount
-    }, 500);
+      items.value = result.map((obj) => ({
+        ...obj,
+        quantity: 1,
+      }))
+      totalPages.value = data.meta.pagination.pageCount
+    }, 500)
+    console.log(result.length , hasResults.value)
   } catch (e) {
     console.log(e)
-  }
-  finally {
-    isLoading.value = false;
+  } finally {
+    isLoading.value = false
   }
 }
 const updateFiltersFromChild = (newFilters) => {
@@ -77,12 +79,12 @@ const goToPage = (page) => {
 
 const filterMenuOpen = () => {
   filterOpen.value = true
-  document.body.classList.add('no-scroll')
+  document.body.style.overflow = filterOpen.value ? 'hidden' : ''
 }
 
 const closeFilterMenu = () => {
   filterOpen.value = false
-  document.body.classList.remove('no-scroll')
+  document.body.style.overflow =  ''
 }
 
 const resetAndCloseFilters = () => {
@@ -92,7 +94,6 @@ const resetAndCloseFilters = () => {
 const applyFilters = () => {
   closeFilterMenu()
 }
-
 
 watch(
   filters,
@@ -118,7 +119,7 @@ onMounted(async () => {
   </div>
 
   <div class="container">
-    <div class="shop-title">
+    <div class="shop-title underline">
       <div class="shop-title__text">Shop The Latest</div>
     </div>
   </div>
@@ -131,35 +132,38 @@ onMounted(async () => {
     <div v-if="isLoading" class="loader-wrapper">
       <div class="loader"></div>
     </div>
-    <div v-else class="shop-container">
-      <Catalog :items="items" />
-      <div class="button-section">
-        <button
-          class="button-section__item page-button"
-          type="button"
-          :disabled="currentPage === 1"
-          @click="goToPage(currentPage - 1)"
-        >
-          Prev
-        </button>
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          class="button-section__item page-number"
-          :class="{ 'selected-page': page === currentPage}"
-          @click="goToPage(page)"
-          type="button"
-        >
-          {{ page }}
-        </button>
-        <button
-          class="button-section__item page-button "
-          type="button"
-          :disabled="currentPage === totalPages"
-          @click="goToPage(currentPage + 1)"
-        >
-          Next
-        </button>
+    <div v-else>
+      <div v-if="!hasResults" class="result-wrapper">Ничего не найдено</div>
+      <div v-else class="shop-container">
+        <Catalog :items="items" />
+        <div class="button-section">
+          <button
+            class="button-section__item page-button"
+            type="button"
+            :disabled="currentPage === 1"
+            @click="goToPage(currentPage - 1)"
+          >
+            Prev
+          </button>
+          <button
+            v-for="page in totalPages"
+            :key="page"
+            class="button-section__item page-number"
+            :class="{ 'selected-page': page === currentPage }"
+            @click="goToPage(page)"
+            type="button"
+          >
+            {{ page }}
+          </button>
+          <button
+            class="button-section__item page-button"
+            type="button"
+            :disabled="currentPage === totalPages"
+            @click="goToPage(currentPage + 1)"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </div>
   </div>

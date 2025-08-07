@@ -114,6 +114,9 @@
   z-index: 2;
   column-gap: 24px;
   opacity: 0;
+  &:hover {
+    opacity: 1;
+  }
   @media (max-width: 647px) {
     display: none;
   }
@@ -294,7 +297,8 @@
   align-items: center;
   justify-content: center;
   align-self: center;
-
+  li {
+  }
 }
 
 .cart-items {

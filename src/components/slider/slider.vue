@@ -20,7 +20,9 @@ onMounted(async () => {
     :modules="[Navigation, Pagination]"
     :slides-per-view="1"
     :space-between="20"
-    :pagination="{ clickable: true }"
+    :pagination="{ clickable: true,
+     bulletClass: 'swiper-pagination-bullet',
+     bulletActiveClass: 'swiper-pagination-bullet-active'}"
     class="swiper"
   >
     <swiper-slide v-for="(slide, index) in slides" :key="index">

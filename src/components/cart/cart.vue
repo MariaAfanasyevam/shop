@@ -2,7 +2,7 @@
 import CartHead from '../cart-head/cart-head.vue'
 import CartItemList from '../cart-list/cart-Item-list.vue'
 import InfoBlock from '../info-block/info-block.vue'
-import { computed, ref } from 'vue'
+import { computed, ref} from 'vue'
 
 
 import { useCartStore } from '../../store/cartStore'
@@ -24,7 +24,15 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
 <template>
   <main>
     <div class="shop-container container">
-      <div id="sidebar1" class="sidebar" aria-label="cart-sidebar">
+      <Transition name="fade">
+      <div
+        class="overlay"
+        v-if="cartStore.drawerOpen"
+        @click="cartStore.closeDrawer"
+      ></div>
+      </Transition>
+      <Transition name="slide-cart">
+      <div class="sidebar" aria-label="cart-sidebar" v-if="cartStore.drawerOpen">
         <div class="sidebar__content">
           <CartHead :totalItems="totalItems" />
 
@@ -43,7 +51,8 @@ const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
           </div>
         </div>
       </div>
-    </div>
+      </Transition>
+      </div>
   </main>
 </template>
 <style src="./cart.scss" lang="scss" scoped></style>

@@ -43,10 +43,11 @@
   top: 0;
   right: 0;
   min-width: 320px;
-  z-index: 120;
+  z-index: 999;
   overflow-y: scroll;
   display: flex;
   flex-direction: column;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
   @media (max-width: 439px) {
     width:100vw;
   }
@@ -93,4 +94,45 @@
   display: flex;
   justify-content: center;
   align-content: center;
+}
+.overlay{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(182, 182, 182, 0.93);
+  opacity: 1;
+  z-index: 998;
+  transition: opacity 0.3s ease;
+}
+
+.slide-cart-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.slide-cart-enter-active,
+.slide-cart-leave-active {
+  transition: all 0.5s ease;
+}
+.slide-cart-enter-to,
+.slide-cart-leave-from {
+  transform: translateX(0%);
+  opacity: 1;
+}
+.slide-cart-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
 }

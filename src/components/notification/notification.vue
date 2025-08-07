@@ -34,8 +34,8 @@ onUnmounted(() => clearTimeout(timeout))
 
 <template>
   <transition name="fade">
-    <div v-if="visible" class="notification-container container">
-      <div class="notification">
+    <div v-if="visible">
+      <div class="notification-container notification">
         <span class="notification__text">{{ message }}</span>
         <div @click="cartStore.openDrawer()" class="view-cart">view cart</div>
       </div>

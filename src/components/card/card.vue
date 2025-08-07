@@ -3,8 +3,8 @@ import { computed, ref, shallowRef } from 'vue'
 import { useFavoriteStore } from '../../store/favoriteStore.js'
 import { useCartStore } from '../../store/cartStore.js'
 import heartIcon from '/img/heartIcon.svg'
-import  filledHeartIcon   from '/img/filledHeartIcon.svg'
-import  shoppingCartIcon  from '/img/shoppingCartIcon.svg'
+import filledHeartIcon from '/img/filledHeartIcon.svg'
+import shoppingCartIcon from '/img/shoppingCartIcon.svg'
 import filledShoppingCartIcon from '/img/filledShoppingCartIcon.svg'
 import debounce from 'lodash.debounce'
 
@@ -23,42 +23,38 @@ const props = defineProps({
 const discountPrice = computed(() => Math.round(props.price * (1 - props.discountPercent / 100)).toFixed(2))
 
 const handleProductClick = (navigate) => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
+  window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,
-    behavior: 'smooth'
-  });
-};
-
+    behavior: 'smooth',
+  })
+}
+const addIsDisabled = computed(() => props.itemsInStock === 0)
 </script>
 <template>
   <div class="shop-item">
     <div class="shop-item__image">
-
       <img class="shop-img" :src="image" :alt="props.title" />
 
-      <div class="add-cart__mobile" @click="cartStore.toggleCart(props,1)">
+      <button :disabled="addIsDisabled" class="add-cart__mobile" @click="cartStore.toggleCart(props, 1)">
         {{ cartStore.isInCart(props) ? 'remove from cart' : 'add to cart' }}
-      </div>
+      </button>
       <router-link :to="{ name: 'Product', params: { id: props.productId } }" @click.native="scrollToTop">
-        <div class="mobile__link">
-      </div>
+        <div class="mobile__link"></div>
       </router-link>
-    <div class="icons">
-        <button class="add-cart">
+      <div class="icons">
+        <button class="add-cart" :disabled="addIsDisabled" @click="cartStore.toggleCart(props, 1)">
           <img
-            @click="cartStore.toggleCart(props,1)"
             :src="cartStore.isInCart(props) ? filledShoppingCartIcon : shoppingCartIcon"
             class="cart-img"
             alt="Add to cart"
           />
         </button>
 
-        <router-link :to="{ name: 'Product', params: { id: props.productId } }"   @click.native="scrollToTop">
-          <button class="view-product" >
+        <router-link :to="{ name: 'Product', params: { id: props.productId } }" @click.native="scrollToTop">
+          <button class="view-product">
             <img src="/img/eye.svg" alt="Open product" />
           </button>
         </router-link>
