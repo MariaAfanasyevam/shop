@@ -1,0 +1,97 @@
+.notification-container {
+  position: relative;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+@media (max-width: 682px) {
+  .notification-container {
+    flex-direction: column;
+  }
+}
+
+.notification {
+  position: fixed;
+  top: 120px;
+  left: 0;
+  right: 0;
+  margin: 0 95px;
+  background: #efefef;
+  border-top: 2px solid #a18a68;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  padding-left: 36px;
+  padding-right: 36px;
+  height: max-content;
+}
+@media (max-width: 770px) {
+  .notification {
+    top: 100px;
+  }
+}
+@media (max-width: 750px) {
+  .notification {
+    top: 100px;
+    margin: 0 25px;
+  }
+}
+@media (max-width: 450px) {
+  .notification {
+    margin: 0 15px;
+  }
+}
+.notification .notification__text {
+  color: black;
+  font-family: DMSans, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 27px;
+  padding-top: 21px;
+  padding-bottom: 21px;
+}
+.notification .notification__text::before {
+  content: "";
+  background: url("/public/img/check-icon.svg") no-repeat center center;
+  background-size: contain;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 39px;
+}
+@media (max-width: 682px) {
+  .notification .notification__text {
+    flex-wrap: wrap;
+    font-size: 14px;
+  }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.view-cart {
+  font-size: 16px;
+  font-family: DMSans, sans-serif;
+  font-weight: 700;
+  line-height: 100%;
+  color: #a18a68;
+  text-transform: uppercase;
+  padding-top: 21px;
+  padding-bottom: 21px;
+  margin-right: 24px;
+}
+@media (max-width: 630px) {
+  .view-cart {
+    padding-top: 10px;
+  }
+}
+
+/*# sourceMappingURL=notification.css.map */

@@ -1,0 +1,67 @@
+.burger-menu__nav {
+  background: white;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: opacity 0.3s ease;
+  color: black;
+  height: 100vh;
+  position: fixed;
+  top: 86px;
+  right: 0;
+  z-index: 120;
+  overflow-y: scroll;
+}
+
+.burger-menu__nav .hidden {
+  display: none;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  margin-top: 0;
+}
+
+.burger-menu__list {
+  color: black;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: DMSans, sans-serif;
+  gap: 24px;
+}
+.burger-menu__list li {
+  margin-bottom: 24px;
+}
+.burger-menu__list li:nth-child(3) {
+  padding-top: 24px;
+  border-top: 1px solid #d8d8d8;
+}
+.burger-menu__list li:nth-child(3)::before {
+  content: "";
+  display: inline-block;
+  background: url("/img/user_mobile.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+.burger-menu__list li:nth-child(2) {
+  margin-bottom: 40px;
+}
+.burger-menu__list li:nth-child(4)::before {
+  content: "";
+  display: inline-block;
+  background: url("/img/logout.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+/*# sourceMappingURL=burger-menu.css.map */

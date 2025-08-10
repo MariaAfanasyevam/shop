@@ -1,0 +1,148 @@
+.sidebar__content {
+  font-family: DMSans, sans-serif;
+  color: black;
+}
+.sidebar__content:first-child {
+  border-bottom: 1px #d8d8d8 solid;
+  padding: 72px 36px 27px 36px;
+}
+.sidebar__content:last-child {
+  padding: 0 36px;
+}
+.sidebar__content h1,
+.sidebar__content .total {
+  font-size: 16px;
+  font-weight: 400;
+}
+.sidebar__content .items {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 17px auto 3px;
+  line-height: 20px;
+}
+.sidebar__content .view-cart {
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px 100px;
+  background-color: #fff;
+  margin: 0 auto;
+}
+.sidebar__content .subtotal-container {
+  margin: 21px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.sidebar {
+  background-color: #f1f1f1;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  min-width: 320px;
+  z-index: 999;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+}
+@media (max-width: 439px) {
+  .sidebar {
+    width: 100vw;
+  }
+}
+
+.sidebar[aria-hidden=true] {
+  transition: 200ms;
+  transform: translateX(100%);
+}
+
+.sidebar:not([aria-hidden]),
+.sidebar[aria-hidden=false] {
+  transition: 200ms;
+  transform: translateX(0);
+}
+
+.sidebar-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+}
+.sidebar-title img {
+  left: 0;
+  position: absolute;
+}
+
+.delete-icon {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin-left: 10px;
+  right: 20px;
+}
+
+.sidebar-footer {
+  padding: 0 auto;
+  bottom: 10px;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 20px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(182, 182, 182, 0.93);
+  opacity: 1;
+  z-index: 998;
+  transition: opacity 0.3s ease;
+}
+
+.slide-cart-enter-from {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.slide-cart-enter-active,
+.slide-cart-leave-active {
+  transition: all 0.5s ease;
+}
+
+.slide-cart-enter-to,
+.slide-cart-leave-from {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.slide-cart-leave-to {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
+/*# sourceMappingURL=cart.css.map */

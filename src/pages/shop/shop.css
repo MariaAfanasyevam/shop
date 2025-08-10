@@ -1,0 +1,132 @@
+.filter {
+  display: none;
+}
+@media (max-width: 739px) {
+  .filter {
+    display: flex;
+    flex-direction: row;
+    color: #A18A68;
+    row-gap: 8px;
+    font-weight: 400;
+    font-size: 12px;
+    margin-top: 20px;
+    font-family: DMSans, sans-serif;
+  }
+}
+.filter img {
+  margin-right: 8px;
+}
+.filter a {
+  cursor: pointer;
+}
+
+.shop-aside__form {
+  display: flex;
+  flex: 0 0 261px;
+  flex-direction: column;
+  align-items: flex-end;
+  row-gap: 20px;
+  font-family: "DMSans", sans-serif;
+  font-weight: 400;
+  margin-top: 20px;
+  width: 261px !important;
+}
+
+@media (max-width: 739px) {
+  .shop-aside__form {
+    display: none;
+  }
+}
+.page-button {
+  font-weight: 400;
+  width: 98px;
+}
+.page-button.disabled {
+  opacity: 40%;
+}
+
+.button-section__item {
+  border-radius: 10px;
+  font-family: DMSans, sans-serif;
+  font-size: 20px;
+  line-height: 100%;
+  font-weight: 400;
+  background-color: #efefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 27px;
+}
+.button-section__item.disabled {
+  pointer-events: none;
+}
+.button-section__item:last-child {
+  background-color: #d8d8d8;
+  color: black;
+}
+.button-section__item.page-number {
+  width: 60px;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  background-color: #efefef;
+}
+.button-section__item.page-number.selected-page {
+  color: #FFFFFF;
+  background-color: #A18A68;
+}
+
+.button-section__item:hover {
+  cursor: pointer;
+}
+
+.button-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 11px;
+  color: #000000;
+  height: 60px;
+  margin-bottom: 39px;
+  margin-top: 120px;
+}
+@media (max-width: 600px) {
+  .button-section {
+    display: none;
+  }
+}
+
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  width: 100%;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 5px solid lightgray;
+  border-top-color: #a18a68;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.result-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: black;
+  font-family: "DMSans", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+/*# sourceMappingURL=shop.css.map */
