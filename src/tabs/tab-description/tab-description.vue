@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 
-defineProps({
-  productDescription: String,
-})
+const { productDescription } = defineProps<{
+  productDescription: string
+}>()
 
 </script>
 <template>

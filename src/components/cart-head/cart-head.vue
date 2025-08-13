@@ -1,9 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { useCartStore } from '../../store/cartStore'
 const cartStore = useCartStore()
-defineProps({
-  totalItems: Number,
-})
+
+defineProps<{
+  totalItems: number
+}>()
 </script>
 <template>
   <div class="cart-head__title">

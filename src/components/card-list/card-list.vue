@@ -1,10 +1,12 @@
-<script setup>
-import Card from '../card/card.vue'
+<script setup lang="ts">
 
-defineProps({
-  items: Array,
-  isFavorites: Boolean,
-})
+import Card, {CardProps} from '../card/card.vue'
+
+interface Props {
+items: CardProps[]
+}
+defineProps<Props>()
+
 </script>
 <template>
   <div class="card-list" v-auto-animate>
@@ -17,7 +19,7 @@ defineProps({
       :title="item.title"
       :price="item.price"
       :discountPercent="item.discountPercent"
-      :productId="item.documentId"
+      :documentId="item.documentId"
       :itemsInStock="item.itemsInStock"
     />
   </div>

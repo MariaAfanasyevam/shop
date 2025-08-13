@@ -11,11 +11,11 @@ export const fetchSliderItems = async () => {
 
 const BASE_URL = 'https://api.dev.cwe.su/api'
 
-export const fetchProductApi = (id:number) => {
+export const fetchProductApi = (id: string) => {
   return axios.get(`${BASE_URL}/products/${id}`)
 }
 
-export const fetchReviewsApi = (id:number) => {
+export const fetchReviewsApi = (id: string) => {
   return axios.get(`${BASE_URL}/products/${id}/?populate=*`)
 }
 

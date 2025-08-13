@@ -1,16 +1,18 @@
-<script setup>
+<script setup lang="ts">
 import { ref, watch, onUnmounted } from 'vue'
-import { useCartStore } from '../../store/cartStore.js'
+import { useCartStore } from '../../store/cartStore'
 
 const cartStore = useCartStore()
-const props = defineProps({
-  message: String,
-  show: Boolean,
-})
+
+interface Props {
+  message: string
+  show: boolean
+}
+const props = defineProps<Props>()
 
 const emit = defineEmits(['update:show'])
 const visible = ref(props.show)
-let timeout
+let timeout :ReturnType<typeof setTimeout> | undefined
 
 watch(
   () => props.show,

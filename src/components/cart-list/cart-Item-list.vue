@@ -1,6 +1,6 @@
-<script setup>
+<script setup lang="ts">
 import CartItem from '../cart-item/cart-item.vue'
-import { useCartStore } from '../../store/cartStore.js'
+import { useCartStore } from '../../store/cartStore'
 
 const cartStore = useCartStore()
 </script>
@@ -15,7 +15,7 @@ const cartStore = useCartStore()
       :price="item.price"
       :color="item.color"
       :quantity="item.quantity"
-      :productId="item.documentId"
+      :documentId="item.documentId"
       :discount-price="item.discountPrice"
       :discountPercent="item.discountPercent"
       :itemsInStock="item.itemsInStock"

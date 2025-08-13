@@ -1,9 +1,9 @@
-<script setup>
+<script setup lang="ts">
 import Card from '../../components/card/card.vue'
 import { ref, watch, computed, h, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useCartStore } from '../../store/cartStore'
-import { useFavoriteStore } from '../../store/favoriteStore.js'
+import { useFavoriteStore } from '../../store/favoriteStore'
 import heartIcon from '/img/heartIcon.svg'
 import filledHeartIcon from '/img/filledHeartIcon.svg'
 import TabAdditional from '../../tabs/tab-additional/tab-additional.vue'
@@ -11,25 +11,30 @@ import TabReviews from '../../tabs/tab-reviews/tab-reviews.vue'
 import TabDescription from '../../tabs/tab-description/tab-description.vue'
 import shareIcon from '../../icons/share-icon.vue'
 import arrowIcon from '../../icons/arrow-icon.vue'
-import { fetchProductApi, fetchReviewsApi, fetchSimilarItemsApi } from '../../api.ts'
+import { fetchProductApi, fetchReviewsApi, fetchSimilarItemsApi } from '../../api'
 
 const route = useRoute()
 const favoriteStore = useFavoriteStore()
 const cartStore = useCartStore()
-const isExpanded = ref(false)
-const openTab = ref(null)
-const similarItems = ref([])
-const request = ref({})
-const quantity = ref( 1);
-const additionalUrl = ref('')
-const mainUrl = ref('')
-const allReviews = ref([])
-const productReviews = ref([])
-const averageRating = ref(0)
-const reviewsCount = ref(0)
-const activeTab = ref(1)
+const isExpanded = ref<boolean>(false)
+const openTab = ref<number|null>(null)
+const similarItems = ref<SimilarItem[]>([])
+const request = ref<Product>({} as Product)
+const quantity = ref<number>( 1);
+const additionalUrl = ref<string>('')
+const mainUrl = ref<string>('')
+const allReviews = ref<Review[]>([])
+const productReviews = ref<Review[]>([])
+const averageRating = ref<number>(0)
+const reviewsCount = ref<number>(0)
+const activeTab = ref<number>(1)
 
-const toggleTab = (index) => {
+interface ProductPageProps {
+  id: string
+}
+const props = defineProps<ProductPageProps>()
+
+const toggleTab = (index:number) => {
   openTab.value = openTab.value === index ? null : index
 }
 
@@ -37,43 +42,81 @@ const fullText = computed(() => request.value?.description || '')
 
 const truncatedText = computed(() => fullText.value.slice(0, 85) + '...')
 
-const increaseQuantity = () => {
+const increaseQuantity = ():void => {
   quantity.value++
 }
 
-const decreaseQuantity = () => {
+const decreaseQuantity = () :void => {
   if (quantity.value > 1) quantity.value--
 }
 
-const handleClick = (item) => {
+const handleClick = (item: string):void => {
   const favoriteStore = useFavoriteStore()
   favoriteStore.toggleFavorite(item)
 }
 
-const onClick = (navigate) => {
+const onClick = (navigate:()=>void) => {
   navigate()
   setTimeout(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }, 100)
 }
 
-const currentTabComponent = computed(() => {
+interface TabProps {
+  Description: { productDescription: string }
+  Additional: { productInformation: typeof information.value }
+  Reviews: { productReviews: Review[]; title: string; id: string }
+}
+
+const currentTabComponent = computed<
+    typeof TabDescription | typeof TabAdditional | typeof TabReviews
+>(() => {
   switch (activeTab.value) {
-    case 1:
-      return TabDescription
-    case 2:
-      return TabAdditional
-    case 3:
-      return TabReviews
-    default:
-      return TabDescription
+    case 1: return TabDescription
+    case 2: return TabAdditional
+    case 3: return TabReviews
+    default: return TabDescription
   }
 })
+
+interface Review {
+  author: string,
+  text: string,
+  rate: number
+}
+
+interface SimilarItem {
+  id: number,
+  title: string,
+  price: number,
+  image: string,
+  discountPercent?: number,
+  documentId: string,
+  itemsInStock: number,
+}
+
+interface Product{
+  documentId: string,
+  id: number,
+  title: string,
+  description: string,
+  price: number,
+  image: string,
+  additionalImages?: {additionalImages: Record<string, string>[]},
+  itemsInStock: number,
+  weight?: string,
+  color?: string,
+  material?: string,
+  discountPercent?: number
+  quantity?: number
+  dimensions?: string
+}
+
 const increaseIsDisabled = computed(() => (quantity.value >= request.value.itemsInStock) || cartStore.isInCart(request.value))
-const fetchReviews = async (id) => {
+const fetchReviews = async (id: string) :Promise<void> => {
   try {
     const { data } = await fetchReviewsApi(id)
-    allReviews.value = data.data.reviews
+    allReviews.value = data.data.reviews as Review[]
     productReviews.value = allReviews.value
     reviewsCount.value = productReviews.value.length
     console.log(allReviews.value)
@@ -90,10 +133,10 @@ const fetchReviews = async (id) => {
 }
 
 const information = computed(() => ({
-  weight: request.value.weight,
-  dimensions: request.value.dimensions,
-  color: request.value.color,
-  material: request.value.material,
+  weight: Number(request.value?.weight??0),
+  dimensions: request.value?.dimensions??'',
+  color: request.value?.color??'',
+  material: request.value?.material??'',
 }))
 
 const tabs = [
@@ -101,11 +144,32 @@ const tabs = [
   { title: 'Additional information', content: () => h(TabAdditional, { productInformation: information.value }) },
   {
     title: 'Reviews',
-    content: () => h(TabReviews, { productReviews: productReviews.value, title: request.value.title }),
+    content: () => h(TabReviews, {
+      productReviews: productReviews.value,
+      title: request.value.title,
+    id: String(props.id)
+    }),
   },
 ]
 
-const setActiveTab = (id) => {
+const currentTabProps = computed<TabProps[keyof TabProps]>(() => {
+  switch (activeTab.value) {
+    case 1:
+      return { productDescription: request.value.description }
+    case 2:
+      return { productInformation: information.value }
+    case 3:
+      return {
+        productReviews: productReviews.value,
+        title: request.value.title,
+        id: request.value.documentId,
+      }
+    default:
+      return { productDescription: request.value.description }
+  }
+})
+
+const setActiveTab = (id:number): void => {
   activeTab.value = id
 }
 
@@ -118,10 +182,10 @@ const fetchSimilarItems = async () => {
   }
 }
 
-const fetchProduct = async (id) => {
+const fetchProduct = async (id:string):Promise<void> => {
   try {
     const { data } = await fetchProductApi(id)
-    const productData = data.data
+    const productData = data.data as Product
     request.value = {
       ...productData,
       quantity: 1,
@@ -131,25 +195,36 @@ const fetchProduct = async (id) => {
     console.error('Error fetching product:', e)
   }
 }
-const toggleProductInCart = () => {
-  cartStore.toggleCart(request.value, quantity.value)
+const toggleProductInCart = (): void => {
+  if (!request.value) return
+
+  cartStore.toggleCart(
+      {
+        ...request.value,
+        discountPercent: request.value.discountPercent ?? 0,
+      },
+      quantity.value
+  )
+
   quantity.value = 1
   console.log(request.value)
 }
 
-const swapImages = (newUrl) => {
+const swapImages = (newUrl : string) :void => {
   additionalUrl.value = mainUrl.value
   mainUrl.value = newUrl
 }
-const scrollToTop = () => {
+const scrollToTop = () :void => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 watch(
   () => route.params.id,
   async (newId) => {
+    if (!newId) return
+    const id = Array.isArray(newId) ? newId[0] : newId
     quantity.value = 1
-    await fetchProduct(newId)
-    await fetchReviews(newId)
+    await fetchProduct(id)
+    await fetchReviews(id)
     await fetchSimilarItems()
     await nextTick()
     scrollToTop()
@@ -263,20 +338,8 @@ watch(
 
         <keep-alive>
           <component
-            :is="currentTabComponent"
-            v-bind="
-              activeTab === 3
-                ? {
-                    title: request.title,
-                    id: request.documentId,
-                    productReviews: productReviews,
-                  }
-                : activeTab === 1
-                  ? { productDescription: request.description }
-                  : {
-                      productInformation: information,
-                    }
-            "
+              :is="currentTabComponent"
+              v-bind="currentTabProps"
           />
         </keep-alive>
       </div>
@@ -306,8 +369,8 @@ watch(
               :image="item.image"
               :title="item.title"
               :price="item.price"
-              :discountPercent="item.discountPercent"
-              :productId="item.documentId"
+              :discountPercent="item.discountPercent ?? 0"
+              :documentId="item.documentId"
               :itemsInStock="item.itemsInStock"
             />
           </div>

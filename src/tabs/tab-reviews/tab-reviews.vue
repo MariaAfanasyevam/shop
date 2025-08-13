@@ -1,24 +1,24 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
 
-const author = ref('')
-const reviewText = ref('')
-const rating = ref(5)
+const author = ref<string>('')
+const reviewText = ref<string>('')
+const rating = ref<number>(5)
+const saveInfo = ref<boolean>(false)
 
+interface ProductReview {
+    author: string,
+    text: string,
+    rate: number
+}
+const props = defineProps<{
+  title: string,
+  id: string,
+  productReviews: ProductReview[]
+}>()
 
-const saveInfo = ref(false)
-defineProps({
-  title: String,
-  id: String,
-  productReviews: {
-    author: String,
-    text: String,
-    rate: Number,
-  },
-})
-
-const submitReview = async (id) => {
+const submitReview = async (id:string) => {
   if (!author.value || !reviewText.value || !rating.value) {
     alert('Заполните все поля')
     return
@@ -93,7 +93,7 @@ onMounted(() => {
       <div class="add-review__text">
         <div class="review-title">Required fields are marked *</div>
 
-        <form @submit="submitReview(id)">
+        <form @submit.prevent="submitReview(id)">
           <div class="form-field">
             <label>Your Review<sup>*</sup></label>
             <input type="text" id="review" v-model="reviewText" />

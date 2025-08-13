@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import {router} from "./route/router.js"
+import {router} from "./route/router"
 import App from './App.vue'
 import { createPinia } from 'pinia'
 import { autoAnimatePlugin } from '@formkit/auto-animate/vue'

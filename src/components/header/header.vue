@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useCartStore } from '../../store/cartStore'
 import { ref } from 'vue'
 import BurgerMenu from '../burger-menu/burger-menu.vue'
@@ -6,9 +6,10 @@ import CartIcon from '../../icons/cart-icon.vue'
 import UserIcon from '../../icons/user-icon.vue'
 const cartStore = useCartStore()
 const burgerOpen = ref(false)
-defineProps({
-  totalItems: Number,
-})
+
+
+const props=defineProps<{totalItems: Number}>()
+
 const burgerClose = () => {
   burgerOpen.value = false
   document.body.style.overflow = burgerOpen.value ? 'hidden' : ''
@@ -39,7 +40,7 @@ const toggleBurger = () => {
 
                 <div class="nav__cart-items" @click="cartStore.openDrawer()">
                     <CartIcon />
-                  <span class="cart-items" v-if="totalItems" id="cart-total">{{ totalItems }}</span>
+                  <span class="cart-items" v-if="props.totalItems" id="cart-total">{{ props.totalItems }}</span>
 
               </div>
             </li>
@@ -65,8 +66,5 @@ const toggleBurger = () => {
   <BurgerMenu v-if="burgerOpen" @burger-close="burgerClose" />
 </template>
 
-<script>
-export default {}
-</script>
 
 <style src="./header.scss" lang="scss" scoped></style>

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 defineProps({
   title: String,
   description: String,
@@ -7,7 +7,7 @@ defineProps({
 </script>
 <template>
   <div>
-    <img class="info-block__img" src="/img/package-icon.png" :alt="description" />
+    <img class="info-block__img" :src="imageUrl" :alt="description" />
     <h2>{{ title }}</h2>
     <p>{{ description }}</p>
   </div>

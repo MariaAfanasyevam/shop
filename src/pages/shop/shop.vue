@@ -1,34 +1,72 @@
-<script setup>
+<script setup lang="ts">
 import Catalog from '../../components/catalog/catalog.vue'
 import { onMounted, reactive, ref, watch } from 'vue'
 import FilterDesktop from '../../components/FilterDesktop/filterDesktop.vue'
 import Filter from '../../components/filter/filter.vue'
 import axios from 'axios'
 
-const filterOpen = ref(false)
-const items = ref([])
-const isLoading = ref(true)
-const hasResults = ref()
-const defaultFilters = {
+const defaultFilters: Filters= {
   sortBy: '',
   searchQuery: '',
   onSale: false,
   inStock: false,
 }
-const filters = reactive({
+const filters = reactive<Filters>({
   sortBy: 'title',
   searchQuery: '',
   onSale: false,
   inStock: false,
 })
-const currentPage = ref(1)
-const pageSize = ref(6)
-const totalPages = ref(2)
+
+interface Item {
+  id: string
+  attributes: Record<string, any>
+  quantity: number
+}
+
+interface Params {
+  'pagination[page]': number
+  'pagination[pageSize]': number
+  sort?: string
+  [key: string]: string | number | boolean | undefined
+}
+
+const params: Params = {
+  'pagination[page]': 1,
+  'pagination[pageSize]': 10,
+}
+
+const items = ref<Item[]>([])
+const currentPage = ref<number>(1)
+const pageSize = ref<number>(6)
+const totalPages = ref<number>(2)
+
+interface Filters {
+  sortBy: string
+  searchQuery: string
+  onSale: boolean
+  inStock: boolean
+}
+
+interface ApiResponse {
+  data:Item[]
+  meta:{
+    pagination:{
+      page: number
+      pageSize: number
+      pageCount: number
+      total: number
+    }
+  }
+}
+const filterOpen = ref<boolean>(false)
+const isLoading = ref(true)
+const hasResults = ref<boolean>()
 
 const fetchItems = async () => {
   try {
     isLoading.value = true
-    const params = {
+    const params: Params = {
       'pagination[page]': currentPage.value,
       'pagination[pageSize]': pageSize.value,
     }
@@ -40,18 +78,18 @@ const fetchItems = async () => {
       params['filters[title][$containsi]'] = filters.searchQuery
     }
     if (filters.onSale) {
-      params['filters[discountPercent][$gt]'] = 0
+     params['filters[discountPercent][$gt]'] = 0
     }
     if (filters.inStock) {
       params['filters[itemsInStock][$gt]'] = 0
     }
-    const { data } = await axios.get(`https://api.dev.cwe.su/api/products/?populate=*`, {
+    const { data } = await axios.get<ApiResponse>(`https://api.dev.cwe.su/api/products/?populate=*`, {
       params,
     })
     const result = data.data
     result.length !== 0 ? hasResults.value = true: hasResults.value = false
     setTimeout(() => {
-      items.value = result.map((obj) => ({
+      items.value = result.map((obj: Item) => ({
         ...obj,
         quantity: 1,
       }))
@@ -64,20 +102,20 @@ const fetchItems = async () => {
     isLoading.value = false
   }
 }
-const updateFiltersFromChild = (newFilters) => {
+const updateFiltersFromChild = (newFilters: Filters) => {
   filters.sortBy = newFilters.sortBy
   filters.searchQuery = newFilters.searchQuery
   filters.onSale = newFilters.onSale
   filters.inStock = newFilters.inStock
 }
-const goToPage = (page) => {
+const goToPage = (page: number) => {
   if (page >= 1 && page <= totalPages.value) {
     currentPage.value = page
     fetchItems()
   }
 }
 
-const filterMenuOpen = () => {
+const filterMenuOpen = ():void => {
   filterOpen.value = true
   document.body.style.overflow = filterOpen.value ? 'hidden' : ''
 }

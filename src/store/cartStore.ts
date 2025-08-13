@@ -1,20 +1,32 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
+export interface CartItem {
+    id: number
+    title: string
+    image: string
+    price: number
+    discountPercent: number
+    quantity: number
+    itemsInStock: number
+    color?: string
+    documentId?: number | string
+    discountPrice?: number
+}
+
 export const useCartStore = defineStore(
   'cart',
   () => {
-    const totalItems = computed(() => cart.value.reduce((acc, cur) => acc + cur.quantity, 0))
-    const cart = ref([])
+      const cart = ref<CartItem[]>([])
     const drawerOpen = ref(false)
     const closeDrawer = () => {
       drawerOpen.value = false
     }
-    const notification = ref({ show: false, message: '' })
-
-    const totalPrice = computed(() =>
+    const notification = ref<{ show: boolean; message: string }>({ show: false, message: '' })
+      const totalItems= computed(():number  => cart.value.reduce((acc, cur) => acc + cur.quantity, 0))
+    const totalPrice = computed(() :number=>
       cart.value.reduce(
-        (acc, cur) => acc + Math.round(cur.price * (1 - cur.discountPercent / 100)).toFixed(2) * cur.quantity,
+        (acc, cur) => acc + Number((cur.price * (1 - cur.discountPercent / 100)).toFixed(2)) * cur.quantity,
         0,
       ),
     )
@@ -23,28 +35,28 @@ export const useCartStore = defineStore(
       drawerOpen.value = true
     }
 
-    const addToCart = (item, quantity) => {
-      cart.value.push({ ...item, quantity: quantity })
+    const addToCart = (item: Omit<CartItem, 'quantity'>, quantity: number) => {
+      cart.value.push({ ...item, quantity})
       showNotification(`${item.title} added to your Shopping bag!`)
     }
-    const showNotification = (message) => {
+    const showNotification = (message:string) => {
       notification.value = { show: true, message }
       setTimeout(() => {
         notification.value.show = false
       }, 3000)
     }
 
-    function isInCart(product) {
+    function isInCart(product: {id: number}) {
       return cart.value.some((item) => item.id === product.id)
     }
 
-    const removeFromCart = (item) => {
+    const removeFromCart = (item: CartItem) => {
       const index = cart.value.findIndex((i) => i.id === item.id)
       if (index !== -1) {
         cart.value.splice(index, 1)
       }
     }
-    const toggleCart = (item, quantity) => {
+    const toggleCart = (item: Omit<CartItem, 'quantity'>, quantity: number) => {
       const existingItem = cart.value.find((i) => i.id === item.id)
       if (existingItem) {
         removeFromCart(existingItem)
@@ -53,7 +65,7 @@ export const useCartStore = defineStore(
       }
     }
 
-    const changeItemQuantity = (productId, newQuantity) => {
+    const changeItemQuantity = (productId: number, newQuantity:number) => {
       const item = cart.value.find((i) => i.id === productId)
       if (item) {
         item.quantity = newQuantity

@@ -1,21 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useCartStore } from '../../store/cartStore'
+import { useCartStore, CartItem } from '../../store/cartStore'
 
 const cartStore = useCartStore()
+const props = defineProps<CartItem>()
 
-const props = defineProps({
-  id: Number,
-  title: String,
-  image: String,
-  price: Number,
-  color: String,
-  discountPrice: Number,
-  discountPercent: Number,
-  itemsInStock: Number,
-  productId: Number,
-  quantity: Number
-})
 
 const increaseIsDisabled = computed(() => props.quantity >= props.itemsInStock)
 const decreaseIsDisabled = computed(() => props.quantity <= 1)
@@ -31,7 +20,7 @@ const discountPrice = computed(() => Math.round(props.price * (1 - props.discoun
       <h1>{{ title }}</h1>
       <div class="item-color">{{ color }} / Medium</div>
       <p class="item-price">
-        <span class="cart-item__price sale" v-if="!discountPercent == 0">$ {{ price }}</span
+        <span class="cart-item__price sale" v-if="Number(discountPercent) !== 0">$ {{ price }}</span
         ><span> $ {{ discountPrice }}</span>
       </p>
 

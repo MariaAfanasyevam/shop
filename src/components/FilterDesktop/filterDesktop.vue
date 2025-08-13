@@ -1,16 +1,23 @@
-<script setup>
+<script setup lang="ts">
 import { reactive, ref, watch, onUnmounted } from 'vue'
 import debounce from 'lodash.debounce'
-const searchValue = ref('')
 
-const emit = defineEmits(['update-filters'])
-const filters = reactive({
+interface Filters {
+  sortBy: string
+  searchQuery: string
+  onSale: boolean
+  inStock: boolean
+}
+
+const emit = defineEmits<{(e: 'update-filters', filters: Filters): void}>()
+
+const filters = reactive<Filters>({
   sortBy: 'title',
   searchQuery: '',
   onSale: false,
   inStock: false,
 })
-
+const searchValue = ref('')
 const searchByInputValue = () => {
   debouncedSearch.cancel()
   filters.searchQuery = searchValue.value
@@ -31,9 +38,11 @@ watch(
   },
   { deep: true },
 )
+
 onUnmounted(() => {
   debouncedSearch.cancel()
 })
+
 </script>
 
 <template>
@@ -73,8 +82,5 @@ onUnmounted(() => {
   </div>
 </template>
 
-<script>
-export default {}
-</script>
 
 <style src="./filterDesktop.scss" lang="scss" scoped></style>

@@ -1,17 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import CardList from '../card-list/card-list.vue'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
-
-const props = defineProps({
-  items:{
-    type: Array,
-  },
-  limit: {
-    type: Number,
-  },
-})
-
+interface Item{
+  id: number|string
+  title: string
+  image: string
+  price: number
+  discountPercent?:number
+  documentId: string
+  itemsInStock?:number
+}
+interface Props {
+  items: any[]
+  limit?: number
+}
+const props = defineProps<Props>()
+const items = ref<Item[]>([])
 
 const limitedItems = computed(() => props.items.slice(0, props.limit ?? props.items.length))
 </script>

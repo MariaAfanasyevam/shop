@@ -1,15 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import Catalog from '../../components/catalog/catalog.vue'
 import Slider from '../../components/slider/slider.vue'
 import { onMounted, ref } from 'vue'
-import {fetchItems} from '../../api.ts'
+import {fetchItems} from '../../api'
 
-const items = ref([])
 
-const fetchHomeItems = async () => {
+interface Item {
+  id: number
+  name: string
+  price: number
+  image: string
+  quantity: number
+}
+const items = ref<Item[]>([])
+const fetchHomeItems = async () : Promise<void>=> {
   try {
     const { data } = await fetchItems()
-    const result = data.data
+    const result = data.data as Omit<Item, 'quantity'>[]
     items.value = result.map((obj) => ({
       ...obj,
       quantity: 1,

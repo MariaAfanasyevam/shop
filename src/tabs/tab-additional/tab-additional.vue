@@ -1,11 +1,14 @@
-<script setup>
+<script setup lang="ts">
+interface ProductInformation {
+  weight: number
+  dimensions: string
+  color: string
+  material: string
+}
 
-defineProps({
-  productInformation: {
-    type: Object,
-    required: true,
-  },
-})
+const props = defineProps<{
+  productInformation: ProductInformation
+}>()
 
 </script>
 <template>

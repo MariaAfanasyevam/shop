@@ -1,13 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import {  Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import { onMounted, ref } from 'vue'
-import { fetchSliderItems } from '../../api.ts'
+import { fetchSliderItems } from '../../api'
+import {RouteNames} from "../../route/router"
 
-const slides = ref([])
+interface SlideItem {
+  product: {
+    documentId: string
+    title: string
+    price: number
+  }
+}
+
+const slides = ref<SlideItem[]>([])
 
 onMounted(async () => {
   slides.value = await fetchSliderItems()
@@ -32,7 +41,7 @@ onMounted(async () => {
           <p>{{ slide.product.title }}</p>
           </div>
           <div class="slider-subtitle">$ {{ slide.product.price }}</div>
-          <router-link :to="{ name: 'Product', params: { id: slide.product.documentId } }"
+          <router-link :to="{  name: RouteNames.Product, params: { id: slide.product.documentId } }"
             ><button class="swiper-button">View Product</button>
           </router-link>
         </div>

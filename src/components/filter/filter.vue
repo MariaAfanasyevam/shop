@@ -1,9 +1,16 @@
-<script setup>
-import { reactive, ref, watch } from 'vue'
+<script setup lang="ts">
+import { reactive, watch } from 'vue'
 import debounce from 'lodash.debounce'
 
 const emit = defineEmits(['update-filters', 'reset-filters', 'apply-filters'])
-const filters = reactive({
+
+interface Filters {
+  sortBy: string,
+  searchQuery: string,
+  onSale: boolean,
+  inStock: boolean,
+}
+const filters = reactive <Filters>({
   sortBy: '',
   searchQuery: '',
   onSale: false,
@@ -18,8 +25,7 @@ watch(
   }),
   () => {
     emit('update-filters', { ...filters })
-  },
-  { deep: true }
+  }
 )
 
 watch(
@@ -77,9 +83,5 @@ watch(
     </div>
   </div>
 </template>
-
-<script>
-export default {}
-</script>
 
 <style src="./filter.scss" lang="scss" scoped></style>

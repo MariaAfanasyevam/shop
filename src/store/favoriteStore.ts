@@ -4,17 +4,17 @@ import { ref } from 'vue'
 export const useFavoriteStore = defineStore(
   'favorites',
   () => {
-    const favorites = ref([])
+    const favorites = ref<string[]>([])
 
-    function addFavorite(productId) {
+    function addFavorite(productId:string) {
       favorites.value.push(productId)
     }
 
-    function removeFavorite(productId) {
+    function removeFavorite(productId:string) {
       favorites.value = favorites.value.filter((id) => id !== productId)
     }
 
-    function toggleFavorite(productId) {
+    function toggleFavorite(productId:string) {
       if (favorites.value.includes(productId)) {
         removeFavorite(productId)
       } else {
@@ -22,7 +22,7 @@ export const useFavoriteStore = defineStore(
       }
     }
 
-    function isFavorite(productId) {
+    function isFavorite(productId:string) {
       return favorites.value.includes(productId)
     }
 
