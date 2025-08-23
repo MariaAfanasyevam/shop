@@ -12,13 +12,13 @@ interface Item{
   itemsInStock?:number
 }
 interface Props {
-  items: any[]
+  items: Item[]
   limit?: number
 }
 const props = defineProps<Props>()
 const items = ref<Item[]>([])
 
-const limitedItems = computed(() => props.items.slice(0, props.limit ?? props.items.length))
+const limitedItems = computed<Item[]>(() => props.items.slice(0, props.limit ?? props.items.length))
 </script>
 <template>
   <div class="catalog-list__container">

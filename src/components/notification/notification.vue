@@ -10,8 +10,8 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const emit = defineEmits(['update:show'])
-const visible = ref(props.show)
+const emit = defineEmits<{(event: 'update:show', value: boolean): void}>()
+const visible = ref<boolean>(props.show)
 let timeout :ReturnType<typeof setTimeout> | undefined
 
 watch(

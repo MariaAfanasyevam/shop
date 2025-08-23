@@ -40,7 +40,6 @@ const submitReview = async (id:string) => {
         },
       },
     )
-    console.log(response.data)
     if (saveInfo.value) {
       localStorage.setItem('savedAuthorName', author.value)
     } else {
@@ -49,7 +48,6 @@ const submitReview = async (id:string) => {
     reviewText.value = ''
     author.value = ''
     rating.value = 5
-  //  fetchReviews(productStore.request.documentId)
   } catch (error) {
     console.error('Ошибка при отправке отзыва:', error)
   }

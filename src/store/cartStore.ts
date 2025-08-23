@@ -23,9 +23,9 @@ export const useCartStore = defineStore(
       drawerOpen.value = false
     }
     const notification = ref<{ show: boolean; message: string }>({ show: false, message: '' })
-      const totalItems= computed(():number  => cart.value.reduce((acc, cur) => acc + cur.quantity, 0))
-    const totalPrice = computed(() :number=>
-      cart.value.reduce(
+      const totalItems= computed<number>(() => cart.value.reduce<number>((acc, cur) => acc + cur.quantity, 0))
+    const totalPrice = computed<number>(() =>
+      cart.value.reduce<number>(
         (acc, cur) => acc + Number((cur.price * (1 - cur.discountPercent / 100)).toFixed(2)) * cur.quantity,
         0,
       ),

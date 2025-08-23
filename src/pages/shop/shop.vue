@@ -4,6 +4,7 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import FilterDesktop from '../../components/FilterDesktop/filterDesktop.vue'
 import Filter from '../../components/filter/filter.vue'
 import axios from 'axios'
+import {CardProps} from "@/types/product";
 
 const defaultFilters: Filters= {
   sortBy: '',
@@ -20,7 +21,7 @@ const filters = reactive<Filters>({
 
 interface Item {
   id: string
-  attributes: Record<string, any>
+  attributes: Record<string, CardProps>
   quantity: number
 }
 
@@ -28,7 +29,9 @@ interface Params {
   'pagination[page]': number
   'pagination[pageSize]': number
   sort?: string
-  [key: string]: string | number | boolean | undefined
+  'filters[title][$containsi]'?: string
+  'filters[discountPercent][$gt]'?: number
+  'filters[itemsInStock][$gt]'?: number
 }
 
 const params: Params = {
@@ -87,7 +90,7 @@ const fetchItems = async () => {
       params,
     })
     const result = data.data
-    result.length !== 0 ? hasResults.value = true: hasResults.value = false
+    hasResults.value = Boolean(result.length)
     setTimeout(() => {
       items.value = result.map((obj: Item) => ({
         ...obj,
@@ -117,12 +120,12 @@ const goToPage = (page: number) => {
 
 const filterMenuOpen = ():void => {
   filterOpen.value = true
-  document.body.style.overflow = filterOpen.value ? 'hidden' : ''
+  document.body.style.overflow = filterOpen.value ? 'hidden' : 'visible'
 }
 
 const closeFilterMenu = () => {
   filterOpen.value = false
-  document.body.style.overflow =  ''
+  document.body.style.overflow =  'visible'
 }
 
 const resetAndCloseFilters = () => {

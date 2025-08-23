@@ -8,17 +8,17 @@ import { computed, ref} from 'vue'
 import { useCartStore } from '../../store/cartStore'
 
 const cartStore = useCartStore()
-export interface CartCardProps{
+export interface CartProps{
   totalPrice: number,
       buttonDisabled: boolean,
       totalItems: number,
 }
-const props = defineProps<CartCardProps>()
+const props = defineProps<CartProps>()
 const totalItems= ref<number>(0)
 const isCreating = ref<boolean>(false)
-const cartIsEmpty = computed(() => cartStore.cart.length === 0)
+const cartIsEmpty = computed<boolean>(() => cartStore.cart.length === 0)
 
-const buttonDisabled = computed(() => isCreating.value || cartIsEmpty.value)
+const buttonDisabled = computed<boolean>(() => isCreating.value || cartIsEmpty.value)
 
 </script>
 <template>

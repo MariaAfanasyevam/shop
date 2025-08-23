@@ -6,30 +6,18 @@ import heartIcon from '/img/heartIcon.svg'
 import filledHeartIcon from '/img/filledHeartIcon.svg'
 import shoppingCartIcon from '/img/shoppingCartIcon.svg'
 import filledShoppingCartIcon from '/img/filledShoppingCartIcon.svg'
-import debounce from 'lodash.debounce'
 import {RouteNames} from "../../route/router";
+import {CardProps} from "@/types/product";
 
-export interface CardProps {
-  id: number
-  title: string
-  image: string
-  price: number
-  discountPercent: number
-  itemsInStock: number
-  documentId: string
-}
 
 const cartStore = useCartStore()
 const favoriteStore = useFavoriteStore()
 const props = defineProps<CardProps>()
 
-const discountPrice = computed(() =>
-    (props.price * (1 - (props.discountPercent ? props.discountPercent : 0) / 100)).toFixed(2)
+const discountPrice = computed<number>(() =>
+    Number((props.price * (1 - (props.discountPercent ?? 0) / 100)).toFixed(2))
 )
 
-const handleProductClick = (navigate: () => void) => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
 const scrollToTop = () => {
   window.scrollTo({
     top: 0,

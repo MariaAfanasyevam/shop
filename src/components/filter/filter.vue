@@ -2,7 +2,11 @@
 import { reactive, watch } from 'vue'
 import debounce from 'lodash.debounce'
 
-const emit = defineEmits(['update-filters', 'reset-filters', 'apply-filters'])
+const emit = defineEmits<{
+  (event: 'update-filters', payload: Filters): void
+  (event: 'reset-filters'): void
+  (event: 'apply-filters'): void
+}>()
 
 interface Filters {
   sortBy: string,

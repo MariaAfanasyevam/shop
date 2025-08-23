@@ -19,7 +19,7 @@ const cartStore = useCartStore()
 const isExpanded = ref<boolean>(false)
 const openTab = ref<number|null>(null)
 const similarItems = ref<SimilarItem[]>([])
-const request = ref<Product>({} as Product)
+const request = ref<Product|null>(null)
 const quantity = ref<number>( 1);
 const additionalUrl = ref<string>('')
 const mainUrl = ref<string>('')
@@ -38,9 +38,9 @@ const toggleTab = (index:number) => {
   openTab.value = openTab.value === index ? null : index
 }
 
-const fullText = computed(() => request.value?.description || '')
+const fullText = computed<string>(() => request.value?.description || '')
 
-const truncatedText = computed(() => fullText.value.slice(0, 85) + '...')
+const truncatedText = computed<string>(() => fullText.value.slice(0, 85) + '...')
 
 const increaseQuantity = ():void => {
   quantity.value++
@@ -104,7 +104,7 @@ interface Product{
   image: string,
   additionalImages?: {additionalImages: Record<string, string>[]},
   itemsInStock: number,
-  weight?: string,
+  weight?: number,
   color?: string,
   material?: string,
   discountPercent?: number
@@ -112,14 +112,20 @@ interface Product{
   dimensions?: string
 }
 
-const increaseIsDisabled = computed(() => (quantity.value >= request.value.itemsInStock) || cartStore.isInCart(request.value))
+interface ProductInformation {
+  weight: number
+  dimensions: string
+  color: string
+  material: string
+}
+
+const increaseIsDisabled = computed<boolean>(() => (quantity.value >= request.value.itemsInStock) || cartStore.isInCart(request.value))
 const fetchReviews = async (id: string) :Promise<void> => {
   try {
     const { data } = await fetchReviewsApi(id)
     allReviews.value = data.data.reviews as Review[]
     productReviews.value = allReviews.value
     reviewsCount.value = productReviews.value.length
-    console.log(allReviews.value)
     if (reviewsCount.value > 0) {
       const sum = productReviews.value.reduce((total, r) => total + r.rate, 0)
       const avg = sum / reviewsCount.value
@@ -132,7 +138,7 @@ const fetchReviews = async (id: string) :Promise<void> => {
   }
 }
 
-const information = computed(() => ({
+const information = computed<ProductInformation>(() => ({
   weight: Number(request.value?.weight??0),
   dimensions: request.value?.dimensions??'',
   color: request.value?.color??'',

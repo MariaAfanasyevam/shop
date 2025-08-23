@@ -6,9 +6,9 @@ const cartStore = useCartStore()
 const props = defineProps<CartItem>()
 
 
-const increaseIsDisabled = computed(() => props.quantity >= props.itemsInStock)
-const decreaseIsDisabled = computed(() => props.quantity <= 1)
-const discountPrice = computed(() => Math.round(props.price * (1 - props.discountPercent / 100)).toFixed(2))
+const increaseIsDisabled = computed<boolean>(() => props.quantity >= props.itemsInStock)
+const decreaseIsDisabled = computed<boolean>(() => props.quantity <= 1)
+const discountPrice = computed<number>(() => Number((props.price * (1 - (props.discountPercent??0) / 100)).toFixed(2)))
 
 
 </script>
