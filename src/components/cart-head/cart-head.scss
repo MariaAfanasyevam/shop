@@ -1,0 +1,23 @@
+@use "../../styles/variables.scss";
+
+.cart-head__title{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;
+  img{
+    left:0;
+    position: absolute;
+  }
+}
+
+.cart-head__link {
+  text-decoration: none;
+  color: variables.$black;
+}
+.cart-total{
+  font-size: 12px;
+  font-weight: 400;
+  margin: 17px auto 3px;
+  line-height:20px;
+}
