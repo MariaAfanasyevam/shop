@@ -39,6 +39,9 @@
 ## 🛠️ Установка и запуск проекта
 
 git clone https://github.com/username/shope.git
+
 cd shoppe
+
 npm install
+
 npm run dev
